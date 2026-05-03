@@ -4,13 +4,13 @@ type: concept
 tags: [cuda, gpu, cuda-graphs, streams, atomics, dynamic-scheduling, nvshmem, nccl]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/AI Systems Performance Engineering.pdf]
+sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # CUDA Graphs, Streams, and GPU Orchestration
 
-**Source**: AI Systems Performance Engineering, Chapters 11-12 [src](raw/AI%20Systems%20Performance%20Engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapters 11-12 [src](raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 
@@ -152,7 +152,7 @@ __global__ void dynamic_worker(float* data, int N) {
 }
 ```
 
-**Batching is critical**: One atomic per warp (batch_size=32) instead of per thread → 32× reduction in atomic contention. L2-cache atomics on modern GPUs are exceptionally fast — even batch_size=8 can eliminate most contention.
+**Batching is critical**: One atomic per warp (batch_size=32) instead of per thread → 32$\times$ reduction in atomic contention. L2-cache atomics on modern GPUs are exceptionally fast — even batch_size=8 can eliminate most contention.
 
 **Nsight Compute diagnosis**: Check `atomic_transactions_per_request` — should be ~1.0. Higher means contention.
 
@@ -201,6 +201,8 @@ stream1: cudaMemcpyPeerAsync (send gradients to GPU 0)
 
 - [GPU Memory Hierarchy](gpu-memory-hierarchy.md) — Foundation for memory optimization
 - [CUDA Kernel Optimization](cuda-kernel-optimization.md) — Single-kernel techniques
+- [Thread Block Clusters](thread-block-clusters.md) — Persistent kernels, warp specialization, DSMEM
+- [PyTorch Profiling & Tuning](pytorch-profiling-tuning.md) — CUDA Graphs via torch.compile
 - [NCCL Demystifying](nccl-demystifying.md) — NCCL internals
 - [NCCL Device API / GIN](nccl-device-api-gin.md) — GPU-initiated networking (device-side orchestration)
 - [AI Systems Performance Engineering](ai-systems-performance-engineering.md) — Full book reference

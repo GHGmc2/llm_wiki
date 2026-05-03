@@ -116,5 +116,5 @@ All three share the same core abstraction: device mesh + sharding annotations on
 
 - [PartIR](partir.md) — Composable SPMD tactics built on GSPMD concepts
 - [TOAST](toast.md) — Auto-partitioning using GSPMD's annotation propagation
-- [Parallel Folding](moe-parallel-folding.md) — Megatron-Core's parallelism decoupling (manual version of what GSPMD automates)
+- [Parallel Folding](megatron-core-moe.md) — Megatron-Core's parallelism decoupling (manual version of what GSPMD automates)
 - [Scaling Techniques Overview](scaling-techniques-overview.md) — The parallelism strategies GSPMD expresses

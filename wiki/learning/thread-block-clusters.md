@@ -4,13 +4,13 @@ type: concept
 tags: [cuda, gpu, thread-block-clusters, warp-specialization, dsmem, persistent-kernels, cutlass]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/AI Systems Performance Engineering.pdf]
+sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # Thread Block Clusters, DSMEM, and Warp Specialization
 
-**Source**: AI Systems Performance Engineering, Chapter 10 [src](raw/AI%20Systems%20Performance%20Engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapter 10 [src](raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 
@@ -103,7 +103,7 @@ for (int tile = 0; tile < numTiles; tile++) {
 }
 ```
 
-**Performance**: Double-buffered pipeline ~2× faster than naive tiling (measured in the book).
+**Performance**: Double-buffered pipeline ~2$\times$ faster than naive tiling (measured in the book).
 
 ## When NOT to Use These
 

@@ -43,32 +43,32 @@ The book follows a single narrative arc — each technique is introduced because
 ## Key Formulas
 
 **Parameter count**:
-```
-N = h*v + L*(12*h² + 13*h) + 2h
-```
+$$
+N = h \cdot v + L \cdot (12h^2 + 13h) + 2h
+$$
 
 **Memory (BF16 w/ FP32 grad acc)**:
-```
-m_params = 2N, m_grad = 2N, m_params_fp32 = 4N, m_opt = 8N
-→ 16N total per GPU (before sharding)
-```
+$$
+m_{\text{params}} = 2N,\; m_{\text{grad}} = 2N,\; m_{\text{params\_fp32}} = 4N,\; m_{\text{opt}} = 8N
+$$
+→ $16N$ total per GPU (before sharding)
 
 **Activation memory**:
-```
-m_act = L * seq * bs * h * (34 + 5*n_heads*seq/h)
-```
-Scales linearly with batch size, quadratically with sequence length.
+$$
+m_{\text{act}} = L \cdot s \cdot b \cdot h \cdot \left(34 + \frac{5 \cdot n_{\text{heads}} \cdot s}{h}\right)
+$$
+Scales linearly with batch size $b$, quadratically with sequence length $s$.
 
 **Global batch size**:
-```
-gbs = mbs * grad_acc * dp
-```
+$$
+gbs = mbs \times grad\_acc \times dp
+$$
 
 **Pipeline bubble** (1F1B):
-```
-bubble = (p-1) * (t_f + t_b) / (m * (t_f + t_b)) = (p-1)/m
-```
-where p=PP degree, m=microbatches.
+$$
+bubble = \frac{(p-1)(t_f + t_b)}{m(t_f + t_b)} = \frac{p-1}{m}
+$$
+where $p$ = PP degree, $m$ = microbatches.
 
 ## Memory Numbers
 
@@ -104,8 +104,8 @@ The playbook explains HFU (Hardware FLOPs Utilization, includes recomputation) v
 
 This playbook is the **educational foundation** for the techniques implemented in:
 
-- **[Megatron-Core MoE](megatron-core-moe-scalable-training.md)** — Memory Wall (recomputation, offloading), Communication Wall (EP overlap), Compute Wall (kernel fusion, CUDA Graphs), Parallel Folding
-- **[Parallel Folding](moe-parallel-folding.md)** — Decoupling TP/EP/CP, which the playbook explains why is necessary
-- **[DeepSeek-V4 Architecture](deepseek-v4-architecture.md)** — CSA/HCA attention is a specialized form of the attention compression context parallelism covers
-- **[FP8/FP4 Training](moe-fp8-fp4-training.md)** — The playbook's mixed precision section provides the fundamentals
+- **[Megatron-Core MoE](megatron-core-moe.md)** — Memory Wall (recomputation, offloading), Communication Wall (EP overlap), Compute Wall (kernel fusion, CUDA Graphs), Parallel Folding
+- **[Parallel Folding](megatron-core-moe.md)** — Decoupling TP/EP/CP, which the playbook explains why is necessary
+- **[DeepSeek-V4 Architecture](deepseek-v4.md)** — CSA/HCA attention is a specialized form of the attention compression context parallelism covers
+- **[FP8/FP4 Training](megatron-core-moe.md)** — The playbook's mixed precision section provides the fundamentals
 - **[Scaling Techniques Overview](scaling-techniques-overview.md)** — Detailed breakdown of each technique

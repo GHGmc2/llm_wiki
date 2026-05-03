@@ -4,13 +4,13 @@ type: concept
 tags: [cuda, gpu, memory-hierarchy, shared-memory, registers, tiling, hbm, tensor-cores]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/AI Systems Performance Engineering.pdf]
+sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # GPU Memory Hierarchy and CUDA Programming
 
-**Source**: AI Systems Performance Engineering, Chapters 6-7 [src](raw/AI%20Systems%20Performance%20Engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapters 6-7 [src](raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 
@@ -76,7 +76,7 @@ Tiling is the process of breaking large matrices into smaller tiles that fit in 
 Without tiling (naive matmul):
   for each output element:
     read entire row from HBM → compute → write to HBM
-  → O(N³) HBM accesses
+  → $O(N^3)$ HBM accesses
 
 With tiling:
   for each tile:
@@ -146,5 +146,5 @@ cuda::pipeline_consumer_wait(pipe);
 
 - [CUDA Kernel Optimization](cuda-kernel-optimization.md) — Occupancy tuning, warp efficiency, ILP
 - [CUDA Graphs & Orchestration](cuda-graphs-and-orchestration.md) — Streams, graphs, atomics
-- [Compute Efficiency Wall](moe-compute-efficiency-wall.md) — How these techniques apply to MoE
+- [Compute Efficiency Wall](megatron-core-moe.md) — How these techniques apply to MoE
 - [AI Systems Performance Engineering](ai-systems-performance-engineering.md) — Full book reference

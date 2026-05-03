@@ -4,7 +4,7 @@ type: source-note
 tags: [llm, deepseek, deepseek-v3, mla, fp8, moe, hardware-codesign, network, isca]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/Insights into DeepSeek-V3.pdf]
+sources: [raw/insights-into-deepseek-v3.pdf]
 status: stable
 ---
 
@@ -30,6 +30,10 @@ DeepSeek-V3 builds on DeepSeek-V2's MLA and DeepSeekMoE, adding:
 - FP8 mixed-precision training (first open-source large model)
 - Auxiliary-loss-free load balancing
 
+![DeepSeek-V3 basic architecture with FP8 precision annotations](../assets/v3_architecture.png)
+
+*Figure 1: Basic architecture of DeepSeek-V3 — MLA, DeepSeekMoE, MTP, and FP8 mixed precision. Colored annotations show precision used in each component. [src](raw/insights-into-deepseek-v3.pdf)*
+
 **Hardware context**: H800 GPUs with reduced NVLink (400 GB/s, down from 900 GB/s on H100) and reduced FP64 performance. This shaped key architectural decisions.
 
 ## MLA: Multi-head Latent Attention
@@ -44,11 +48,11 @@ MLA is DeepSeek's core memory efficiency innovation. Standard Multi-Head Attenti
 
 | Model | KV Cache Per Token | Multiplier vs MLA |
 |-------|-------------------|-------------------|
-| DeepSeek-V3 (MLA) | 70.272 KB | 1× |
-| Qwen-2.5 72B (GQA) | 327.680 KB | 4.66× |
-| LLaMA-3.1 405B (GQA) | 516.096 KB | 7.28× |
+| DeepSeek-V3 (MLA) | 70.272 KB | 1$\times$ |
+| Qwen-2.5 72B (GQA) | 327.680 KB | 4.66$\times$ |
+| LLaMA-3.1 405B (GQA) | 516.096 KB | 7.28$\times$ |
 
-MLA achieves 7.28× smaller KV cache than LLaMA-3.1 405B — critical for long-context inference and multi-turn conversations.
+MLA achieves 7.28$\times$ smaller KV cache than LLaMA-3.1 405B — critical for long-context inference and multi-turn conversations.
 
 See: [Multi-Head Latent Attention](multi-head-latent-attention.md)
 
@@ -56,7 +60,7 @@ See: [Multi-Head Latent Attention](multi-head-latent-attention.md)
 
 DeepSeek-V3 was the **first open-source large model** to successfully use FP8 training at scale. Key techniques:
 
-- **Fine-grained quantization**: Tile-wise 1×128 quantization for activations, block-wise 128×128 for weights
+- **Fine-grained quantization**: Tile-wise 1$\times$ 128 quantization for activations, block-wise 128$\times$ 128 for weights
 - **High-precision accumulation**: FP32 accumulation to maintain numerical stability
 - **Selective precision**: Sensitive components (embeddings, output head, RMSNorm) remain in BF16/FP32
 
@@ -147,7 +151,7 @@ The paper explicitly contrasts with Meta, Google, xAI clusters using tens/hundre
 ## Connections
 
 - [Multi-Head Latent Attention](multi-head-latent-attention.md) — MLA architecture deep-dive
-- [DeepSeek-V4 Architecture](deepseek-v4-architecture.md) — V4's CSA/HCA attention builds on MLA's KV compression philosophy
-- [Megatron-Core MoE](megatron-core-moe-scalable-training.md) — NVIDIA's approach to the same challenges on unrestricted hardware
+- [DeepSeek-V4 Architecture](deepseek-v4.md) — V4's CSA/HCA attention builds on MLA's KV compression philosophy
+- [Megatron-Core MoE](megatron-core-moe.md) — NVIDIA's approach to the same challenges on unrestricted hardware
 - [Scaling Techniques Overview](scaling-techniques-overview.md) — TP, PP, EP, ZeRO fundamentals
 - [Ultra-Scale Playbook](ultra-scale-playbook.md) — educational foundation for the parallelism strategies discussed

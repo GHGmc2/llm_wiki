@@ -4,7 +4,7 @@ type: source-note
 tags: [nccl, expert-parallelism, moe, gpu, deep-ep, hybrid-ep, vllm, dispatch, combine]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/NCCL EP.pdf]
+sources: [raw/nccl-ep.pdf]
 status: stable
 ---
 
@@ -139,6 +139,6 @@ The goal: bring the performance of specialized MoE libraries into NCCL's support
 
 - [NCCL Device API / GIN](nccl-device-api-gin.md) — GIN is NCCL EP's communication backbone
 - [NCCL Demystifying](nccl-demystifying.md) — NCCL internals: protocols, channels, topologies
-- [Communication Wall](moe-communication-wall.md) — DeepEP/HybridEP in Megatron-Core training context
+- [Communication Wall](megatron-core-moe.md) — DeepEP/HybridEP in Megatron-Core training context
 - [DeepSeek-V3 Insights](deepseek-v3-insights.md) — EP all-to-all analysis and hardware requirements
-- [DeepSeek-V4 Infrastructure](deepseek-v4-infrastructure.md) — DeepEP used in V4 inference
+- [DeepSeek-V4 Infrastructure](deepseek-v4.md) — DeepEP used in V4 inference

@@ -4,13 +4,13 @@ type: concept
 tags: [storage, gpu, gpudirect-storage, nvme, data-pipeline, deepseek-3fs, nemo-curator, dali]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/AI Systems Performance Engineering.pdf]
+sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # GPU Storage I/O and Data Pipeline Optimization
 
-**Source**: AI Systems Performance Engineering, Chapter 5 [src](raw/AI%20Systems%20Performance%20Engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapter 5 [src](raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 
@@ -94,7 +94,7 @@ The book prescribes an iterative methodology:
 4. **Apply targeted fix**: Could be OS tuning, NCCL config, data pipeline, kernel optimization
 5. **Automate**: Nightly profiling runs, performance dashboards — catch regressions early
 
-**Scaling efficiency check**: If 8 GPUs give only 5× throughput (not ~8×), something is bottlenecked.
+**Scaling efficiency check**: If 8 GPUs give only 5$\times$ throughput (not ~8$\times$ ), something is bottlenecked.
 
 ## Performance Metrics to Track
 

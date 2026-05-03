@@ -4,13 +4,13 @@ type: concept
 tags: [cuda, gpu, kernel-optimization, occupancy, warp-divergence, ilp, kernel-fusion, tensor-cores]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/AI Systems Performance Engineering.pdf]
+sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # CUDA Kernel Optimization
 
-**Source**: AI Systems Performance Engineering, Chapters 8-9 [src](raw/AI%20Systems%20Performance%20Engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapters 8-9 [src](raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 
@@ -18,7 +18,7 @@ status: stable
 - **ILP** (Instruction-Level Parallelism) is equally important: independent operations within a thread hide latency without using more registers
 - **Warp divergence** from if/else can serialize execution → all threads in a warp execute both branches
 - **Kernel fusion** eliminates HBM round-trips: do all operations in on-chip memory before writing back
-- **Tensor Cores** provide 2-8× throughput over CUDA cores but require specific data layouts
+- **Tensor Cores** provide 2-8$\times$ throughput over CUDA cores but require specific data layouts
 - **Nsight Compute roofline analysis** tells you exactly whether you're memory-bound or compute-bound
 
 ## Latency Hiding: Occupancy vs ILP
@@ -79,7 +79,7 @@ const int y = blockIdx.y * BLOCKSIZE + (threadIdx.x % BLOCKSIZE);
 const int x = blockIdx.x * BLOCKSIZE + (threadIdx.x % BLOCKSIZE);
 const int y = blockIdx.y * BLOCKSIZE + (threadIdx.x / BLOCKSIZE);
 ```
-This simple coordinate swap can yield **10× speedup** by eliminating uncoalesced accesses.
+This simple coordinate swap can yield **10$\times$ speedup** by eliminating uncoalesced accesses.
 
 ## Kernel Fusion
 
@@ -103,12 +103,12 @@ WITH fusion:
 
 ## Tensor Core Utilization
 
-Tensor Cores provide 2-8× throughput over CUDA cores but require:
+Tensor Cores provide 2-8$\times$ throughput over CUDA cores but require:
 - Specific matrix dimensions (128-byte aligned for FP8)
 - Data in TMEM or SMEM (not HBM)
 - Appropriate precision format (TF32, BF16, FP8, FP4, INT8)
 
-**FP8 on H100**: Tile-wise 1×128 quantization (activations), block-wise 128×128 (weights). GEMM must pad to 128-divisible dimensions.
+**FP8 on H100**: Tile-wise 1$\times$ 128 quantization (activations), block-wise 128$\times$ 128 (weights). GEMM must pad to 128-divisible dimensions.
 
 ## Nsight Compute Roofline Analysis
 
@@ -123,5 +123,7 @@ The roofline model guides optimization strategy:
 
 - [GPU Memory Hierarchy](gpu-memory-hierarchy.md) — Memory architecture fundamentals
 - [CUDA Graphs & Orchestration](cuda-graphs-and-orchestration.md) — Beyond single-kernel: streams, graphs, atomics
-- [Compute Efficiency Wall](moe-compute-efficiency-wall.md) — MoE-specific kernel challenges
+- [Thread Block Clusters](thread-block-clusters.md) — Advanced CUDA: DSMEM, warp specialization
+- [PyTorch Profiling & Tuning](pytorch-profiling-tuning.md) — torch.compile, profiling tools, Triton
+- [Compute Efficiency Wall](megatron-core-moe.md) — MoE-specific kernel challenges
 - [AI Systems Performance Engineering](ai-systems-performance-engineering.md) — Full book reference

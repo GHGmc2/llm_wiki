@@ -4,7 +4,7 @@ type: source-note
 tags: [reinforcement-learning, verification, reasoning, bitter-lesson, generative-verifiers, test-time-compute]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/The Bitter Lesson for RL.pdf]
+sources: [raw/the-bitter-lesson-for-rl.pdf]
 status: stable
 ---
 
@@ -32,8 +32,8 @@ Applied to LLM reasoning:
 
 ### Compute Growth
 
-- Training compute of frontier models grows 4-5× per year
-- Roughly 10× compute for fixed cost every 5 years
+- Training compute of frontier models grows 4-5$\times$ per year
+- Roughly 10$\times$ compute for fixed cost every 5 years
 - Methods that scale with compute are the methods that win
 
 ## Verification: The Scalable Method for Reasoning
@@ -80,7 +80,7 @@ The bitter lesson's search component: more thinking = better answers.
 - DeepSeek-R1: "aha moment" — model learns to think longer spontaneously
 - DeepSeek-V4 Think Max: explicit system prompt demanding exhaustive reasoning
 
-Test-time compute is the **fastest-growing** compute allocation in frontier models: o1→o3 shows >10× increase.
+Test-time compute is the **fastest-growing** compute allocation in frontier models: o1→o3 shows >10$\times$ increase.
 
 ## Summary: What Scales
 
@@ -97,4 +97,4 @@ Test-time compute is the **fastest-growing** compute allocation in frontier mode
 - [ScaleRL](scalerl.md) — Systematic framework for RL compute scaling (the "learning" side)
 - [DeepSeek-R1](deepseek-r1.md) — Pure RL with rule-based verifiers (the canonical example)
 - [LLM Scaling Laws](llm-scaling-laws.md) — Pretraining scaling context and the plateau
-- [DeepSeek-V4 Post-Training](deepseek-v4-post-training.md) — V4's verifier-dependent post-training pipeline
+- [DeepSeek-V4 Post-Training](deepseek-v4.md) — V4's verifier-dependent post-training pipeline

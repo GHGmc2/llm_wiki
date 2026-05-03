@@ -126,4 +126,4 @@ TOAST represents the fully automated extreme: zero user input, discovers optimal
 - [GSPMD](gspmd.md) — The foundational annotation-based system TOAST automates
 - [PartIR](partir.md) — TOAST can generate PartIR schedules as output
 - [Scaling Techniques Overview](scaling-techniques-overview.md) — The parallelism strategies TOAST searches over
-- [Parallel Folding](moe-parallel-folding.md) — Megatron-Core's manual approach (TOAST could automate this)
+- [Parallel Folding](megatron-core-moe.md) — Megatron-Core's manual approach (TOAST could automate this)

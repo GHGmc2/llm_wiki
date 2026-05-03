@@ -4,7 +4,7 @@ type: source-note
 tags: [reinforcement-learning, scaling-laws, grpo, llm, rl, scalerl, cispo, pipeline-rl]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/The Art of Scaling Reinforcement Learning Compute for LLMs.pdf]
+sources: [raw/art-of-scaling-rl-compute.pdf]
 status: stable
 ---
 
@@ -15,7 +15,7 @@ status: stable
 ## Key Points
 
 - **First large-scale systematic study** of RL compute scaling for LLMs — previously an "art not science"
-- **Sigmoidal compute-performance curves**: `RC - R0 = (A - R0) × 1/(1 + (Cmid/C)^B)` — parameters for asymptote (A), compute efficiency (B), midpoint (Cmid)
+- **Sigmoidal compute-performance curves**: $$R_C - R_0 = (A - R_0) \cdot \frac{1}{1 + (C_{mid}/C)^B}$$ — parameters for asymptote (A), compute efficiency (B), midpoint (Cmid)
 - **ScaleRL recipe**: Combines existing methods into a predictable, scalable RL pipeline — achieves SOTA asymptotic performance
 - **Predicted 100K GPU-hour run** from 50K GPU-hour fit — demonstrated on 8B dense and 17B×16 MoE (Scout) models
 - **CISPO > GSPO > DAPO/GRPO**: CISPO (truncated IS + vanilla policy gradient) is most stable and hyperparameter-robust
@@ -25,7 +25,7 @@ status: stable
 
 While pretraining has well-established scaling laws (Kaplan, Chinchilla), RL scaling for LLMs remains **an art**:
 
-- RL compute has grown massively: DeepSeek-R1-Zero used 100K H800 GPU-hours for RL (3.75% of pretraining), o1→o3 shows >10× RL compute increase
+- RL compute has grown massively: DeepSeek-R1-Zero used 100K H800 GPU-hours for RL (3.75% of pretraining), o1→o3 shows >10$\times$ RL compute increase
 - No principled way to evaluate algorithmic improvements for scaling
 - Most RL papers provide ad-hoc solutions for specific contexts, not general scaling methodology
 - Academic researchers are sidelined — can't run large-scale RL experiments
@@ -70,16 +70,16 @@ ScaleRL's sigmoid fits from 50K GPU-hours accurately predicted performance at 10
 
 ScaleRL combines existing methods into a single predictable, scalable objective:
 
-```
-J_ScaleRL(θ) = E[ 1/Σ|yg| · Σ_i Σ_t sg(min(ρ_i,t, ε)) · Ânorm_i · log π_train(y_i,t) ]
+$$
+J_{\text{ScaleRL}}(\theta) = \mathbb{E}\left[ \frac{1}{\sum |y_g|} \sum_{i} \sum_{t} \text{sg}\big(\min(\rho_{i,t}, \varepsilon)\big) \cdot \hat{A}^{\text{norm}}_i \cdot \log \pi_{\text{train}}(y_{i,t}) \right]
+$$
 
-Constraints: 0 < mean({r_j}) < 1, pass_rate(x) < 0.9
-```
+Constraints: $0 < \text{mean}(\{r_j\}) < 1$, $\text{pass\_rate}(x) < 0.9$
 
 Where:
-- `ρ_i,t = π_train(y_i,t) / π_oldgen(y_i,t)` — token-level importance sampling ratio
-- `Ânorm_i = Â_i / Â_std` — batch-level normalized advantage
-- `sg(min(ρ, ε))` — stop-gradient truncated IS weight (CISPO)
+- $\rho_{i,t} = \pi_{\text{train}}(y_{i,t}) / \pi_{\text{oldgen}}(y_{i,t})$ — token-level importance sampling ratio
+- $\hat{A}^{\text{norm}}_i = \hat{A}_i / \hat{A}_{\text{std}}$ — batch-level normalized advantage
+- $\text{sg}(\min(\rho, \varepsilon))$ — stop-gradient truncated IS weight (CISPO)
 - `pass_rate(x) < 0.9` — No-Positive-Resampling filter
 - Forced interruption phrase: "Okay, time is up. Let me stop thinking and formulate a final answer now.<｜end▁of▁thinking｜>"
 
@@ -200,4 +200,4 @@ While the paper focuses on in-distribution validation for predictive scaling, do
 - [The Bitter Lesson for RL](bitter-lesson-rl.md) — Verification as the key; ScaleRL provides the systematic methodology for scaling verifier-based RL
 - [DeepSeek-V3.2](deepseek-v3.2.md) — V3.2's scalable RL framework (>10% pretraining budget) maps to ScaleRL's compute scaling analysis
 - [LLM Scaling Laws](llm-scaling-laws.md) — Pretraining scaling laws context — ScaleRL brings similar predictability to RL
-- [DeepSeek-V4 Post-Training](deepseek-v4-post-training.md) — V4's GRPO usage and OPD pipeline
+- [DeepSeek-V4 Post-Training](deepseek-v4.md) — V4's GRPO usage and OPD pipeline

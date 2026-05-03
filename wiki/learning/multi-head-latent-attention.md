@@ -4,18 +4,18 @@ type: concept
 tags: [llm, attention, deepseek, kv-cache, memory-optimization, inference, mla]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/Insights into DeepSeek-V3.pdf, raw/DeepSeek-V4.pdf]
+sources: [raw/insights-into-deepseek-v3.pdf, raw/DeepSeek-V4.pdf]
 status: stable
 ---
 
 # Multi-Head Latent Attention (MLA)
 
-**Source**: DeepSeek-V3 Insights (ISCA 2025) [src](raw/Insights into DeepSeek-V3.pdf), DeepSeek-V4 report [src](raw/DeepSeek-V4.pdf)
+**Source**: DeepSeek-V3 Insights (ISCA 2025) [src](raw/insights-into-deepseek-v3.pdf), DeepSeek-V4 report [src](raw/DeepSeek-V4.pdf)
 
 ## Key Points
 
 - MLA compresses Key and Value vectors into a shared **low-rank latent space**, dramatically reducing KV cache memory
-- 7.28× smaller KV cache than LLaMA-3.1 405B (70 KB vs 516 KB per token)
+- 7.28$\times$ smaller KV cache than LLaMA-3.1 405B (70 KB vs 516 KB per token)
 - During inference, only the compressed latent is cached; full KV is up-projected on-the-fly
 - Foundation for DeepSeek's long-context capabilities — enables efficient multi-turn conversations
 - Carried forward into DeepSeek-V4, where it complements CSA/HCA hybrid attention
@@ -38,6 +38,10 @@ For large models at long sequences (e.g., LLaMA-3.1 405B at 128K tokens), this c
 ## MLA Architecture
 
 MLA takes a fundamentally different approach: **compress the KV representation into a low-rank latent space** rather than just reducing the number of heads or bit-width.
+
+![MLA within the DeepSeek-V3 architecture — KV cache compressed to latent c_KV](../assets/v3_architecture.png)
+
+*Figure: MLA compresses Keys and Values into a shared latent vector `c_KV` via low-rank projection. Only the compressed latent is cached; full KV is up-projected on-the-fly during attention. [src](raw/DeepSeek-V3.pdf)*
 
 ### Core Mechanism
 
@@ -72,18 +76,18 @@ MLA:
 
 | Model | Attention Type | KV Cache Per Token | vs MLA |
 |-------|---------------|-------------------|--------|
-| DeepSeek-V3 | MLA | 70.272 KB | 1× |
-| DeepSeek-V2 | MLA | — | ~1× |
-| Qwen-2.5 72B | GQA | 327.680 KB | 4.66× |
-| LLaMA-3.1 405B | GQA | 516.096 KB | 7.28× |
+| DeepSeek-V3 | MLA | 70.272 KB | 1$\times$ |
+| DeepSeek-V2 | MLA | — | ~1$\times$ |
+| Qwen-2.5 72B | GQA | 327.680 KB | 4.66$\times$ |
+| LLaMA-3.1 405B | GQA | 516.096 KB | 7.28$\times$ |
 
-The compression ratio depends on the latent dimension `d_c`. For DeepSeek-V3, `d_c` is a small fraction of the full KV dimension, achieving the 7×+ compression.
+The compression ratio depends on the latent dimension `d_c`. For DeepSeek-V3, `d_c` is a small fraction of the full KV dimension, achieving the 7$\times$ + compression.
 
 ## Why MLA Matters
 
 ### Long-Context Inference
 
-KV cache is the dominant memory consumer during long-context autoregressive decoding. MLA's 7×+ compression means:
+KV cache is the dominant memory consumer during long-context autoregressive decoding. MLA's 7$\times$ + compression means:
 - A 128K-token conversation that would consume ~66 GB of KV cache with GQA (LLaMA-405B) consumes ~9 GB with MLA
 - Multi-turn conversations (where cache persists across turns) become far more practical
 - Reasoning models (DeepSeek-R1) that generate long chains of thought benefit enormously
@@ -105,6 +109,6 @@ MLA reduces activation memory during training by storing smaller intermediate re
 ## Connections
 
 - [DeepSeek-V3 Insights](deepseek-v3-insights.md) — hardware-aware co-design paper introducing MLA in context
-- [DeepSeek-V4 Architecture](deepseek-v4-architecture.md) — CSA/HCA builds on MLA's compression philosophy
-- [Megatron-Core Memory Wall](moe-memory-wall.md) — activation memory optimization from NVIDIA's perspective
+- [DeepSeek-V4 Architecture](deepseek-v4.md) — CSA/HCA builds on MLA's compression philosophy
+- [Megatron-Core Memory Wall](megatron-core-moe.md) — activation memory optimization from NVIDIA's perspective
 - [Ultra-Scale Playbook](ultra-scale-playbook.md) — context on KV cache and attention memory

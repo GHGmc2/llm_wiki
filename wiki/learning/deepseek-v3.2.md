@@ -32,6 +32,10 @@ The paper argues the gap between open and closed models was **widening** (not co
 
 The only architectural change from V3.1-Terminus. DSA selects a sparse subset of KV entries per query token, reducing attention FLOPs while maintaining quality.
 
+![DSA instantiated under MLA — Lightning Indexer + Fine-Grained Token Selection](../assets/dsa_architecture.png)
+
+*Figure 2: DSA architecture under MLA. The green part shows how the Lightning Indexer selects top-k key-value entries for sparse attention. [src](raw/DeepSeek-V3.2.pdf)*
+
 ### Lightning Indexer
 
 A compact, efficient scoring mechanism that computes relevance between each query token and all preceding KV entries:
@@ -126,11 +130,11 @@ V3.2's DSA is the direct predecessor to V4's CSA (Compressed Sparse Attention):
 | KV cache | Full (no compression) | 1/m compressed |
 | Context | 128K | 1M |
 
-V4 took DSA's sparse attention concept and added **KV compression** before sparsity — the key to V4's 10× KV cache reduction.
+V4 took DSA's sparse attention concept and added **KV compression** before sparsity — the key to V4's 10$\times$ KV cache reduction.
 
 ## Connections
 
 - [DeepSeek-V3](deepseek-v3.md) — the base architecture V3.2 extends
-- [DeepSeek-V4 Architecture](deepseek-v4-architecture.md) — CSA/HCA is the evolution of DSA
+- [DeepSeek-V4 Architecture](deepseek-v4.md) — CSA/HCA is the evolution of DSA
 - [DeepSeek-R1](deepseek-r1.md) — R1's GRPO framework is the foundation for V3.2's scalable RL
-- [DeepSeek-V4 Post-Training](deepseek-v4-post-training.md) — V4's OPD is the next evolution of post-training
+- [DeepSeek-V4 Post-Training](deepseek-v4.md) — V4's OPD is the next evolution of post-training

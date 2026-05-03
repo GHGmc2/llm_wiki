@@ -1,10 +1,10 @@
 ---
 title: "LLM Scaling Laws: From GPT-3 to the Plateau"
 type: source-note
-tags: [scaling-laws, llm, pretraining, chinchilla, kaplan, power-law, compute-optimal]
+tags: [scaling-laws, llm, pretraining, kaplan, power-law]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [https://cameronrwolfe.substack.com/p/llm-scaling-laws]
+sources: [https://cameronrwolfe.substack.com/p/llm-scaling-laws, raw/scaling-laws-kaplan.pdf]
 status: stable
 ---
 
@@ -15,8 +15,7 @@ status: stable
 ## Key Points
 
 - **Power laws are the foundation**: LLM test loss decreases as a power law with respect to compute, model size, and data size
-- **Kaplan et al. (2020)**: OpenAI's original scaling laws — prioritize increasing model size over data (N^0.74 for data)
-- **Chinchilla (2022)**: Compute-optimal training — scale model size and data **equally**. Most models before Chinchilla were undertrained
+- **Kaplan et al. (2020)**: OpenAI's original scaling laws — prioritize increasing model size over data ($D \propto N^{0.74}$)
 - **Scaling is exponential decay, not exponential growth**: Each unit of improvement costs more than the last — diminishing returns
 - **Data wall**: The internet is finite — web-scraped data may not suffice for continued scaling
 - **RL scaling laws** are emerging but less standardized than pretraining scaling laws
@@ -28,77 +27,67 @@ status: stable
 
 A scaling law is a power-law relationship between an LLM's test loss (L) and some quantity of interest (X):
 
-```
-L(X) = a · X^(-b) + L_∞
-```
+$$
+L(X) = a \cdot X^{-b} + L_\infty
+$$
 
-Where `a` and `b` are fitted constants, and `L_∞` is the irreducible loss (entropy of the data distribution).
+Where $a$ and $b$ are fitted constants, and $L_\infty$ is the irreducible loss.
 
-**Key quantities**:
-| Symbol | Quantity |
-|--------|----------|
-| N | Number of model parameters |
-| D | Dataset size (tokens) |
-| C | Training compute (FLOPs) |
+### Kaplan et al. (2020) — The Original Scaling Laws
 
-The relationship: `C ≈ 6ND` — compute is approximately proportional to parameters × data.
+**Source**: OpenAI, 2020. 30 pages. arXiv:2001.08361 [src](raw/scaling-laws-kaplan.pdf). Studied Transformer LMs across 7+ orders of magnitude in scale.
 
-### Two Landmark Papers
 
-**Kaplan et al. (2020)** — OpenAI's original scaling laws:
-- For a fixed compute budget, prioritize increasing model size
-- Data should scale as `D ∝ N^0.74` (slower than parameters)
-- Led to models like GPT-3 (175B params on ~300B tokens)
-- Model size is the primary driver of performance
 
-**Chinchilla / Hoffmann et al. (2022)** — DeepMind's correction:
-- **Compute-optimal**: Model size and data should scale **equally** (`N ∝ D`)
-- Most models were significantly undertrained — needed more data, not more parameters
-- A 70B model trained on 1.4T tokens matches a 175B model on 300B tokens
-- Chinchilla (70B) matched Gopher (280B) with 4× fewer parameters but 4× more data
+**Three fundamental power laws** (when not bottlenecked by the other factors):
 
-**The Chinchilla insight reshaped the field**: post-2022, models use more data relative to their size (e.g., Llama 3 8B on 15T tokens, DeepSeek-V3 671B on 14.8T tokens).
+1. **Model size** (trained to convergence on sufficient data):
+   $$L(N) = \left(\frac{N_c}{N}\right)^{\alpha_N}, \quad \alpha_N \approx 0.076, \quad N_c \approx 8.8 \times 10^{13}$$
 
-## Common Misconceptions
+2. **Dataset size** (large models with early stopping):
+   $$L(D) = \left(\frac{D_c}{D}\right)^{\alpha_D}, \quad \alpha_D \approx 0.095, \quad D_c \approx 5.4 \times 10^{13} \text{ tokens}$$
 
-1. **"Exponential improvement from logarithmic compute"**: FALSE. Scaling laws are exponential decay — each unit of improvement requires more compute than the previous one. Diminishing returns are baked in.
+3. **Compute budget** (optimally allocated):
+   $$L(C_{\min}) = \left(\frac{C_c^{\min}}{C_{\min}}\right)^{\alpha_C^{\min}}, \quad \alpha_C^{\min} \approx 0.050, \quad C_c^{\min} \approx 3.1 \times 10^8 \text{ PF-days}$$
 
-2. **"Bigger models are always better"**: FALSE. A model must be matched to its data budget. Overtrained small models can beat undertrained large ones (Chinchilla vs Gopher).
+### The Unified Overfitting Formula (Equation 1.5)
 
-3. **"Scaling laws predict capabilities"**: PARTIALLY FALSE. They predict test loss, not emergent capabilities. Test loss correlates with downstream performance but doesn't guarantee specific abilities.
+The most important equation in the paper — combines the dependence on model size N and dataset size D into a single functional form:
 
-## Data: The Limiting Factor
+$$
+L(N, D) = \left[ \left(\frac{N_c}{N}\right)^{\frac{\alpha_N}{\alpha_D}} + \frac{D_c}{D} \right]^{\alpha_D}
+$$
 
-The Chinchilla laws imply we need exponentially more data for each improvement. But:
+This predicts the loss when training is stopped early (before convergence). The first term dominates when the model is too small (capacity-limited). The second term dominates when data is too small (overfitting). The crossover happens when $N^{0.74}/D$ is balanced — every $8\times$ increase in model size only needs ~$5\times$ more data.
 
-- Most pretraining data comes from web scraping
-- The internet is finite (~100-200T tokens of usable text)
-- Synthetic data can help but has quality and diversity challenges
-- This "data wall" is cited as one reason for the scaling plateau
+### Training Curve Prediction (Equation 1.6)
 
-## The Scaling Plateau and Beyond
+Learning curves for any model size can be parameterized by $S_{\min}$, the minimum steps needed:
 
-Recent observations (2024-2025):
-- Pure pretraining scaling shows diminishing returns
-- Next-token prediction loss improvements are smaller per unit of compute
-- Shifting focus to: reasoning (R1, o1), RL post-training, test-time compute scaling, data quality over quantity
+$$
+L(N, S) = \left(\frac{N_c}{N}\right)^{\alpha_N} + \left(\frac{S_c}{S_{\min}(S)}\right)^{\alpha_S}
+$$
 
-**Ilya Sutskever's framing**: "The age of pretraining is ending." The field is transitioning from scaling pretraining compute to scaling inference-time compute and RL training.
+where $S_c \approx 2.1 \times 10^3$ and $\alpha_S \approx 0.76$. This allows **predicting final performance from early training**.
 
-## RL Scaling Laws
+### Optimal Compute Allocation (Equations 1.7, 1.8)
 
-A newer, less standardized area:
-- RL scaling laws are more bespoke than pretraining — depend heavily on reward design, prompt distribution, algorithm choice
-- Emerging work shows smooth capability improvements with RL compute scale (R1, V3.2)
-- Fundamental difference: pretraining scaling predicts loss; RL scaling predicts task performance directly
-- Still early — no single standardized approach like Chinchilla for RL
+For a fixed compute budget $C$, the optimal allocation proportions are:
 
-## Connections to Wiki Content
+$$N \propto C^{\alpha_C^{\min}/\alpha_N} \approx C^{0.73}$$
+$$B \propto C^{\alpha_C^{\min}/\alpha_B} \approx C^{0.24}$$
+$$S \propto C^{\alpha_C^{\min}/\alpha_S} \approx C^{0.03}$$
 
-This article provides the theoretical foundation for the scaling decisions documented in:
+with the composite exponent:
+$$\alpha_C^{\min} = \frac{1}{1/\alpha_S + 1/\alpha_B + 1/\alpha_N}$$
 
-- **[DeepSeek-V3](deepseek-v3.md)**: 671B params, 14.8T tokens — roughly Chinchilla-optimal (parameters:tokens ≈ 1:22)
-- **[DeepSeek-V4](deepseek-v4-technical-report.md)**: 1.6T params, 33T tokens — pushing data scaling further
-- **[DeepSeek-R1](deepseek-r1.md)**: Example of RL scaling laws in practice — emergent reasoning from RL compute
-- **[Ultra-Scale Playbook](ultra-scale-playbook.md)**: The engineering techniques needed to train at Chinchilla scale
-- **[Megatron-Core MoE](megatron-core-moe-scalable-training.md)**: Training infrastructure for scaling to trillions of params
+**For a 1000× compute increase**: model size grows ~1000×, batch size ~5×, training steps barely increase (~1.2×). Almost all additional compute should go to larger models.
+
+### Critical Batch Size (Equation 1.4)
+
+The batch size that optimally trades off speed and compute efficiency also follows a power law:
+
+$$B_{\text{crit}}(L) = \frac{B_*}{L^{1/\alpha_B}}, \quad B_* \approx 2 \times 10^8 \text{ tokens}, \quad \alpha_B \approx 0.21$$
+
+As loss decreases (model improves), the optimal batch size grows — larger models need larger batches.
+

@@ -26,6 +26,10 @@ status: stable
 
 DeepSeek-V3 retains the architecture validated in DeepSeek-V2:
 
+![DeepSeek-V3 basic architecture with MLA, DeepSeekMoE, MTP, and FP8](../assets/v3_architecture.png)
+
+*Figure 1: Basic architecture — MLA, DeepSeekMoE with auxiliary-loss-free load balancing, Multi-Token Prediction, FP8 mixed precision. [src](raw/DeepSeek-V3.pdf)*
+
 | Component | Description |
 |-----------|-------------|
 | **MLA** (Multi-Head Latent Attention) | Low-rank KV cache compression — see [MLA page](multi-head-latent-attention.md) |
@@ -58,13 +62,13 @@ MTP modules predict the next 1-3 tokens at each position using a shared transfor
 
 V3 is the **first open-source large model** to validate FP8 training at scale. Key design:
 
-- **Fine-grained quantization**: Tile-wise 1×128 for activations, block-wise 128×128 for weights
+- **Fine-grained quantization**: Tile-wise 1$\times$ 128 for activations, block-wise 128$\times$ 128 for weights
 - **High-precision accumulation**: FP32 for all reduce operations and master weights
 - **Selective precision**: Embeddings, output head, RMSNorm in BF16; bulk GEMMs in FP8
 - **Low-precision storage**: FP8 for optimizer states during communication (FP32 for local computation)
 - Accuracy loss vs BF16: <0.25% in controlled ablation studies
 
-See [FP8/FP4 Training](moe-fp8-fp4-training.md) and [V3 Insights](deepseek-v3-insights.md) for more detail.
+See [FP8/FP4 Training](megatron-core-moe.md) and [V3 Insights](deepseek-v3-insights.md) for more detail.
 
 ## Training Infrastructure
 
@@ -136,11 +140,15 @@ DeepSeek-V3 is trained on the **HAI-LLM** framework, a lightweight training syst
 
 DualPipe enables bidirectional pipeline scheduling with computation-communication overlap:
 
+![DualPipe scheduling for 8 PP ranks and 20 micro-batches](../assets/v3_dualpipe.png)
+
+*Figure 5: DualPipe scheduling — forward and backward passes in opposite directions, overlapping with EP all-to-all and PP communication. [src](raw/DeepSeek-V3.pdf)*
+
 | Method | Bubble Formula | Activation Memory |
 |--------|---------------|-------------------|
-| 1F1B | `(PP-1)(F+B)` | 1× PP |
-| ZB1P | `(PP-1)(F+B-2W)` | 1× PP |
-| **DualPipe** | **(PP/2 - 1)(F&B + B - 3W)** | **2× PP + 1** |
+| 1F1B | `(PP-1)(F+B)` | 1$\times$ PP |
+| ZB1P | `(PP-1)(F+B-2W)` | 1$\times$ PP |
+| **DualPipe** | **(PP/2 - 1)(F&B + B - 3W)** | **2$\times$ PP + 1** |
 
 Where F = forward chunk, B = full backward chunk, W = "backward for weights" chunk, F&B = two mutually overlapped forward+backward chunks.
 
@@ -172,6 +180,10 @@ These optimizations enable training without Tensor Parallelism (TP) — saving t
 
 ### Framework Design
 
+![FP8 mixed precision framework](../assets/v3_fp8_framework.png)
+
+*Figure 6: Mixed precision framework — most compute-dense operations in FP8, sensitive components in BF16/FP32. [src](raw/DeepSeek-V3.pdf)*
+
 | Component | Precision | Reason |
 |-----------|----------|--------|
 | GEMM (forward/backward) | FP8 | Bulk computation |
@@ -182,9 +194,9 @@ These optimizations enable training without Tensor Parallelism (TP) — saving t
 
 ### Fine-Grained Quantization
 
-- **Activations**: Tile-wise 1×128 grouping (per token, per 128 channels)
-- **Weights**: Block-wise 128×128 grouping
-- **Gradients (Dgrad)**: Highly precision-sensitive — tile-wise 128×1 (not block-wise 128×128). Block-wise quantization of activation gradients leads to significant accuracy loss due to chain-like back-propagation
+- **Activations**: Tile-wise 1$\times$ 128 grouping (per token, per 128 channels)
+- **Weights**: Block-wise 128$\times$ 128 grouping
+- **Gradients (Dgrad)**: Highly precision-sensitive — tile-wise 128$\times$ 1 (not block-wise 128$\times$ 128). Block-wise quantization of activation gradients leads to significant accuracy loss due to chain-like back-propagation
 
 ### High-Precision Accumulation
 
@@ -242,5 +254,5 @@ The RL phase uses GRPO with:
 - [DeepSeek-R1](deepseek-r1.md) — R1 is built on V3-Base; GRPO and reasoning RL build on V3's post-training
 - [Multi-Head Latent Attention](multi-head-latent-attention.md) — MLA deep-dive
 - [V3.2](deepseek-v3.2.md) — DSA sparse attention, scalable RL, IMO gold
-- [Megatron-Core MoE](megatron-core-moe-scalable-training.md) — NVIDIA's training stack (trains V3 on GB300 at 1,233 TFLOPS/GPU)
+- [Megatron-Core MoE](megatron-core-moe.md) — NVIDIA's training stack (trains V3 on GB300 at 1,233 TFLOPS/GPU)
 - [Ultra-Scale Playbook](ultra-scale-playbook.md) — educational foundation for DualPipe, EP, FP8

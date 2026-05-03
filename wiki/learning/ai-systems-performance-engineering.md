@@ -4,7 +4,7 @@ type: source-note
 tags: [performance, cuda, gpu, pytorch, profiling, inference, training, systems, book]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/AI Systems Performance Engineering.pdf]
+sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
@@ -63,7 +63,7 @@ The book is organized from low-level (silicon) to high-level (cluster orchestrat
 - **Warp shuffle intrinsics**: Avoid shared memory for warp-level reductions
 - **Tensor Cores**: Feeding with TMA (Tensor Memory Accelerator), TMEM management
 - **FP8/FP4/INT8**: Mixed precision via Transformer Engine, CUTLASS
-- **Structured sparsity**: 2:4 sparsity for 2× throughput on Tensor Cores
+- **Structured sparsity**: 2:4 sparsity for 2$\times$ throughput on Tensor Cores
 - **Inline PTX/SASS**: Micro-optimizations at the assembly level
 
 ### Profiling Methodology
@@ -96,9 +96,9 @@ This book is the **practical implementation manual** for the concepts in the wik
 | [CUDA Kernel Optimization](cuda-kernel-optimization.md) | Ch 8-9 — Occupancy, warp efficiency, kernel fusion, ILP, Tensor Cores |
 | [CUDA Graphs & Orchestration](cuda-graphs-and-orchestration.md) | Ch 11-12 — Streams, graphs, atomics, dynamic scheduling, NVSHMEM |
 | [Inference Optimization](inference-optimization-techniques.md) | Ch 17-19 — Disaggregation, autotuning, precision switching, goodput |
-| [Compute Efficiency Wall](moe-compute-efficiency-wall.md) | Ch 7-9, 12 — Kernel optimization, CUDA Graphs for MoE |
-| [Communication Wall](moe-communication-wall.md) | Ch 4 — NCCL, GPUDirect, NVSHMEM |
-| [Memory Wall](moe-memory-wall.md) | Ch 5, 7 — Storage I/O, memory hierarchy, offloading |
+| [Compute Efficiency Wall](megatron-core-moe.md) | Ch 7-9, 12 — Kernel optimization, CUDA Graphs for MoE |
+| [Communication Wall](megatron-core-moe.md) | Ch 4 — NCCL, GPUDirect, NVSHMEM |
+| [Memory Wall](megatron-core-moe.md) | Ch 5, 7 — Storage I/O, memory hierarchy, offloading |
 | [NCCL Demystifying](nccl-demystifying.md) | Ch 4, 12 — NCCL internals, CUDA Graphs + NCCL |
 | [Scaling Techniques Overview](scaling-techniques-overview.md) | Ch 14+ — Distributed training patterns |
 | [Ultra-Scale Playbook](ultra-scale-playbook.md) | Ch 1 — DeepSeek scaling story, Ch 4 — networking |

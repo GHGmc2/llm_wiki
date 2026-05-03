@@ -4,7 +4,7 @@ type: source-note
 tags: [nccl, gpu, communication, collectives, hpc, nvidia, distributed-training]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/Demystifying NCCL.pdf]
+sources: [raw/demystifying-nccl.pdf]
 status: stable
 ---
 
@@ -86,7 +86,17 @@ Direct GPU-to-GPU memory access via NVLink. NCCL uses:
 - **Copy engines**: DMA-based transfers for larger payloads
 - Minimized CPU involvement
 
+### Intra-Node (NVLink)
+
+![NCCL intra-node communication architecture](../assets/nccl_intra_node.png)
+
+*Figure: Intra-node data movement — direct GPU-to-GPU memory access via NVLink with load/store and copy engines. [src](raw/demystifying-nccl.pdf)*
+
 ### Inter-Node (InfiniBand / RoCE)
+
+![NCCL inter-node communication architecture](../assets/nccl_inter_node.png)
+
+*Figure: Inter-node data movement — GPUDirect RDMA enables NIC DMA directly to GPU memory across nodes. [src](raw/demystifying-nccl.pdf)*
 
 GPU-to-GPU across nodes requires network traversal:
 - **GPUDirect RDMA**: NIC DMA engine reads/writes GPU memory directly via PCIe BAR mappings
@@ -103,11 +113,21 @@ NCCL dynamically selects protocols based on:
 
 ## Ring vs Tree Algorithms
 
+![NCCL ring-based all-reduce topology](../assets/nccl_ring.png)
+
+*Figure: Ring algorithm for all-reduce — data flows unidirectionally around a ring, each GPU receives, reduces, and forwards. Bandwidth-optimal for large messages. [src](raw/demystifying-nccl.pdf)*
+
+![NCCL double binary tree topology](../assets/nccl_tree.png)
+
+*Figure: Double binary tree algorithm — two complementary trees for latency-optimal reduction. Good for small messages. [src](raw/demystifying-nccl.pdf)*
+
+*Figure: NCCL organizes communication into channels with ring (unidirectional) or double binary tree topologies. Each channel uses one NVLink + one IB connection. [src](raw/demystifying-nccl.pdf)*
+
 ### Ring Algorithm
 - Data flows around a unidirectional ring
 - Each GPU receives from predecessor, computes (e.g., reduces), sends to successor
 - **Good for**: Large messages, all-reduce — bandwidth-optimal
-- **Steps**: 2×(N-1) per all-reduce
+- **Steps**: 2$\times$ (N-1) per all-reduce
 - **Data per step**: B/N (nearly constant — bandwidth-efficient)
 
 ### Double Binary Tree Algorithm
@@ -116,7 +136,7 @@ NCCL dynamically selects protocols based on:
 - Tree 2: provides redundancy, ensures no node is bottleneck
 - **Construction**: Tree 2 = mirror(Tree 1) for even nodes, shift by 1 for odd nodes
 - **Good for**: Small messages, broadcast — latency-optimal
-- **Steps**: 2×log₂(N) per all-reduce
+- **Steps**: 2$\times$ log₂(N) per all-reduce
 
 ### Channel-Based Parallelism
 
@@ -156,9 +176,51 @@ The insights from this analysis feed into ATLAHS — an application-trace-driven
 
 **NUMA implications**: With one process per GPU, each process can be bound to the CPU cores local to its GPU's NUMA domain. This avoids cross-socket memory access penalties that can significantly impact NCCL collective performance.
 
+## PAT: Parallel Aggregated Trees (New Algorithm)
+
+**Source**: Sylvain Jeaugey (NCCL core developer, NVIDIA), June 2025 [src](raw/pat-algorithm.pdf)
+
+PAT is a new algorithm for AllGather and ReduceScatter in NCCL, designed to fill the gap between ring (O(P) latency, bandwidth-optimal) and simple trees (O(log P) latency, poor bandwidth).
+
+### Why PAT?
+
+- Ring: O(P) steps — linear latency dominates at large scale for small/medium messages
+- Simple trees: O(log P) but bandwidth-inefficient, limited buffer reuse
+- **PAT**: O(log P) latency, tunable bandwidth, logarithmic buffer requirement independent of operation size
+
+### Algorithm
+
+![PAT algorithm structure — tree-based aggregation with logarithmic depth](../assets/pat_algorithm.png)
+
+*Figure: PAT algorithm structure — tree-based aggregation with logarithmic depth. [src](raw/pat-algorithm.pdf)*
+
+![PAT tree with aggregation factor 8 on 16 ranks](../assets/pat_tree.png)
+
+*Figure: PAT tree with aggregation=8 on 16 ranks. Each rank participates in O(log P) exchanges. [src](raw/pat-algorithm.pdf)*
+
+![Brucks construction for PAT global connectivity](../assets/pat_brucks.png)
+
+*Figure: Brucks construction defining global connectivity for PAT tree building. [src](raw/pat-algorithm.pdf)*
+
+- Uses **Brucks' algorithm** to construct uniform-degree tree topology
+- Aggregation factor `k`: each node communicates with `k` peers per step — tunes bandwidth/latency trade-off
+- Far-dimension extension optimizes for multi-dimensional topologies (2D/3D torus)
+
+### Comparison
+
+| Algorithm | Latency (steps) | Bandwidth | Best For |
+|-----------|----------------|-----------|----------|
+| **Ring** | O(P) | Near-optimal | Large messages, any scale |
+| **Tree (recursive doubling)** | O(log P) | Lower than ring | Small messages, small scale |
+| **PAT** | O(log P) | Tunable (aggregation) | Small-medium messages at scale |
+
+PAT is automatically selected by NCCL based on message size and scale. Particularly effective for AllGather/ReduceScatter — heavily used in FSDP/ZeRO-3 parameter gathering.
+
 ## Connections
 
+- [GPU Communication Landscape](gpu-communication-landscape.md) — Full survey of GPU communication stack
+- [Distributed Networking Tuning](distributed-networking-tuning.md) — Magnum IO, GPUDirect RDMA, SHARP, NCCL env vars
 - [NCCL Device API / GIN](nccl-device-api-gin.md) — GPU-initiated networking built on NCCL, crucial for MoE
 - [NCCL EP](nccl-ep.md) — Expert Parallelism communication library using NCCL Device API
-- [Communication Wall](moe-communication-wall.md) — DeepEP/HybridEP depend on NCCL protocols
+- [Communication Wall](megatron-core-moe.md) — DeepEP/HybridEP depend on NCCL protocols
 - [Scaling Techniques Overview](scaling-techniques-overview.md) — all-reduce, all-gather, reduce-scatter explained

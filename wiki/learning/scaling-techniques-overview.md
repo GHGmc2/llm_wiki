@@ -32,7 +32,7 @@ Trade-offs between these three are the central challenge of scaling.
 
 **How**: Replicate the model across GPUs. Each processes a different micro-batch. Gradients are averaged via all-reduce before the optimizer step.
 
-**Global batch size**: `gbs = mbs × grad_acc × dp`
+**Global batch size**: $gbs = mbs \times grad\_acc \times dp$
 
 **Three DP optimizations**:
 
@@ -52,8 +52,8 @@ Trade-offs between these three are the central challenge of scaling.
 
 | Stage | What's Sharded | Memory Saved (per GPU) | Communication Change |
 |-------|---------------|----------------------|---------------------|
-| ZeRO-1 | Optimizer states | 4× | AllReduce → ReduceScatter (grads) + AllGather (params after optimizer step) |
-| ZeRO-2 | + Gradients | 8× | Same as ZeRO-1, gradients communicated/released on-the-fly |
+| ZeRO-1 | Optimizer states | 4$\times$ | AllReduce → ReduceScatter (grads) + AllGather (params after optimizer step) |
+| ZeRO-2 | + Gradients | 8$\times$ | Same as ZeRO-1, gradients communicated/released on-the-fly |
 | ZeRO-3 | + Parameters (FSDP) | Linear with DP degree | AllGather params on demand (fwd+bwd) + ReduceScatter grads |
 
 **ZeRO-1 in detail**: Instead of each GPU storing full optimizer states, shard them across DP ranks. Communication changes from `AllReduce` gradients to `ReduceScatter` (each GPU gets its shard) + `AllGather` updated parameters after optimizer step.
@@ -80,7 +80,7 @@ Trade-offs between these three are the central challenge of scaling.
 
 **In a transformer block** (Megatron-style):
 - **Attention**: Column-wise for QKV projection → split heads across GPUs → row-wise for output projection
-- **FFN**: Column-wise for `h→4h` → ReLU/GELU → row-wise for `4h→h`
+- **FFN**: Column-wise for $h \to 4h$ → ReLU/GELU → row-wise for $4h \to h$
 
 **TP trade-off**: Communication operations are part of forward/backward computation — they can't easily be overlapped. **TP throughput is heavily dependent on intra-node NVLink bandwidth**. Higher TP reduces per-GPU throughput but enables larger batch sizes.
 
@@ -111,10 +111,10 @@ Trade-offs between these three are the central challenge of scaling.
 | Schedule | How it Works | Bubble | Memory (activations) |
 |----------|-------------|--------|---------------------|
 | **AFAB (GPipe)** | All forward passes → all backward passes | `(p-1)/m × (t_f + t_b)` | `m × activations` (stores all!) |
-| **1F1B** | Interleave one forward, one backward per stage | `(p-1)/m` | `p × activations` (much less) |
+| **1F1B** | Interleave one forward, one backward per stage | $(p-1)/m$ | `p × activations` (much less) |
 | **Interleaved (VPP)** | Multiple virtual stages per GPU, depth-first scheduling | `(p-1)/(m × v)` | Lower per stage |
 | **Zero Bubble** | Split backward into B (compute grad) + W (update weights); schedule W anywhere after B | ~0 (theoretical) | Depends on variant |
-| **DualPipe (DeepSeek-V3)** | Bidirectional pipeline | `(PP/2 - 1)(F&B + B - 3W)` | 2× PP + 1 |
+| **DualPipe (DeepSeek-V3)** | Bidirectional pipeline | `(PP/2 - 1)(F&B + B - 3W)` | 2$\times$ PP + 1 |
 
 **Bubble analysis**: At `m = p-1`, bubble is 100% of ideal time — devastating. At `m ≫ p-1`, bubble approaches zero. The playbook benchmarks show: PP=8 with m=32 achieves near-ideal throughput.
 
@@ -130,7 +130,7 @@ Trade-offs between these three are the central challenge of scaling.
 
 **EP is MoE-specific** — applies only to expert layers. Attention layers still need TP/CP/DP/PP.
 
-**EP vs DP**: Many implementations treat EP as a subgroup of DP (same input handling pattern). Key difference: EP uses AllToAll instead of AllReduce. The combination of EP with traditional parallelism creates the dense-sparse mismatch addressed by [Parallel Folding](moe-parallel-folding.md).
+**EP vs DP**: Many implementations treat EP as a subgroup of DP (same input handling pattern). Key difference: EP uses AllToAll instead of AllReduce. The combination of EP with traditional parallelism creates the dense-sparse mismatch addressed by [Parallel Folding](megatron-core-moe.md).
 
 ## 5D Parallelism: Putting It All Together
 
@@ -171,8 +171,8 @@ The playbook includes a heatmap visualization showing optimal training configura
 ## Connections
 
 - [Ultra-Scale Playbook](ultra-scale-playbook.md) — full source note with formulas and benchmarks
-- [Parallel Folding](moe-parallel-folding.md) — how EP combines with traditional parallelism
-- [Memory Wall](moe-memory-wall.md) — detailed memory optimization techniques
-- [Communication Wall](moe-communication-wall.md) — EP communication patterns
-- [Compute Efficiency Wall](moe-compute-efficiency-wall.md) — kernel fusion, CUDA Graphs
-- [Megatron-Core MoE](megatron-core-moe-scalable-training.md) — production implementation of these techniques
+- [Parallel Folding](megatron-core-moe.md) — how EP combines with traditional parallelism
+- [Memory Wall](megatron-core-moe.md) — detailed memory optimization techniques
+- [Communication Wall](megatron-core-moe.md) — EP communication patterns
+- [Compute Efficiency Wall](megatron-core-moe.md) — kernel fusion, CUDA Graphs
+- [Megatron-Core MoE](megatron-core-moe.md) — production implementation of these techniques

@@ -26,27 +26,32 @@ status: stable
 
 The key experiment: skip SFT entirely and apply RL directly to DeepSeek-V3-Base. The hypothesis: human-defined reasoning patterns may limit model exploration, while unrestricted RL can better incentivize emergent reasoning.
 
+![R1-Zero AIME accuracy during training](../assets/r1_aime_accuracy.png)
+
+*Figure 1a: AIME accuracy during training — pass@1 jumps from 15.6% to 77.9%. Cons@16 reaches 86.7%. [src](raw/DeepSeek-R1.pdf)*
+
 ### GRPO: Group Relative Policy Optimization
 
 GRPO replaces the critic model (used in PPO) with group-based advantage estimation. The full objective:
 
-```
-J_GRPO(θ) = E[ 1/G Σ_i min(π_θ/π_old · A_i, clip(π_θ/π_old, 1-ε, 1+ε) · A_i) - β·D_KL(π_θ||π_ref) ]
-```
+$$
+\begin{aligned}
+J_{\text{GRPO}}(\theta) = \mathbb{E}\Bigg[ \frac{1}{G} \sum_{i=1}^G \min\Big(&\frac{\pi_\theta}{\pi_{\theta_{\text{old}}}} A_i,\; \text{clip}\Big(\frac{\pi_\theta}{\pi_{\theta_{\text{old}}}}, 1-\varepsilon, 1+\varepsilon\Big) A_i\Big) \\
+&- \beta \, D_{\text{KL}}(\pi_\theta \parallel \pi_{\text{ref}}) \Bigg]
+\end{aligned}
+$$
 
 Where:
-- `A_i = (r_i - mean({r_1,...,r_G})) / std({r_1,...,r_G})` — group-normalized advantage
-- `D_KL` estimates KL divergence without requiring a separate critic
-- `π_ref` is updated every 400 steps to the latest policy
+- $A_i = \frac{r_i - \text{mean}(\{r_1, \dots, r_G\})}{\text{std}(\{r_1, \dots, r_G\})}$ — group-normalized advantage
+- $D_{\text{KL}}$ estimates KL divergence without requiring a separate critic
+- $\pi_{\text{ref}}$ is updated every 400 steps to the latest policy
 
-1. For each question, sample a **group** of G=16 outputs from the current policy
+1. For each question, sample a **group** of $G = 16$ outputs from the current policy
 2. Score each output using rule-based rewards
 3. Compute advantage as normalized reward within the group
 4. Optimize policy to maximize clipped advantage while staying close to reference policy
 
-**Key advantage over PPO**: No critic model needed — eliminates a major source of complexity and potential reward hacking.
-
-**Training config**: learning rate 3e-6, KL coefficient 0.001, temperature 1, 16 outputs per question, max 32K tokens (later 65K), 10,400 total steps, batch size 512. Each rollout generates 8,192 outputs → split into 16 mini-batches → single inner epoch. Reference model updated every 400 steps.
+**Training config**: learning rate $3\times 10^{-6}$, KL coefficient $0.001$, temperature $1$, 16 outputs per question, max 32K tokens (later 65K), 10,400 total steps, batch size 512. Each rollout generates 8,192 outputs → split into 16 mini-batches → single inner epoch. Reference model updated every 400 steps.
 
 ### Reward Design
 
@@ -72,6 +77,10 @@ During RL training, R1-Zero spontaneously developed:
 
 **Thinking time**: Response length steadily increased throughout training — the model autonomously learned that more thinking = better results.
 
+![R1-Zero average response length during training](../assets/r1_response_length.png)
+
+*Figure 1b: Average response length — the model autonomously develops longer chain-of-thought. Step 8.2K marks a discontinuous jump when max token limit increased. [src](raw/DeepSeek-R1.pdf)*
+
 ### Limitations of R1-Zero
 
 - **Poor readability**: Responses can be hard to follow
@@ -81,6 +90,10 @@ During RL training, R1-Zero spontaneously developed:
 ## DeepSeek-R1: Multi-Stage Pipeline
 
 To address R1-Zero's limitations, R1 uses a four-stage pipeline:
+
+![Multi-stage pipeline of DeepSeek-R1](../assets/r1_pipeline.png)
+
+*Figure 2: The multi-stage pipeline — V3-Base → R1-Zero → Cold-Start SFT → RL (Dev1→Dev2) → Rejection Sampling + SFT (Dev3) → RL with diverse rewards (R1). [src](raw/DeepSeek-R1.pdf)*
 
 ### Stage 1: Cold-Start SFT
 - Collect thousands of high-quality, diverse reasoning prompts
@@ -180,13 +193,13 @@ Hard problems (level 5) show the most dramatic improvement — the model doesn't
 
 Three human experts selected representative reflective words: "wait", "mistake", "however", "but", "retry", "error", "verify", "wrong", "evaluate", "check". Across training:
 
-- Reflective word frequency increased **5-7×** from start to end
+- Reflective word frequency increased **5-7$\times$ ** from start to end
 - The word **"wait"** shows a distinct pattern: nearly absent early → occasional (steps 4000-7000) → **significant spikes after step 8000**
 - Different reflection patterns emerge at different stages — the model learns different forms of self-correction sequentially
 
 ### The "Aha Moment"
 
-At step ~8000, R1-Zero exhibits a qualitative shift: the model pauses mid-solution, says "Wait, wait. Wait. That's an aha moment I can flag here. Let's reevaluate this step-by-step...", and then re-derives the solution. This is not prompted — it's an emergent behavior from RL optimization of verifiable rewards.
+At step ~8000, R1-Zero exhibits a qualitative shift: the model pauses mid-solution, says "Wait, wait. Wait. That's an aha moment I can flag here. Let's reevaluate this step-by-step...", and then re-derives the solution. This is not prompted — it's an emergent behavior from RL optimization of verifiable rewards. (See Table 2 in the paper for the full exchange.)
 
 ## Language Consistency (LC) Reward
 
@@ -255,6 +268,10 @@ USAMO qualification threshold: 251.5. R1 qualifies — positions among top-tier 
 
 ### Human Comparison
 
+![Benchmark comparison with human scores](../assets/r1_benchmark_human.png)
+
+*Figure 10: DeepSeek-R1 and R1-Zero compared with human scores. AIME/Codeforces: average competitor. GPQA: PhD-level with web. [src](raw/DeepSeek-R1.pdf)*
+
 | Benchmark | R1 | R1-Zero | Human |
 |-----------|-----|---------|-------|
 | AIME 2024 | 79.8% | 77.9% | ~50% (avg competitor) |
@@ -267,7 +284,9 @@ This directly challenges the SFT-first paradigm. The paper shows that pre-traine
 
 ## Connections
 
-- [DeepSeek-V4 Post-Training](deepseek-v4-post-training.md) — V4's OPD pipeline uses the same GRPO algorithm and specialist training philosophy
+- [DeepSeek-V4 Post-Training](deepseek-v4.md) — V4's OPD pipeline uses the same GRPO algorithm and specialist training philosophy
 - [DeepSeek-V3 Insights](deepseek-v3-insights.md) — V3 base architecture that R1 builds on
-- [DeepSeek-V4 Technical Report](deepseek-v4-technical-report.md) — V4's Think Max mode is a direct descendant of R1's reasoning paradigm
-- [Megatron-Core MoE](megatron-core-moe-scalable-training.md) — Training infrastructure for the base model
+- [DeepSeek-V4 Technical Report](deepseek-v4.md) — V4's Think Max mode is a direct descendant of R1's reasoning paradigm
+- [ScaleRL](scalerl.md) — Systematic RL scaling framework; CISPO loss improves on GRPO
+- [The Bitter Lesson for RL](bitter-lesson-rl.md) — Verification as the key to reasoning; why rule-based rewards win
+- [Megatron-Core MoE](megatron-core-moe.md) — Training infrastructure for the base model

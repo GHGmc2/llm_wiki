@@ -4,18 +4,18 @@ type: concept
 tags: [networking, nccl, gpudirect, rdma, sharp, magnum-io, nixl, nvshmem]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/AI Systems Performance Engineering.pdf]
+sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # Distributed Networking: NCCL Tuning, GPUDirect, SHARP
 
-**Source**: AI Systems Performance Engineering, Chapter 4 [src](raw/AI%20Systems%20Performance%20Engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapter 4 [src](raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 
 - **NVIDIA Magnum IO**: Four-component I/O acceleration stack — Storage, Network, In-Network Compute, I/O Management
-- **GPUDirect RDMA**: NICs DMA directly to/from GPU memory — 5-10× lower latency vs TCP, hundreds of Gbps throughput
+- **GPUDirect RDMA**: NICs DMA directly to/from GPU memory — 5-10$\times$ lower latency vs TCP, hundreds of Gbps throughput
 - **SHARP**: In-network reduction inside InfiniBand switches — offloads all-reduce from GPUs to fabric
 - **NVSHMEM**: One-sided GPU-to-GPU operations from device code — no CPU involvement
 - **NCCL tuning**: Explicit environment variables, NUMA binding, topology files, async error handling
@@ -52,7 +52,7 @@ dmesg | grep nvidia_peermem    # initialization OK
 NCCL_DEBUG=INFO                # confirm NET/IB paths
 ```
 
-**Performance**: RDMA on IB = few μs latency, hundreds Gbps; TCP/IP = 5-10× higher latency, ~100 Gbps max without RoCE.
+**Performance**: RDMA on IB = few μs latency, hundreds Gbps; TCP/IP = 5-10$\times$ higher latency, ~100 Gbps max without RoCE.
 
 ## In-Network SHARP Aggregation
 
@@ -88,7 +88,7 @@ The book emphasizes: **never rely on defaults, always be explicit**.
 
 1. **Falling back to PCIe**: "unable to enable P2P" → NVLink not used → much lower bandwidth
 2. **Container GID mismatch**: GPUDirect registration fails → CPU-driven RDMA copies → stealth performance degradation
-3. **TCP/IP instead of RDMA**: Without RoCE or IB, fallback to TCP → 10× higher latency
+3. **TCP/IP instead of RDMA**: Without RoCE or IB, fallback to TCP → 10$\times$ higher latency
 4. **Network congestion**: Default ECMP routing in RoCE → flows converge on same link → use adaptive routing
 
 ## Hardware Failure Rates
@@ -131,4 +131,4 @@ No CPU involvement, no kernel launches — pure hardware-accelerated GPU-to-GPU.
 - [NCCL Demystifying](nccl-demystifying.md) — NCCL internals: protocols, algorithms
 - [NCCL Device API / GIN](nccl-device-api-gin.md) — GPU-initiated networking
 - [GPU Hardware Architecture](gpu-hardware-architecture.md) — NVLink, NVL72 fabric
-- [Communication Wall](moe-communication-wall.md) — How these apply to MoE
+- [Communication Wall](megatron-core-moe.md) — How these apply to MoE

@@ -4,13 +4,13 @@ type: concept
 tags: [inference, llm, disaggregation, autotuning, precision, kv-cache, speculative-decoding, performance]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/AI Systems Performance Engineering.pdf]
+sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # Inference Optimization Techniques
 
-**Source**: AI Systems Performance Engineering, Chapters 17-19 [src](raw/AI%20Systems%20Performance%20Engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapters 17-19 [src](raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 
@@ -49,7 +49,7 @@ Split prefill and decode into separate worker pools:
 | Colocated (1 GPU) | 1.6 RPS |
 | 2P1D Disaggregated (3 GPUs) | 3.3 RPS/GPU |
 
-The 2P1D config achieves **2× per-GPU goodput** under SLO constraints (P90 TTFT < 0.4s, P90 TPOT < 0.04s).
+The 2P1D config achieves **2$\times$ per-GPU goodput** under SLO constraints (P90 TTFT < 0.4s, P90 TPOT < 0.04s).
 
 ### Phase-Specific Optimization
 
@@ -80,7 +80,7 @@ if (seq_len < 256) {
 
 ### MLP GEMM Autotuning
 
-For the feed-forward layers `[batch, hidden] × [hidden, 4×hidden]`:
+For the feed-forward layers `[batch, hidden] × [hidden, 4$\times$ hidden]`:
 
 - `batch_size = 1`: Different optimal tile size than `batch_size = 16`
 - cuBLAS/cuBLASLt autotunes on first encounter, caches result

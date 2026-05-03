@@ -74,23 +74,36 @@ status: draft | stable | needs-review
 
 When the user adds a file to `raw/` and asks you to process it:
 
-1. **Read the source** thoroughly
-2. **Discuss key takeaways** with the user — what stood out, what's interesting, what connects to existing wiki content. Ask what they want to emphasize
-3. **Read `wiki/index.md`** to understand what's already in the wiki
-4. **Create a source-note page** summarizing the source in the appropriate category. Include:
+1. **Read the source** thoroughly. For PDFs, use PyPDF2 or PyMuPDF to extract text. If the PDF is too large to read inline, extract sections progressively.
+2. **Extract figures**: 
+   - For arXiv papers: download the LaTeX source from `arxiv.org/src/{id}`, extract original vector figures from the `figures/` directory, convert to PNG at 2-3× resolution via PyMuPDF, save to `wiki/assets/`
+   - For non-arxiv sources: render the figure page from PDF, crop to the figure area only (no headers/footers/surrounding text). Never use full-page renders.
+   - Reference figures as `![caption](../assets/filename.png)` with `[src](raw/paper.pdf)` attribution
+3. **Discuss key takeaways** with the user — what stood out, what's interesting, what connects to existing wiki content. Ask what they want to emphasize
+4. **Read `wiki/index.md`** to understand what's already in the wiki
+5. **Create a source-note page** summarizing the source in the appropriate category. Include:
    - Key points
    - Full summary
    - Connections to existing wiki pages (with links)
    - Any contradictions with existing knowledge
-5. **Update related pages** — entity pages, concept pages, topic summaries. A single source might touch 5-15 pages. For each existing page mentioned:
+6. **Update related pages** — entity pages, concept pages, topic summaries. A single source might touch 5-15 pages. For each existing page mentioned:
    - Add new information
    - Note contradictions
    - Strengthen or challenge existing claims
    - Update `updated` date and add the source to the `sources` list
-6. **Update `wiki/index.md`** — add entry for the new page, update entries for modified pages
-7. **Update `wiki/overview.md`** if the source adds significant new knowledge
-8. **Append to `wiki/log.md`** — log the ingest with consistent prefix format
-9. **Tell the user which pages were touched** so they can browse them
+7. **Update `wiki/index.md`** — add entry for the new page, update entries for modified pages
+8. **Update `wiki/overview.md`** if the source adds significant new knowledge
+9. **Append to `wiki/log.md`** — log the ingest with consistent prefix format
+10. **Tell the user which pages were touched** so they can browse them
+
+### Math & Formula Conventions
+
+- Use **LaTeX math** for all formulas:
+  - Display equations: `$$ ... $$` with `\begin{aligned}` for multi-line
+  - Inline math: `$ ... $`
+  - Use proper notation: `\times`, `\cdot`, `\sum`, `\prod`, `\frac`, `\sqrt`, `\text`, `\mathbb{E}`, `\propto`, `\to`
+- Algorithmic pseudocode may remain in code blocks
+- Never leave duplicate formulas (plain text + LaTeX side by side)
 
 ### 2. Query (answering a question from the wiki)
 

@@ -4,13 +4,13 @@ type: concept
 tags: [pytorch, profiling, torch-compile, nsight, triton, cutlass, performance]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/AI Systems Performance Engineering.pdf]
+sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # PyTorch Profiling, Compilation, and Performance Tuning
 
-**Source**: AI Systems Performance Engineering, Chapter 13 [src](raw/AI%20Systems%20Performance%20Engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapter 13 [src](raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 

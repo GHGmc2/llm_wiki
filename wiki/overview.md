@@ -4,7 +4,7 @@ type: summary
 tags: [meta]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/scalable-training-moe-megatron-core.pdf, raw/DeepSeek-V4.pdf, raw/The_Ultra-Scale_Playbook.pdf, raw/Insights into DeepSeek-V3.pdf, raw/DeepSeek-R1.pdf, raw/DeepSeek-V3.pdf, raw/DeepSeek-V3.2.pdf, raw/Demystifying NCCL.pdf, raw/GPU-Initiated Networking for NCCL.pdf, raw/NCCL EP.pdf, raw/GSPMD.pdf, raw/PartIR.pdf, raw/TOAST.pdf]
+sources: [raw/scalable-training-moe-megatron-core.pdf, raw/DeepSeek-V4.pdf, raw/The_Ultra-Scale_Playbook.pdf, raw/insights-into-deepseek-v3.pdf, raw/DeepSeek-R1.pdf, raw/DeepSeek-V3.pdf, raw/DeepSeek-V3.2.pdf, raw/demystifying-nccl.pdf, raw/gpu-initiated-networking-nccl.pdf, raw/nccl-ep.pdf, raw/GSPMD.pdf, raw/PartIR.pdf, raw/TOAST.pdf]
 status: stable
 ---
 
@@ -20,13 +20,13 @@ status: stable
 | [V3 Insights (ISCA)](learning/deepseek-v3-insights.md) | Jun 2025 | Hardware-aware co-design on H800, Multi-Plane Network, hardware wishlist |
 | [DeepSeek-R1](learning/deepseek-r1.md) | Jan 2025 | Pure RL reasoning via GRPO, emergent self-verification, USAMO qualification |
 | [DeepSeek-V3.2](learning/deepseek-v3.2.md) | Dec 2025 | DSA sparse attention, scalable RL (>10% pre-training budget), IMO/IOI gold |
-| [DeepSeek-V4](learning/deepseek-v4-technical-report.md) | Apr 2026 | CSA+HCA hybrid attention, 1M context, mHC, Muon, On-Policy Distillation |
+| [DeepSeek-V4](learning/deepseek-v4.md) | Apr 2026 | CSA+HCA hybrid attention, 1M context, mHC, Muon, On-Policy Distillation |
 
 ## Training Systems
 
 | Source | Focus |
 |--------|-------|
-| [Megatron-Core MoE](learning/megatron-core-moe-scalable-training.md) | NVIDIA's production training stack — Three Walls, Parallel Folding, FP8/FP4 |
+| [Megatron-Core MoE](learning/megatron-core-moe.md) | NVIDIA's production training stack — Three Walls, Parallel Folding, FP8/FP4 |
 | [Ultra-Scale Playbook](learning/ultra-scale-playbook.md) | Educational foundation — DP, ZeRO, TP, SP, CP, PP, EP with formulas and benchmarks |
 
 ## Communication Infrastructure (NCCL)
