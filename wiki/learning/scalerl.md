@@ -47,6 +47,8 @@ RC - R0 = (A - R0) × 1 / (1 + (Cmid / C)^B)
 
 **Key insight**: A (asymptote) and B (efficiency) are **decoupled** — different design choices affect different parameters. This means you can separately optimize for "how good" (A) and "how fast" (B).
 
+![Figure 3: Interpreting equation (1) — visual explanation of sigmoid parameters A (asymptote), B (steepness), Cmid (midpoint at 50% gain), and R0 (baseline)](../assets/scalerl_figure3_interpreting_eq1.png)
+
 ## Three Key Findings
 
 ### 1. Not All Recipes Yield the Same Asymptote
@@ -71,7 +73,7 @@ ScaleRL's sigmoid fits from 50K GPU-hours accurately predicted performance at 10
 ScaleRL combines existing methods into a single predictable, scalable objective:
 
 $$
-J_{\text{ScaleRL}}(\theta) = \mathbb{E}\left[ \frac{1}{\sum |y_g|} \sum_{i} \sum_{t} \text{sg}\big(\min(\rho_{i,t}, \varepsilon)\big) \cdot \hat{A}^{\text{norm}}_i \cdot \log \pi_{\text{train}}(y_{i,t}) \right]
+J_{\text{ScaleRL}}(\theta) = \mathbb{E}\left[ \frac{1}{\sum \lvert y_g \rvert} \sum_{i} \sum_{t} \text{sg}\big(\min(\rho_{i,t}, \varepsilon)\big) \cdot \hat{A}^{\text{norm}}_i \cdot \log \pi_{\text{train}}(y_{i,t}) \right]
 $$
 
 Constraints: $0 < \text{mean}(\{r_j\}) < 1$, $\text{pass\_rate}(x) < 0.9$

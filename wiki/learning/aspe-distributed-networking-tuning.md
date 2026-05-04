@@ -130,5 +130,5 @@ No CPU involvement, no kernel launches — pure hardware-accelerated GPU-to-GPU.
 
 - [NCCL Demystifying](nccl-demystifying.md) — NCCL internals: protocols, algorithms
 - [NCCL Device API / GIN](nccl-device-api-gin.md) — GPU-initiated networking
-- [GPU Hardware Architecture](gpu-hardware-architecture.md) — NVLink, NVL72 fabric
+- [GPU Hardware Architecture](aspe-gpu-hardware-architecture.md) — NVLink, NVL72 fabric
 - [Communication Wall](megatron-core-moe.md) — How these apply to MoE

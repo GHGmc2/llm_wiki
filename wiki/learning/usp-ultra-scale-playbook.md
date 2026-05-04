@@ -108,4 +108,4 @@ This playbook is the **educational foundation** for the techniques implemented i
 - **[Parallel Folding](megatron-core-moe.md)** — Decoupling TP/EP/CP, which the playbook explains why is necessary
 - **[DeepSeek-V4 Architecture](deepseek-v4.md)** — CSA/HCA attention is a specialized form of the attention compression context parallelism covers
 - **[FP8/FP4 Training](megatron-core-moe.md)** — The playbook's mixed precision section provides the fundamentals
-- **[Scaling Techniques Overview](scaling-techniques-overview.md)** — Detailed breakdown of each technique
+- **[Scaling Techniques Overview](usp-scaling-techniques-overview.md)** — Detailed breakdown of each technique

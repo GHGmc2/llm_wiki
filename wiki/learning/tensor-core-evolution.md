@@ -177,9 +177,9 @@ Integer fastest; micro-scaling formats add minor scale factor computation overhe
 
 ## Connections
 
-- [GPU Memory Hierarchy](gpu-memory-hierarchy.md) — Registers, SMEM, TMEM details
+- [GPU Memory Hierarchy](aspe-gpu-memory-hierarchy.md) — Registers, SMEM, TMEM details
 - [NVIDIA GPU Architecture Microbenchmarks](nvidia-gpu-architecture-microbenchmarks.md) — Ampere/Hopper/Blackwell instruction latency benchmarks
-- [CUDA Kernel Optimization](cuda-kernel-optimization.md) — Occupancy, warp efficiency, Tensor Core utilization
-- [GPU Hardware Architecture](gpu-hardware-architecture.md) — NVL72, NVSwitch, roadmap
+- [CUDA Kernel Optimization](aspe-cuda-kernel-optimization.md) — Occupancy, warp efficiency, Tensor Core utilization
+- [GPU Hardware Architecture](aspe-gpu-hardware-architecture.md) — NVL72, NVSwitch, roadmap
 - [FP8/FP4 Training](megatron-core-moe.md) — FP8/FP4 on Tensor Cores
 - [Compute Efficiency Wall](megatron-core-moe.md) — MoE-specific kernel optimization

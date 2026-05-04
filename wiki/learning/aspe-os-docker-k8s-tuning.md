@@ -125,7 +125,7 @@ GPU workloads allocate large, contiguous memory regions. The OOM killer can term
 
 ## Connections
 
-- [GPU Hardware Architecture](gpu-hardware-architecture.md) — Hardware context for NUMA, NVLink topology
-- [Inference Optimization](inference-optimization-techniques.md) — MIG and isolation for serving
-- [GPU Hardware Architecture](gpu-hardware-architecture.md) — Hardware context for NUMA, NVLink topology
+- [GPU Hardware Architecture](aspe-gpu-hardware-architecture.md) — Hardware context for NUMA, NVLink topology
+- [Inference Optimization](aspe-inference-optimization-techniques.md) — MIG and isolation for serving
+- [GPU Hardware Architecture](aspe-gpu-hardware-architecture.md) — Hardware context for NUMA, NVLink topology
 - [NCCL Demystifying](nccl-demystifying.md) — NCCL environment variables and tuning

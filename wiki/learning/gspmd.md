@@ -20,6 +20,8 @@ status: stable
 - **Automatic sharding propagation**: Infers partitioning for every operator from limited user annotations
 - Scaled to 1-trillion-parameter models on 2048 TPUv3 cores
 
+![GSPMD sharding representation — how tensor sharding maps to device mesh dimensions](../assets/gspmd_fig_sharding_rep.png)
+
 ## Core Abstraction: Device Mesh + Sharding Annotations
 
 ### Device Mesh
@@ -66,6 +68,8 @@ mesh_split(tensor, device_mesh, dims_mapping)
 ## How It Works
 
 ### Annotation → Propagation → Partitioning
+
+![GSPMD sharding propagation — how annotations flow through the computation graph with automatic collective insertion](../assets/gspmd_fig_sharding_prop.png)
 
 1. **User annotates** a few key tensors (typically inputs and weights) with `mesh_split`
 2. **GSPMD propagates** sharding annotations through the computation graph using a set of propagation rules for each operator type
@@ -117,4 +121,5 @@ All three share the same core abstraction: device mesh + sharding annotations on
 - [PartIR](partir.md) — Composable SPMD tactics built on GSPMD concepts
 - [TOAST](toast.md) — Auto-partitioning using GSPMD's annotation propagation
 - [Parallel Folding](megatron-core-moe.md) — Megatron-Core's parallelism decoupling (manual version of what GSPMD automates)
-- [Scaling Techniques Overview](scaling-techniques-overview.md) — The parallelism strategies GSPMD expresses
+- [Scaling Techniques Overview](usp-scaling-techniques-overview.md) — The parallelism strategies GSPMD expresses
+- [Auto-Parallelism Survey](auto-parallelism-survey.md) — GSPMD in context: comprehensive survey of auto-parallelism systems

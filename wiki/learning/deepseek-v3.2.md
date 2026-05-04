@@ -138,3 +138,4 @@ V4 took DSA's sparse attention concept and added **KV compression** before spars
 - [DeepSeek-V4 Architecture](deepseek-v4.md) — CSA/HCA is the evolution of DSA
 - [DeepSeek-R1](deepseek-r1.md) — R1's GRPO framework is the foundation for V3.2's scalable RL
 - [DeepSeek-V4 Post-Training](deepseek-v4.md) — V4's OPD is the next evolution of post-training
+- [LLM Architecture Comparison](llm-architecture-comparison.md) — how DSA fits in the broader attention variant landscape (MHA, GQA, MLA, SWA)

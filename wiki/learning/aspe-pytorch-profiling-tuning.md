@@ -139,7 +139,7 @@ Identifies: Python GIL contention, data preprocessing hotspots, I/O wait, thread
 
 ## Connections
 
-- [CUDA Kernel Optimization](cuda-kernel-optimization.md) — What torch.compile generates under the hood
-- [CUDA Graphs & Orchestration](cuda-graphs-and-orchestration.md) — CUDA Graphs that torch.compile captures
-- [GPU Storage I/O](gpu-storage-io.md) — Data pipeline profiling
-- [AI Systems Performance Engineering](ai-systems-performance-engineering.md) — Full book reference
+- [CUDA Kernel Optimization](aspe-cuda-kernel-optimization.md) — What torch.compile generates under the hood
+- [CUDA Graphs & Orchestration](aspe-cuda-graphs-and-orchestration.md) — CUDA Graphs that torch.compile captures
+- [GPU Storage I/O](aspe-gpu-storage-io.md) — Data pipeline profiling
+- [AI Systems Performance Engineering](aspe-overview.md) — Full book reference

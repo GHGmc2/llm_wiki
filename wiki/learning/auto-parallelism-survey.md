@@ -119,5 +119,5 @@ Load balancing across different device types (CPU + GPU of multiple generations)
 - **[GSPMD](gspmd.md)** — Compiler-based sharding propagation (covered in detail)
 - **[PartIR](partir.md)** — Composable SPMD tactics (scheduling-based)
 - **[TOAST](toast.md)** — Static analysis + MCTS auto-partitioning
-- **[Scaling Techniques Overview](scaling-techniques-overview.md)** — DP, ZeRO, TP, PP fundamentals
+- **[Scaling Techniques Overview](usp-scaling-techniques-overview.md)** — DP, ZeRO, TP, PP fundamentals
 - **[Parallel Folding](megatron-core-moe.md)** — Megatron-Core's EP+TP decoupling

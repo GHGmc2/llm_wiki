@@ -80,5 +80,5 @@ status: stable
 - **[NCCL Demystifying](nccl-demystifying.md)** — Ring, tree, and PAT algorithms for NCCL collectives
 - **[NCCL Device API / GIN](nccl-device-api-gin.md)** — GPU-initiated communication
 - **[NCCL EP](nccl-ep.md)** — MoE communication built on NCCL
-- **[Distributed Networking Tuning](distributed-networking-tuning.md)** — Magnum IO, NVSHMEM, GPUDirect
-- **[Scaling Techniques Overview](scaling-techniques-overview.md)** — Where collectives are used (ZeRO/FSDP)
+- **[Distributed Networking Tuning](aspe-distributed-networking-tuning.md)** — Magnum IO, NVSHMEM, GPUDirect
+- **[Scaling Techniques Overview](usp-scaling-techniques-overview.md)** — Where collectives are used (ZeRO/FSDP)

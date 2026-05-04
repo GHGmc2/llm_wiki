@@ -142,7 +142,7 @@ A system may process 1000 tokens/sec but only 200 tokens/sec meet the latency SL
 
 ## Connections
 
-- [CUDA Graphs & Orchestration](cuda-graphs-and-orchestration.md) — CUDA Graphs for inference loops
-- [GPU Memory Hierarchy](gpu-memory-hierarchy.md) — KV cache and memory optimization
+- [CUDA Graphs & Orchestration](aspe-cuda-graphs-and-orchestration.md) — CUDA Graphs for inference loops
+- [GPU Memory Hierarchy](aspe-gpu-memory-hierarchy.md) — KV cache and memory optimization
 - [Multi-Head Latent Attention](multi-head-latent-attention.md) — MLA reduces KV cache (complementary)
-- [AI Systems Performance Engineering](ai-systems-performance-engineering.md) — Full book reference
+- [AI Systems Performance Engineering](aspe-overview.md) — Full book reference

@@ -98,11 +98,11 @@ FlashAttention and Ring Attention (Context Parallelism) share the same core tech
 
 ## Connections
 
-- [GPU Memory Hierarchy](gpu-memory-hierarchy.md) — SRAM vs HBM trade-offs that FlashAttention exploits
-- [CUDA Kernel Optimization](cuda-kernel-optimization.md) — Kernel fusion and tiling techniques
-- [Ultra-Scale Playbook](ultra-scale-playbook.md) — Context on recomputation and attention memory
-- [Scaling Techniques Overview](scaling-techniques-overview.md) — Context Parallelism (Ring Attention) uses the same online softmax
-- [Inference Optimization](inference-optimization-techniques.md) — FlashAttention kernel autotuning for varying sequence lengths
+- [GPU Memory Hierarchy](aspe-gpu-memory-hierarchy.md) — SRAM vs HBM trade-offs that FlashAttention exploits
+- [CUDA Kernel Optimization](aspe-cuda-kernel-optimization.md) — Kernel fusion and tiling techniques
+- [Ultra-Scale Playbook](usp-ultra-scale-playbook.md) — Context on recomputation and attention memory
+- [Scaling Techniques Overview](usp-scaling-techniques-overview.md) — Context Parallelism (Ring Attention) uses the same online softmax
+- [Inference Optimization](aspe-inference-optimization-techniques.md) — FlashAttention kernel autotuning for varying sequence lengths
 
 ## Mathematical Derivation
 

@@ -129,7 +129,7 @@ CUTLASS applies all these techniques automatically:
 
 ## Connections
 
-- [GPU Memory Hierarchy](gpu-memory-hierarchy.md) — SMEM, TMEM fundamentals
-- [CUDA Kernel Optimization](cuda-kernel-optimization.md) — Occupancy, ILP, warp divergence
-- [CUDA Graphs & Orchestration](cuda-graphs-and-orchestration.md) — Persistent kernels, dynamic scheduling
-- [AI Systems Performance Engineering](ai-systems-performance-engineering.md) — Full book reference
+- [GPU Memory Hierarchy](aspe-gpu-memory-hierarchy.md) — SMEM, TMEM fundamentals
+- [CUDA Kernel Optimization](aspe-cuda-kernel-optimization.md) — Occupancy, ILP, warp divergence
+- [CUDA Graphs & Orchestration](aspe-cuda-graphs-and-orchestration.md) — Persistent kernels, dynamic scheduling
+- [AI Systems Performance Engineering](aspe-overview.md) — Full book reference

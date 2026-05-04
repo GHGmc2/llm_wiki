@@ -153,5 +153,5 @@ The paper explicitly contrasts with Meta, Google, xAI clusters using tens/hundre
 - [Multi-Head Latent Attention](multi-head-latent-attention.md) — MLA architecture deep-dive
 - [DeepSeek-V4 Architecture](deepseek-v4.md) — V4's CSA/HCA attention builds on MLA's KV compression philosophy
 - [Megatron-Core MoE](megatron-core-moe.md) — NVIDIA's approach to the same challenges on unrestricted hardware
-- [Scaling Techniques Overview](scaling-techniques-overview.md) — TP, PP, EP, ZeRO fundamentals
-- [Ultra-Scale Playbook](ultra-scale-playbook.md) — educational foundation for the parallelism strategies discussed
+- [Scaling Techniques Overview](usp-scaling-techniques-overview.md) — TP, PP, EP, ZeRO fundamentals
+- [Ultra-Scale Playbook](usp-ultra-scale-playbook.md) — educational foundation for the parallelism strategies discussed

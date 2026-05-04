@@ -121,9 +121,9 @@ The roofline model guides optimization strategy:
 
 ## Connections
 
-- [GPU Memory Hierarchy](gpu-memory-hierarchy.md) — Memory architecture fundamentals
-- [CUDA Graphs & Orchestration](cuda-graphs-and-orchestration.md) — Beyond single-kernel: streams, graphs, atomics
-- [Thread Block Clusters](thread-block-clusters.md) — Advanced CUDA: DSMEM, warp specialization
-- [PyTorch Profiling & Tuning](pytorch-profiling-tuning.md) — torch.compile, profiling tools, Triton
+- [GPU Memory Hierarchy](aspe-gpu-memory-hierarchy.md) — Memory architecture fundamentals
+- [CUDA Graphs & Orchestration](aspe-cuda-graphs-and-orchestration.md) — Beyond single-kernel: streams, graphs, atomics
+- [Thread Block Clusters](aspe-thread-block-clusters.md) — Advanced CUDA: DSMEM, warp specialization
+- [PyTorch Profiling & Tuning](aspe-pytorch-profiling-tuning.md) — torch.compile, profiling tools, Triton
 - [Compute Efficiency Wall](megatron-core-moe.md) — MoE-specific kernel challenges
-- [AI Systems Performance Engineering](ai-systems-performance-engineering.md) — Full book reference
+- [AI Systems Performance Engineering](aspe-overview.md) — Full book reference

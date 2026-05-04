@@ -109,7 +109,7 @@ The book prescribes an iterative methodology:
 
 ## Connections
 
-- [Distributed Networking](distributed-networking-tuning.md) — NCCL, GPUDirect RDMA
-- [GPU Hardware Architecture](gpu-hardware-architecture.md) — NVMe, PCIe topology
-- [OS/Docker/K8s Tuning](os-docker-k8s-tuning.md) — Filesystem, hugepages for I/O
-- [AI Systems Performance Engineering](ai-systems-performance-engineering.md) — Full book reference
+- [Distributed Networking](aspe-distributed-networking-tuning.md) — NCCL, GPUDirect RDMA
+- [GPU Hardware Architecture](aspe-gpu-hardware-architecture.md) — NVMe, PCIe topology
+- [OS/Docker/K8s Tuning](aspe-os-docker-k8s-tuning.md) — Filesystem, hugepages for I/O
+- [AI Systems Performance Engineering](aspe-overview.md) — Full book reference

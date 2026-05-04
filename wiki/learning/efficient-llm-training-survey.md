@@ -272,13 +272,13 @@ LLaMA-3 405B training (54 days, 16K H100): 419 unexpected interruptions. Root ca
 ## Connections to Existing Wiki
 
 This survey provides taxonomy and reference for techniques detailed in:
-- **[Ultra-Scale Playbook](ultra-scale-playbook.md)** — Educational foundation for parallelism
-- **[Scaling Techniques Overview](scaling-techniques-overview.md)** — DP, ZeRO, TP, SP, CP, PP, EP
+- **[Ultra-Scale Playbook](usp-ultra-scale-playbook.md)** — Educational foundation for parallelism
+- **[Scaling Techniques Overview](usp-scaling-techniques-overview.md)** — DP, ZeRO, TP, SP, CP, PP, EP
 - **[Megatron-Core MoE](megatron-core-moe.md)** — Production training stack
 - **[DeepSeek-V3](deepseek-v3.md)** — FP8 training, DualPipe, auxiliary-loss-free MoE
 - **[Memory Wall](megatron-core-moe.md)** — Activation recomputation, offloading, FSDP
 - **[Communication Wall](megatron-core-moe.md)** — EP, SHARP, DeepEP
-- **[GPU Hardware Architecture](gpu-hardware-architecture.md)** — Accelerator interconnect details
+- **[GPU Hardware Architecture](aspe-gpu-hardware-architecture.md)** — Accelerator interconnect details
 - **[NCCL Demystifying](nccl-demystifying.md)** — Collective protocols
 - **[GSPMD](gspmd.md) / [PartIR](partir.md) / [TOAST](toast.md)** — Auto-parallelism systems
 - **[LLM Scaling Laws](llm-scaling-laws.md)** — Scaling motivation

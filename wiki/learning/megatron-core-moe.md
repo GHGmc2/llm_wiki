@@ -4,7 +4,7 @@ type: source-note
 tags: [llm-training, mixture-of-experts, distributed-systems, nvidia, parallelism, megatron, memory, communication, compute, fp8]
 created: 2026-05-02
 updated: 2026-05-03
-sources: [raw/scalable-training-moe-megatron-core.pdf]
+sources: [raw/scalable-training-moe-megatron-core.pdf, raw/moe-parallel-folding.pdf]
 status: stable
 ---
 
@@ -80,7 +80,7 @@ Same model can require completely different strategies on different hardware (se
 - [DeepSeek-V3](deepseek-v3.md) — trains on Megatron-Core infrastructure
 - [DeepSeek-V4](deepseek-v4.md) — successor architecture
 - [NCCL Demystifying](nccl-demystifying.md) — communication protocols used by dispatchers
-- [GPU Hardware Architecture](gpu-hardware-architecture.md) — NVL72, NVLink 5
+- [GPU Hardware Architecture](aspe-gpu-hardware-architecture.md) — NVL72, NVLink 5
 - [Comet: MoE Overlap](comet-moe-overlap.md) — finer-grained EP overlap approach
 
 # MoE Parallel Folding
@@ -151,7 +151,12 @@ Traditional:  World = TP × CP × (DP) × PP
 
 Parallel Folding: World = TP × CP × DP × PP
                    EP can span TP × CP × DP
+
+*Figure: Parallel Folding decouples attention (TP/CP/DP/PP) and MoE (ETP/EP/EDP/PP) configurations. The mapping switch enables each layer type to use its optimal topology independently. [src](raw/moe-parallel-folding.pdf)*
 ```
+
+![Parallel Folding — decoupled attention and MoE parallelism mappings](../assets/parallel_folding_mapping.png)
+
 
 **Concrete example**: Attention configured with TP=4, CP=2, DP=8, PP=4 (256 GPUs)
 - Traditional: EP ≤ DP = 8, so max EP = 8

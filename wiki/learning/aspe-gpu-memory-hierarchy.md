@@ -144,7 +144,7 @@ cuda::pipeline_consumer_wait(pipe);
 
 ## Connections
 
-- [CUDA Kernel Optimization](cuda-kernel-optimization.md) — Occupancy tuning, warp efficiency, ILP
-- [CUDA Graphs & Orchestration](cuda-graphs-and-orchestration.md) — Streams, graphs, atomics
+- [CUDA Kernel Optimization](aspe-cuda-kernel-optimization.md) — Occupancy tuning, warp efficiency, ILP
+- [CUDA Graphs & Orchestration](aspe-cuda-graphs-and-orchestration.md) — Streams, graphs, atomics
 - [Compute Efficiency Wall](megatron-core-moe.md) — How these techniques apply to MoE
-- [AI Systems Performance Engineering](ai-systems-performance-engineering.md) — Full book reference
+- [AI Systems Performance Engineering](aspe-overview.md) — Full book reference

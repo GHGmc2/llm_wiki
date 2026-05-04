@@ -85,12 +85,12 @@ NCCL_DEBUG=INFO              # check NET/IB paths
 
 **NVL72 trend**: Each generation packs more compute and memory into a single rack — NVIDIA calls them "AI supercomputers in a rack."
 
-- [OS/Docker/K8s Tuning](os-docker-k8s-tuning.md) — NUMA, MIG, cgroups for GPU workloads
+- [OS/Docker/K8s Tuning](aspe-os-docker-k8s-tuning.md) — NUMA, MIG, cgroups for GPU workloads
 ## Connections
 
-- [GPU Memory Hierarchy](gpu-memory-hierarchy.md) — On-chip memory details (SMEM, TMEM, registers)
-- [CUDA Graphs & Orchestration](cuda-graphs-and-orchestration.md) — NVSHMEM programming model
+- [GPU Memory Hierarchy](aspe-gpu-memory-hierarchy.md) — On-chip memory details (SMEM, TMEM, registers)
+- [CUDA Graphs & Orchestration](aspe-cuda-graphs-and-orchestration.md) — NVSHMEM programming model
 - [Communication Wall](megatron-core-moe.md) — Why NVLink bandwidth matters for MoE
-- [AI Systems Performance Engineering](ai-systems-performance-engineering.md) — Full book reference
-- [Distributed Networking Tuning](distributed-networking-tuning.md) — NCCL, GPUDirect, SHARP
+- [AI Systems Performance Engineering](aspe-overview.md) — Full book reference
+- [Distributed Networking Tuning](aspe-distributed-networking-tuning.md) — NCCL, GPUDirect, SHARP
 - [Megatron-Core MoE](megatron-core-moe.md) — GB200/GB300 performance numbers

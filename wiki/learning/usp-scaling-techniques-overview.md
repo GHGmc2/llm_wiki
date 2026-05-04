@@ -170,7 +170,7 @@ The playbook includes a heatmap visualization showing optimal training configura
 
 ## Connections
 
-- [Ultra-Scale Playbook](ultra-scale-playbook.md) — full source note with formulas and benchmarks
+- [Ultra-Scale Playbook](usp-ultra-scale-playbook.md) — full source note with formulas and benchmarks
 - [Parallel Folding](megatron-core-moe.md) — how EP combines with traditional parallelism
 - [Memory Wall](megatron-core-moe.md) — detailed memory optimization techniques
 - [Communication Wall](megatron-core-moe.md) — EP communication patterns

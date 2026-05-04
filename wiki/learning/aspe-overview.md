@@ -92,16 +92,16 @@ This book is the **practical implementation manual** for the concepts in the wik
 
 | Wiki Page | Book Chapters |
 |-----------|-------------|
-| [GPU Memory Hierarchy](gpu-memory-hierarchy.md) | Ch 6-7 — CUDA model, memory hierarchy, tiling, TMEM, TMA |
-| [CUDA Kernel Optimization](cuda-kernel-optimization.md) | Ch 8-9 — Occupancy, warp efficiency, kernel fusion, ILP, Tensor Cores |
-| [CUDA Graphs & Orchestration](cuda-graphs-and-orchestration.md) | Ch 11-12 — Streams, graphs, atomics, dynamic scheduling, NVSHMEM |
-| [Inference Optimization](inference-optimization-techniques.md) | Ch 17-19 — Disaggregation, autotuning, precision switching, goodput |
+| [GPU Memory Hierarchy](aspe-gpu-memory-hierarchy.md) | Ch 6-7 — CUDA model, memory hierarchy, tiling, TMEM, TMA |
+| [CUDA Kernel Optimization](aspe-cuda-kernel-optimization.md) | Ch 8-9 — Occupancy, warp efficiency, kernel fusion, ILP, Tensor Cores |
+| [CUDA Graphs & Orchestration](aspe-cuda-graphs-and-orchestration.md) | Ch 11-12 — Streams, graphs, atomics, dynamic scheduling, NVSHMEM |
+| [Inference Optimization](aspe-inference-optimization-techniques.md) | Ch 17-19 — Disaggregation, autotuning, precision switching, goodput |
 | [Compute Efficiency Wall](megatron-core-moe.md) | Ch 7-9, 12 — Kernel optimization, CUDA Graphs for MoE |
 | [Communication Wall](megatron-core-moe.md) | Ch 4 — NCCL, GPUDirect, NVSHMEM |
 | [Memory Wall](megatron-core-moe.md) | Ch 5, 7 — Storage I/O, memory hierarchy, offloading |
 | [NCCL Demystifying](nccl-demystifying.md) | Ch 4, 12 — NCCL internals, CUDA Graphs + NCCL |
-| [Scaling Techniques Overview](scaling-techniques-overview.md) | Ch 14+ — Distributed training patterns |
-| [Ultra-Scale Playbook](ultra-scale-playbook.md) | Ch 1 — DeepSeek scaling story, Ch 4 — networking |
+| [Scaling Techniques Overview](usp-scaling-techniques-overview.md) | Ch 14+ — Distributed training patterns |
+| [Ultra-Scale Playbook](usp-ultra-scale-playbook.md) | Ch 1 — DeepSeek scaling story, Ch 4 — networking |
 
 ## DeepSeek Coverage
 

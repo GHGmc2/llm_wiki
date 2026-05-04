@@ -255,4 +255,5 @@ The RL phase uses GRPO with:
 - [Multi-Head Latent Attention](multi-head-latent-attention.md) — MLA deep-dive
 - [V3.2](deepseek-v3.2.md) — DSA sparse attention, scalable RL, IMO gold
 - [Megatron-Core MoE](megatron-core-moe.md) — NVIDIA's training stack (trains V3 on GB300 at 1,233 TFLOPS/GPU)
-- [Ultra-Scale Playbook](ultra-scale-playbook.md) — educational foundation for DualPipe, EP, FP8
+- [Ultra-Scale Playbook](usp-ultra-scale-playbook.md) — educational foundation for DualPipe, EP, FP8
+- [LLM Architecture Comparison](llm-architecture-comparison.md) — where V3 fits among 23 open-weight LLM architectures

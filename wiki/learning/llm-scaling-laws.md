@@ -37,7 +37,9 @@ Where $a$ and $b$ are fitted constants, and $L_\infty$ is the irreducible loss.
 
 **Source**: OpenAI, 2020. 30 pages. arXiv:2001.08361 [src](raw/scaling-laws-kaplan.pdf). Studied Transformer LMs across 7+ orders of magnitude in scale.
 
+![The original power law plot — test loss decreases predictably with compute, model size, and data](../assets/kaplan_SimplePowerLaws.png)
 
+![Compute-efficient frontier — optimal model size grows faster than dataset size as compute increases](../assets/kaplan_ComputeEfficientFrontierWithAdjustment.png)
 
 **Three fundamental power laws** (when not bottlenecked by the other factors):
 

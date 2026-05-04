@@ -20,6 +20,8 @@ status: stable
 - **Outperforms state-of-the-art**: Better than expert-crafted and previous auto-partitioning strategies across diverse models and hardware
 - Discovers previously unknown superior solutions
 
+![TOAST system architecture — static Named Dimension Analysis feeds an MCTS search agent](../assets/toast_toast_arch_simpl.png)
+
 ## The Problem: Auto-Partitioning Search Space
 
 Existing auto-partitioners face a fundamental trade-off:
@@ -125,5 +127,6 @@ TOAST represents the fully automated extreme: zero user input, discovers optimal
 
 - [GSPMD](gspmd.md) — The foundational annotation-based system TOAST automates
 - [PartIR](partir.md) — TOAST can generate PartIR schedules as output
-- [Scaling Techniques Overview](scaling-techniques-overview.md) — The parallelism strategies TOAST searches over
+- [Scaling Techniques Overview](usp-scaling-techniques-overview.md) — The parallelism strategies TOAST searches over
 - [Parallel Folding](megatron-core-moe.md) — Megatron-Core's manual approach (TOAST could automate this)
+- [Auto-Parallelism Survey](auto-parallelism-survey.md) — TOAST in context: where MCTS-based auto-partitioning fits in the broader landscape

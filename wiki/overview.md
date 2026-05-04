@@ -3,54 +3,115 @@ title: "Overview"
 type: summary
 tags: [meta]
 created: 2026-05-02
-updated: 2026-05-02
-sources: [raw/scalable-training-moe-megatron-core.pdf, raw/DeepSeek-V4.pdf, raw/The_Ultra-Scale_Playbook.pdf, raw/insights-into-deepseek-v3.pdf, raw/DeepSeek-R1.pdf, raw/DeepSeek-V3.pdf, raw/DeepSeek-V3.2.pdf, raw/demystifying-nccl.pdf, raw/gpu-initiated-networking-nccl.pdf, raw/nccl-ep.pdf, raw/GSPMD.pdf, raw/PartIR.pdf, raw/TOAST.pdf]
+updated: 2026-05-04
+sources: [raw/scalable-training-moe-megatron-core.pdf, raw/DeepSeek-V4.pdf, raw/The_Ultra-Scale_Playbook.pdf, raw/DeepSeek-R1.pdf, raw/DeepSeek-V3.pdf, raw/DeepSeek-V3.2.pdf, raw/demystifying-nccl.pdf, raw/gpu-initiated-networking-nccl.pdf, raw/nccl-ep.pdf, raw/GSPMD.pdf, raw/PartIR.pdf, raw/TOAST.pdf, raw/ppo.pdf, raw/stabilizing-rl-llms.pdf, raw/art-of-scaling-rl-compute.pdf, raw/auto-parallelism-survey.pdf, raw/efficient-llm-training-survey.pdf, raw/comet-moe-overlap.pdf, raw/moe-parallel-folding.pdf, raw/scaling-laws-kaplan.pdf, raw/ai-systems-performance-engineering.pdf, raw/the-bitter-lesson.pdf]
 status: stable
 ---
 
 # Overview
 
-*The wiki covers the full DeepSeek model lineage (V3 → V3.2 → R1 → V4), NVIDIA's Megatron-Core training stack, and the Ultra-Scale Playbook educational foundation. 18 pages across 7 sources.*
+*40 pages across 20+ sources. Covers LLM architecture, training systems, GPU hardware, scaling laws, RL, and communication infrastructure.*
 
-## DeepSeek Model Lineage
+## Model Lineage (DeepSeek)
 
-| Model | Date | Key Innovation |
-|-------|------|---------------|
-| [DeepSeek-V3](learning/deepseek-v3.md) | Dec 2024 | MLA, FP8 training, auxiliary-loss-free MoE, MTP, DualPipe — 2.788M H800 GPU hours |
-| [V3 Insights (ISCA)](learning/deepseek-v3-insights.md) | Jun 2025 | Hardware-aware co-design on H800, Multi-Plane Network, hardware wishlist |
-| [DeepSeek-R1](learning/deepseek-r1.md) | Jan 2025 | Pure RL reasoning via GRPO, emergent self-verification, USAMO qualification |
-| [DeepSeek-V3.2](learning/deepseek-v3.2.md) | Dec 2025 | DSA sparse attention, scalable RL (>10% pre-training budget), IMO/IOI gold |
-| [DeepSeek-V4](learning/deepseek-v4.md) | Apr 2026 | CSA+HCA hybrid attention, 1M context, mHC, Muon, On-Policy Distillation |
+| Model | Date | Key Innovation | Page |
+|-------|------|---------------|------|
+| DeepSeek-V3 | Dec 2024 | MLA, FP8 training, auxiliary-loss-free MoE, MTP | [v3](learning/deepseek-v3.md) |
+| V3 Insights (ISCA) | Jun 2025 | Hardware-aware co-design, Multi-Plane Network | [insights](learning/deepseek-v3-insights.md) |
+| DeepSeek-R1 | Jan 2025 | Pure RL (GRPO), emergent reasoning, distillation | [r1](learning/deepseek-r1.md) |
+| DeepSeek-V3.2 | Dec 2025 | DSA sparse attention, IMO/IOI gold | [v3.2](learning/deepseek-v3.2.md) |
+| DeepSeek-V4 | Apr 2026 | CSA+HCA hybrid attention, 1M context, OPD | [v4](learning/deepseek-v4.md) |
 
 ## Training Systems
 
-| Source | Focus |
-|--------|-------|
-| [Megatron-Core MoE](learning/megatron-core-moe.md) | NVIDIA's production training stack — Three Walls, Parallel Folding, FP8/FP4 |
-| [Ultra-Scale Playbook](learning/ultra-scale-playbook.md) | Educational foundation — DP, ZeRO, TP, SP, CP, PP, EP with formulas and benchmarks |
+| Source | Focus | Page |
+|--------|-------|------|
+| Megatron-Core MoE | Production stack: Three Walls, Parallel Folding, FP8/FP4 | [megatron](learning/megatron-core-moe.md) |
+| Ultra-Scale Playbook | Educational foundation: DP, ZeRO, TP, SP, CP, PP, EP | [playbook](learning/usp-ultra-scale-playbook.md) |
+| Efficient LLM Training Survey | Taxonomy of training systems (380+ refs) | [survey](learning/efficient-llm-training-survey.md) |
+| Comet | Fine-grained EP communication overlap | [comet](learning/comet-moe-overlap.md) |
 
-## Communication Infrastructure (NCCL)
+## Scaling Laws
 
-| Source | Focus |
-|--------|-------|
-| [Demystifying NCCL](learning/nccl-demystifying.md) | NCCL internals — Simple/LL/LL128 protocols, ring/tree algorithms, channels |
-| [GPU-Initiated Networking](learning/nccl-device-api-gin.md) | NCCL 2.28 Device API — GIN, LSA, Multimem, GPU-initiated RDMA |
-| [NCCL EP](learning/nccl-ep.md) | MoE communication library — unified dispatch/combine, LL/HT modes |
+| Source | Focus | Page |
+|--------|-------|------|
+| Kaplan et al. (2020) | Original scaling laws: $L \propto N^{-\alpha}$, $D \propto N^{0.74}$ | [scaling-laws](learning/llm-scaling-laws.md) |
 
-## Compiler & Auto-Partitioning Systems
+## Research Philosophy (in [reading/](reading/))
 
-| Source | Focus |
-|--------|-------|
-| [GSPMD](learning/gspmd.md) | Compiler-based parallelization: `mesh_split` API, automatic sharding propagation |
-| [PartIR](learning/partir.md) | Composable SPMD tactics: schedule-like API, MLIR-based, formally verified |
-| [TOAST](learning/toast.md) | Auto-partitioning: static analysis + MCTS, zero user annotations needed |
+| Source | Focus | Page |
+|--------|-------|------|
+| The Bitter Lesson (Sutton) | General methods + computation > human knowledge | [bitter-lesson](reading/the-bitter-lesson.md) |
+| You and Your Research (Hamming) | Work on important problems, compound advantage, courage | [hamming](reading/you-and-your-research.md) |
+| Don't Teach. Incentivize. (Chung) | Scaling as the ultimate incentive, finding great problems | [dont-teach](reading/dont-teach-incentivize.md) |
 
-These systems automate the sharding decisions that the [Scaling Techniques Overview](learning/scaling-techniques-overview.md) describes — the compiler stack above NCCL.
+## Reinforcement Learning
+
+| Source | Focus | Page |
+|--------|-------|------|
+| RL Mathematical Foundations (Zhao) | 288-page textbook: MDP → Bellman → TD → Policy Gradient | [rl-foundations](learning/rl-foundations.md) |
+| TRPO (Schulman et al.) | Trust region via KL constraint — foundation of PPO/GRPO/GSPO | [trpo](learning/trpo.md) |
+| PPO (Schulman et al.) | Clipped policy gradient — simplified TRPO | [ppo](learning/ppo.md) |
+| GRPO (DeepSeekMath) | Eliminates critic via group-based advantage — foundation of DeepSeek-R1 | [grpo](learning/grpo.md) |
+| GSPO (Qwen) | Sequence-level IS + clipping — stabilizes MoE RL, used in Qwen3 | [gspo](learning/gspo.md) |
+| ScaleRL (Meta) | Sigmoid compute-performance curves for RL | [scalerl](learning/scalerl.md) |
+| Stabilizing RL (Qwen) | Token-level RL as first-order approx, Routing Replay | [stabilizing](learning/stabilizing-rl-llms.md) |
+| Bitter Lesson for RL | Verification as the key to reasoning | [bitter-lesson-rl](learning/bitter-lesson-rl.md) |
+
+## LLM Architecture & Attention
+
+| Source | Focus | Page |
+|--------|-------|------|
+| Architecture Comparison (Raschka) | 23 models: MHA→GQA→MLA→SWA→DSA evolution | [comparison](learning/llm-architecture-comparison.md) |
+| Multi-Head Latent Attention | MLA deep-dive with KV cache analysis | [mla](learning/multi-head-latent-attention.md) |
+| FlashAttention | Tiling, online softmax, O(N) HBM attention | [flashattention](learning/flashattention.md) |
+
+## GPU Hardware & Architecture
+
+| Source | Focus | Page |
+|--------|-------|------|
+| AI Systems Perf Engineering | 1061-page reference: CUDA → cluster | [ai-systems](learning/aspe-overview.md) |
+| GPU Hardware Architecture | NVIDIA roadmap, NVL72, NVLink, HBM | [gpu-hw](learning/aspe-gpu-hardware-architecture.md) |
+| GPU Memory Hierarchy | Registers → HBM, SMEM, TMEM, TMA | [gpu-mem](learning/aspe-gpu-memory-hierarchy.md) |
+| CUDA Kernel Optimization | Occupancy, warp efficiency, ILP, fusion | [cuda-opt](learning/aspe-cuda-kernel-optimization.md) |
+| CUDA Graphs & Orchestration | Streams, graphs, atomics, NVSHMEM | [cuda-graphs](learning/aspe-cuda-graphs-and-orchestration.md) |
+| Tensor Core Evolution | Volta → Blackwell MMA, PTX/SASS, TMEM | [tensor-cores](learning/tensor-core-evolution.md) |
+| NVIDIA GPU Microbenchmarks | Ampere/Hopper/Blackwell instruction latency | [gpu-bench](learning/nvidia-gpu-architecture-microbenchmarks.md) |
+| Thread Block Clusters | DSMEM, warp specialization, persistent kernels | [thread-blocks](learning/aspe-thread-block-clusters.md) |
+
+## Communication Infrastructure
+
+| Source | Focus | Page |
+|--------|-------|------|
+| Demystifying NCCL | Protocols, ring/tree, channels | [nccl](learning/nccl-demystifying.md) |
+| NCCL Device API / GIN | GPU-initiated networking | [nccl-gin](learning/nccl-device-api-gin.md) |
+| NCCL EP | MoE communication library | [nccl-ep](learning/nccl-ep.md) |
+| GPU Communication Landscape | Full communication stack survey | [comm-survey](learning/gpu-communication-landscape.md) |
+| Distributed Networking | Magnum IO, SHARP, GPUDirect tuning | [networking](learning/aspe-distributed-networking-tuning.md) |
+
+## Compiler & Auto-Parallelism
+
+| Source | Focus | Page |
+|--------|-------|------|
+| GSPMD | Compiler-based auto-parallelization | [gspmd](learning/gspmd.md) |
+| PartIR | Composable SPMD tactics, MLIR-based | [partir](learning/partir.md) |
+| TOAST | Static analysis + MCTS auto-partitioning | [toast](learning/toast.md) |
+| Auto-Parallelism Survey | 30+ systems, communication cost formulas | [auto-par](learning/auto-parallelism-survey.md) |
+
+## Systems & Infrastructure
+
+| Source | Focus | Page |
+|--------|-------|------|
+| OS/Docker/K8s Tuning | NUMA, THP, MIG, cgroup isolation | [os](learning/aspe-os-docker-k8s-tuning.md) |
+| Storage I/O & Data Pipeline | GDS, NVMe, NeMo Curator, 3FS | [storage](learning/aspe-gpu-storage-io.md) |
+| PyTorch Profiling | Profiler, torch.compile, Triton, CUTLASS | [pytorch](learning/aspe-pytorch-profiling-tuning.md) |
+| Inference Optimization | Disaggregation, autotuning, precision switching | [inference](learning/aspe-inference-optimization-techniques.md) |
 
 ## Cross-Cutting Themes
 
-- **Memory / Communication / Compute**: The three constraints appear across all sources
-- **FP8/FP4**: Megatron-Core provides recipes, DeepSeek-V3 pioneered FP8 training, V4 uses FP4 QAT
-- **EP communication overlap**: Layer-level (Megatron 1F1B) → Expert-level (DeepSeek-V4) → Dual micro-batch (DeepSeek-V3/R1 inference)
-- **Attention efficiency**: MLA (V3) → DSA (V3.2) → CSA+HCA (V4) — progressive KV compression/selection
+- **Memory / Communication / Compute**: Three constraints appear across all sources
+- **FP8/FP4**: From DeepSeek-V3's pioneering FP8 training to Blackwell's NVFP4
+- **Attention efficiency**: MLA (V3) → DSA (V3.2) → CSA+HCA (V4) — progressive KV compression
 - **Post-training evolution**: SFT+RL (V3) → Pure RL/GRPO (R1) → On-Policy Distillation (V4)
+- **EP communication**: Layer-level 1F1B (Megatron) → Expert-level (DeepSeek-V4) → Sub-kernel (Comet)
+- **RL theory**: PPO → GRPO → token-level first-order approximation → sigmoid scaling curves

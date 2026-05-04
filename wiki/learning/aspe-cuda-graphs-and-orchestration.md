@@ -199,10 +199,10 @@ stream1: cudaMemcpyPeerAsync (send gradients to GPU 0)
 
 ## Connections
 
-- [GPU Memory Hierarchy](gpu-memory-hierarchy.md) — Foundation for memory optimization
-- [CUDA Kernel Optimization](cuda-kernel-optimization.md) — Single-kernel techniques
-- [Thread Block Clusters](thread-block-clusters.md) — Persistent kernels, warp specialization, DSMEM
-- [PyTorch Profiling & Tuning](pytorch-profiling-tuning.md) — CUDA Graphs via torch.compile
+- [GPU Memory Hierarchy](aspe-gpu-memory-hierarchy.md) — Foundation for memory optimization
+- [CUDA Kernel Optimization](aspe-cuda-kernel-optimization.md) — Single-kernel techniques
+- [Thread Block Clusters](aspe-thread-block-clusters.md) — Persistent kernels, warp specialization, DSMEM
+- [PyTorch Profiling & Tuning](aspe-pytorch-profiling-tuning.md) — CUDA Graphs via torch.compile
 - [NCCL Demystifying](nccl-demystifying.md) — NCCL internals
 - [NCCL Device API / GIN](nccl-device-api-gin.md) — GPU-initiated networking (device-side orchestration)
-- [AI Systems Performance Engineering](ai-systems-performance-engineering.md) — Full book reference
+- [AI Systems Performance Engineering](aspe-overview.md) — Full book reference

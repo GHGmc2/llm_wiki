@@ -111,4 +111,5 @@ MLA reduces activation memory during training by storing smaller intermediate re
 - [DeepSeek-V3 Insights](deepseek-v3-insights.md) — hardware-aware co-design paper introducing MLA in context
 - [DeepSeek-V4 Architecture](deepseek-v4.md) — CSA/HCA builds on MLA's compression philosophy
 - [Megatron-Core Memory Wall](megatron-core-moe.md) — activation memory optimization from NVIDIA's perspective
-- [Ultra-Scale Playbook](ultra-scale-playbook.md) — context on KV cache and attention memory
+- [Ultra-Scale Playbook](usp-ultra-scale-playbook.md) — context on KV cache and attention memory
+- [LLM Architecture Comparison](llm-architecture-comparison.md) — comprehensive comparison of attention variants (MHA, GQA, MLA, SWA, DSA) across 23 models

@@ -162,8 +162,8 @@ Four papers tracing GPU architecture evolution through microbenchmarking and ins
 
 ## Connections
 
-- [GPU Memory Hierarchy](gpu-memory-hierarchy.md) — Registers, SMEM, L1/L2, HBM latency details
-- [CUDA Kernel Optimization](cuda-kernel-optimization.md) — Occupancy, warp efficiency, ILP
-- [GPU Hardware Architecture](gpu-hardware-architecture.md) — NVL72, NVSwitch, roadmap
+- [GPU Memory Hierarchy](aspe-gpu-memory-hierarchy.md) — Registers, SMEM, L1/L2, HBM latency details
+- [CUDA Kernel Optimization](aspe-cuda-kernel-optimization.md) — Occupancy, warp efficiency, ILP
+- [GPU Hardware Architecture](aspe-gpu-hardware-architecture.md) — NVL72, NVSwitch, roadmap
 - [FP8/FP4 Training](megatron-core-moe.md) — Mixed-precision on tensor cores
 - [GPU-Initiated Networking](nccl-device-api-gin.md) — GIN on Blackwell

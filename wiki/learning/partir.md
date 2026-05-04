@@ -198,4 +198,5 @@ PartIR is built on MLIR (Multi-Level Intermediate Representation):
 - [GSPMD](gspmd.md) — The foundational system PartIR improves upon
 - [TOAST](toast.md) — Auto-partitioning that can generate PartIR schedules automatically
 - [Parallel Folding](megatron-core-moe.md) — Megatron-Core's manual parallelism decoupling (PartIR automates this)
-- [Scaling Techniques Overview](scaling-techniques-overview.md) — The parallelism strategies that tactics implement
+- [Scaling Techniques Overview](usp-scaling-techniques-overview.md) — The parallelism strategies that tactics implement
+- [Auto-Parallelism Survey](auto-parallelism-survey.md) — PartIR in context: how tactics-based approaches fit in the auto-parallelism landscape

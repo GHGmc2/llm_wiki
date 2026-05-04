@@ -219,8 +219,8 @@ PAT is automatically selected by NCCL based on message size and scale. Particula
 ## Connections
 
 - [GPU Communication Landscape](gpu-communication-landscape.md) — Full survey of GPU communication stack
-- [Distributed Networking Tuning](distributed-networking-tuning.md) — Magnum IO, GPUDirect RDMA, SHARP, NCCL env vars
+- [Distributed Networking Tuning](aspe-distributed-networking-tuning.md) — Magnum IO, GPUDirect RDMA, SHARP, NCCL env vars
 - [NCCL Device API / GIN](nccl-device-api-gin.md) — GPU-initiated networking built on NCCL, crucial for MoE
 - [NCCL EP](nccl-ep.md) — Expert Parallelism communication library using NCCL Device API
 - [Communication Wall](megatron-core-moe.md) — DeepEP/HybridEP depend on NCCL protocols
-- [Scaling Techniques Overview](scaling-techniques-overview.md) — all-reduce, all-gather, reduce-scatter explained
+- [Scaling Techniques Overview](usp-scaling-techniques-overview.md) — all-reduce, all-gather, reduce-scatter explained
