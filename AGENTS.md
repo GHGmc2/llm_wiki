@@ -92,7 +92,7 @@ When the user adds a file to `raw/` and asks you to process it:
    - Strengthen or challenge existing claims
    - Update `updated` date and add the source to the `sources` list
 7. **Update `wiki/index.md`** — add entry for the new page, update entries for modified pages
-8. **Update `wiki/overview.md`** if the source adds significant new knowledge
+8. **Update `wiki/overview.md`** — ALWAYS update. Add new pages to the appropriate category section and keep the page count accurate. This is never optional.
 9. **Append to `wiki/log.md`** — log the ingest with consistent prefix format
 10. **Tell the user which pages were touched** so they can browse them
 

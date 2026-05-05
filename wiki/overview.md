@@ -4,13 +4,13 @@ type: summary
 tags: [meta]
 created: 2026-05-02
 updated: 2026-05-04
-sources: [raw/scalable-training-moe-megatron-core.pdf, raw/DeepSeek-V4.pdf, raw/The_Ultra-Scale_Playbook.pdf, raw/DeepSeek-R1.pdf, raw/DeepSeek-V3.pdf, raw/DeepSeek-V3.2.pdf, raw/demystifying-nccl.pdf, raw/gpu-initiated-networking-nccl.pdf, raw/nccl-ep.pdf, raw/GSPMD.pdf, raw/PartIR.pdf, raw/TOAST.pdf, raw/ppo.pdf, raw/stabilizing-rl-llms.pdf, raw/art-of-scaling-rl-compute.pdf, raw/auto-parallelism-survey.pdf, raw/efficient-llm-training-survey.pdf, raw/comet-moe-overlap.pdf, raw/moe-parallel-folding.pdf, raw/scaling-laws-kaplan.pdf, raw/ai-systems-performance-engineering.pdf, raw/the-bitter-lesson.pdf]
+sources: [raw/scalable-training-moe-megatron-core.pdf, raw/DeepSeek-V4.pdf, raw/The_Ultra-Scale_Playbook.pdf, raw/DeepSeek-R1.pdf, raw/DeepSeek-V3.pdf, raw/DeepSeek-V3.2.pdf, raw/demystifying-nccl.pdf, raw/gpu-initiated-networking-nccl.pdf, raw/nccl-ep.pdf, raw/GSPMD.pdf, raw/PartIR.pdf, raw/TOAST.pdf, raw/ppo.pdf, raw/stabilizing-rl-llms.pdf, raw/art-of-scaling-rl-compute.pdf, raw/auto-parallelism-survey.pdf, raw/efficient-llm-training-survey.pdf, raw/comet-moe-overlap.pdf, raw/moe-parallel-folding.pdf, raw/scaling-laws-kaplan.pdf, raw/ai-systems-performance-engineering.pdf, raw/the-bitter-lesson.pdf, raw/cross-domain-scaling-laws.pdf, raw/rail-only-network.pdf, raw/muon-optimizer.pdf, raw/communication-overlap-decomposition.pdf]
 status: stable
 ---
 
 # Overview
 
-*40 pages across 20+ sources. Covers LLM architecture, training systems, GPU hardware, scaling laws, RL, and communication infrastructure.*
+*51 pages across 26+ sources. Covers LLM architecture, training systems, GPU hardware, scaling laws, RL, inference, and networking.*
 
 ## Model Lineage (DeepSeek)
 
@@ -20,7 +20,7 @@ status: stable
 | V3 Insights (ISCA) | Jun 2025 | Hardware-aware co-design, Multi-Plane Network | [insights](learning/deepseek-v3-insights.md) |
 | DeepSeek-R1 | Jan 2025 | Pure RL (GRPO), emergent reasoning, distillation | [r1](learning/deepseek-r1.md) |
 | DeepSeek-V3.2 | Dec 2025 | DSA sparse attention, IMO/IOI gold | [v3.2](learning/deepseek-v3.2.md) |
-| DeepSeek-V4 | Apr 2026 | CSA+HCA hybrid attention, 1M context, OPD | [v4](learning/deepseek-v4.md) |
+| DeepSeek-V4 | Apr 2026 | CSA+HCA hybrid attention, 1M context, OPD, Muon optimizer | [v4](learning/deepseek-v4.md) |
 
 ## Training Systems
 
@@ -30,12 +30,16 @@ status: stable
 | Ultra-Scale Playbook | Educational foundation: DP, ZeRO, TP, SP, CP, PP, EP | [playbook](learning/usp-ultra-scale-playbook.md) |
 | Efficient LLM Training Survey | Taxonomy of training systems (380+ refs) | [survey](learning/efficient-llm-training-survey.md) |
 | Comet | Fine-grained EP communication overlap | [comet](learning/comet-moe-overlap.md) |
+| Muon Optimizer | Matrix orthogonalization, ~2× vs AdamW, Moonlight MoE | [muon](learning/muon-optimizer.md) |
+| Comm Overlap via Decomposition | Google ASPLOS 2023 — decompose collectives for TP overlap | [comm-overlap](learning/communication-overlap-decomposition.md) |
+| How To Scale Your Model (DeepMind) | Textbook: roofline, TPU, sharding, parallelism — FSDP/TP/PP cost analysis | [scaling-book](learning/scaling-book.md) |
 
 ## Scaling Laws
 
 | Source | Focus | Page |
 |--------|-------|------|
 | Kaplan et al. (2020) | Original scaling laws: $L \propto N^{-\alpha}$, $D \propto N^{0.74}$ | [scaling-laws](learning/llm-scaling-laws.md) |
+| Henighan et al. (2020) | Cross-domain: images, video, multimodal, math — universal exponents | [cross-domain](learning/cross-domain-scaling-laws.md) |
 
 ## Research Philosophy (in [reading/](reading/))
 
@@ -65,6 +69,13 @@ status: stable
 | Architecture Comparison (Raschka) | 23 models: MHA→GQA→MLA→SWA→DSA evolution | [comparison](learning/llm-architecture-comparison.md) |
 | Multi-Head Latent Attention | MLA deep-dive with KV cache analysis | [mla](learning/multi-head-latent-attention.md) |
 | FlashAttention | Tiling, online softmax, O(N) HBM attention | [flashattention](learning/flashattention.md) |
+| Ring Attention | Distributed attention across GPU ring, zero comm overhead | [ring-attn](learning/ring-attention.md) |
+
+## Inference Systems
+
+| Source | Focus | Page |
+|--------|-------|------|
+| Inside vLLM (Gordić) | Engine V1 deep-dive: scheduler, paged attention, prefix caching, specdec, disaggregated P/D, MultiProcExecutor | [vllm](learning/vllm-anatomy.md) |
 
 ## GPU Hardware & Architecture
 
@@ -79,7 +90,7 @@ status: stable
 | NVIDIA GPU Microbenchmarks | Ampere/Hopper/Blackwell instruction latency | [gpu-bench](learning/nvidia-gpu-architecture-microbenchmarks.md) |
 | Thread Block Clusters | DSMEM, warp specialization, persistent kernels | [thread-blocks](learning/aspe-thread-block-clusters.md) |
 
-## Communication Infrastructure
+## Communication & Networking
 
 | Source | Focus | Page |
 |--------|-------|------|
@@ -88,6 +99,7 @@ status: stable
 | NCCL EP | MoE communication library | [nccl-ep](learning/nccl-ep.md) |
 | GPU Communication Landscape | Full communication stack survey | [comm-survey](learning/gpu-communication-landscape.md) |
 | Distributed Networking | Magnum IO, SHARP, GPUDirect tuning | [networking](learning/aspe-distributed-networking-tuning.md) |
+| Rail-only Network | Eliminate spine layer, 38-77% cost reduction | [rail-only](learning/rail-only-network.md) |
 
 ## Compiler & Auto-Parallelism
 
@@ -111,7 +123,9 @@ status: stable
 
 - **Memory / Communication / Compute**: Three constraints appear across all sources
 - **FP8/FP4**: From DeepSeek-V3's pioneering FP8 training to Blackwell's NVFP4
-- **Attention efficiency**: MLA (V3) → DSA (V3.2) → CSA+HCA (V4) — progressive KV compression
+- **Attention efficiency**: MLA (V3) → DSA (V3.2) → CSA+HCA (V4) — progressive KV compression; Ring Attention for distributed long context
 - **Post-training evolution**: SFT+RL (V3) → Pure RL/GRPO (R1) → On-Policy Distillation (V4)
 - **EP communication**: Layer-level 1F1B (Megatron) → Expert-level (DeepSeek-V4) → Sub-kernel (Comet)
 - **RL theory**: PPO → GRPO → token-level first-order approximation → sigmoid scaling curves
+- **Network design**: Rail-only (sparse patterns don't need full bisection), NCCL algorithms
+- **Optimizer evolution**: AdamW → Muon (matrix orthogonalization, ~2× efficiency)

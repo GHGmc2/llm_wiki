@@ -1,86 +1,23 @@
 # Log
 
 
-## [2026-05-04] ingest | Book: Mathematical Foundations of Reinforcement Learning (Shiyu Zhao)
-- Created: learning/rl-foundations.md
-- Source: raw/rl-foundations.pdf (288 pages)
-- Complete textbook: MDP → Bellman → Value/Policy Iteration → MC → TD → SGD → Policy Gradient
-- Mathematical backbone for TRPO/PPO/GRPO/GSPO and all RL algorithm pages
+## [2026-05-04] ingest | Book: How To Scale Your Model (Austin et al., Google DeepMind, 2025)
+- Created: learning/scaling-book.md
+- Short textbook on scaling LLMs on TPUs: roofline analysis, TPU architecture, sharding, parallelism (FSDP/TP/PP/EP), Transformer math, inference, profiling, JAX
 - 1 page touched
-
-## [2026-05-04] ingest | Paper: TRPO — Trust Region Policy Optimization (Schulman et al., 2015)
-- Created: learning/trpo.md
-- Source: raw/trpo.pdf
-- Foundation of PPO/GRPO/GSPO: KL-constrained policy updates, monotonic improvement theory
+- Created: learning/cross-domain-scaling-laws.md
+- Extends scaling laws to images, video, multimodal, math — nearly universal exponents
+- Information-theoretic decomposition: L = S(True) + D_KL(True||Model)
 - 1 page touched
-
-## [2026-05-04] ingest | Paper: GSPO — Group Sequence Policy Optimization (Qwen, 2025)
-- Created: learning/gspo.md
-- Source: raw/gspo.pdf (7 pages)
-- Sequence-level importance sampling replaces GRPO's token-level IS, more stable for MoE, used in Qwen3
-- 1 page touched
-
-## [2026-05-04] ingest | Paper: GRPO — Group Relative Policy Optimization (DeepSeekMath, 2024)
-- Created: learning/grpo.md
-- Source: raw/deepseek-math-grpo.pdf (30 pages)
-- GRPO eliminates the critic model in PPO — uses group-based advantage estimation
-- Foundation for DeepSeek-R1, V3 post-training, and most modern LLM RL
-- 1 page, 1 figure touched
-
-## [2026-05-04] ingest | PyTorch Compilation: torch.compile manual + State of torch.compile + PT 2.2
-- Created: learning/pytorch-compilation.md
-- Sources: raw/torch-compile-missing-manual.pdf (37pp), raw/pytorch-2.2.pdf, blog.ezyang.com
-- torch.compile practical debugging guide, advanced parallelism (DTensor, SimpleFSDP, AutoParallel), Inductor backend
-- 1 page touched
-
-## [2026-05-04] ingest | Talk: Don't Teach. Incentivize. (Hyung Won Chung, OpenAI, MIT EI Seminar)
-- Created: reading/dont-teach-incentivize.md
-- Source: raw/Don't-teach_Incentivize.pdf (59 slides)
-- Research philosophy: scaling as incentive, finding great problems, echoed in DeepSeek-R1 and Bitter Lesson
-- 1 page touched
-
-## [2026-05-04] ingest | Talk: You and Your Research (Richard Hamming, 1986)
-- Created: reading/you-and-your-research.md
-- Source: raw/YouAndYourResearch.pdf (13 pages)
-- Classic talk on doing great research: work on important problems, compound advantage, courage, selling your work
-- 1 page touched
-
-## [2026-05-04] ingest | Papers: PPO + Stabilizing RL with LLMs
-- Created: learning/ppo.md, learning/stabilizing-rl-llms.md
-- Sources: raw/ppo.pdf, raw/stabilizing-rl-llms.pdf
-- PPO: foundational policy gradient algorithm (clipped surrogate, GAE), basis for GRPO
-- Stabilizing RL: token-level RL as first-order approx, Routing Replay for MoE, off-policy stability
+- Created: learning/rail-only-network.md, learning/muon-optimizer.md
+- Rail-only: eliminates spine layer in GPU clusters, 38-77% network cost reduction, exploits sparse LLM communication patterns
+- Muon: matrix orthogonalization optimizer, ~2× compute efficiency vs AdamW, Moonlight 3B/16B MoE model, used in DeepSeek-V4
 - 2 pages touched
-
-## [2026-05-04] lint | index.md: fix missing pages and GRPO formula
-- Fixed: GRPO formula line 56 (`o_{\text{<}t}` → `o_{1:t-1}` for markdown compat)
-- Removed: The Bitter Lesson (reading/) wrongly listed under Learning section
-- Added: 7 missing learning pages (grpo, gspo, ppo, pytorch-compilation, rl-foundations, stabilizing-rl-llms, trpo)
-- Added: Reading section with 3 entries (The Bitter Lesson, You and Your Research, Don't Teach. Incentivize.)
-- Index now: Learning (44 pages) + Reading (3 pages) = 47 total
-- Updated: index.md
-
-## [2026-05-04] lint | Full wiki health check
-- Checked: broken links (0), unreferenced assets (0), broken asset refs (0), stale pages (0)
-- Fixed: 5 formula issues across 4 files:
-  - grpo.md: `o_{i,\text{<}t}` → `o_{i,1:t-1}` (line 44)
-  - gspo.md: `y_{i,\text{<}t}` → `y_{i,1:t-1}` (lines 28, 54)
-  - stabilizing-rl-llms.md: `y_{\text{<}t}` → `y_{1:t-1}` (line 40)
-  - ppo.md: `a_t | s_t` → `a_t \mid s_t` (line 35)
-- Found: 2 orphan pages (llm-architecture-comparison.md, auto-parallelism-survey.md)
-- Found: 10 source-note arXiv papers missing extracted figures
-- 4 pages touched
-
-## [2026-05-04] figure extraction | 9 arXiv papers: 155 figures
-- Lint: 0 broken links, 0 broken assets, 0 stale pages, 5 formula issues fixed
-- Orphans fixed: added cross-links to llm-architecture-comparison.md (from MLA, V3.2, V3) and auto-parallelism-survey.md (from GSPMD, PartIR, TOAST)
-- Figures extracted: 155 PNG figures from 9 arXiv paper LaTeX sources (TRPO, PPO, ScaleRL, GSPMD, Kaplan, TOAST, Stabilizing RL, PartIR, Auto-Parallelism)
-- 8 pages updated with 13 essential figures (PPO, TRPO, ScaleRL, GSPMD, Kaplan, TOAST, Stabilizing RL, PartIR)
-- DeepSeek-V4: skipped (not on arXiv, no LaTeX source available)
-- Auto-Parallelism Survey: no extractable figures (bio photos only)
-- 12 pages touched
-
-## [2026-05-04] lint | Assets cleanup and formula fixes
+- Created: learning/vllm-anatomy.md, learning/ring-attention.md, learning/communication-overlap-decomposition.md
+- vLLM: deep-dive into V1 engine — scheduler, paged attention, continuous batching, prefix caching, specdec, guided decoding, disaggregated P/D, MultiProcExecutor
+- Ring Attention: online safe softmax, outer/inner loop decomposition, ring topology for zero-overhead K,V rotation, communication-compute overlap condition
+- Communication Overlap: decompose collectives + dependent computation into finer-grained ops for TP overlap, 1.14-1.38x throughput, 72% FLOPs util on 1024 TPU chips
+- 3 pages touched
 - Deleted: 73 orphaned figures from 5 papers (trpo, ppo, scalerl leftovers, stabilizing_rl, partir)
 - Fixed: 3 formula issues — rl-foundations.md (| |→\lvert\rvert, <→\lt), scalerl.md (|y_g|→\lvert\rvert), gspo.md (3× |y_i|→\lvert\rvert)
 - Kept: scalerl_figure3_interpreting_eq1.png (Figure 3 from ScaleRL paper)

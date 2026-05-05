@@ -14,8 +14,7 @@ This is a **personal knowledge base** that compounds over time. Every source ing
 
 ```
 llm_wiki/
-├── CLAUDE.md              # This file — wiki schema and operating instructions
-├── AGENTS.md              # OpenCode-compatible schema (identical content)
+├── AGENTS.md              # This file — wiki schema and operating instructions
 ├── raw/                   # Immutable source documents (articles, papers, PDFs, notes)
 ├── wiki/                  # All LLM-generated and maintained content
 │   ├── index.md           # Master catalog — every page listed with summary
@@ -93,7 +92,7 @@ When the user adds a file to `raw/` and asks you to process it:
    - Strengthen or challenge existing claims
    - Update `updated` date and add the source to the `sources` list
 7. **Update `wiki/index.md`** — add entry for the new page, update entries for modified pages
-8. **Update `wiki/overview.md`** if the source adds significant new knowledge
+8. **Update `wiki/overview.md`** — ALWAYS update. Add new pages to the appropriate category section and keep the page count accurate. This is never optional.
 9. **Append to `wiki/log.md`** — log the ingest with consistent prefix format
 10. **Tell the user which pages were touched** so they can browse them
 
@@ -109,7 +108,7 @@ When the user adds a file to `raw/` and asks you to process it:
 ### 2. Query (answering a question from the wiki)
 
 1. **Read `wiki/index.md`** to find relevant pages
-2. **Read the relevant pages** (use grep, glob, or direct file reads to locate them)
+2. **Read the relevant pages** (use LSP, search, or direct file reads)
 3. **Synthesize an answer** with inline citations to wiki pages and raw sources
 4. **Ask the user:** "Should I file this answer into the wiki?" If yes:
    - Create a new `query`-type page (or update an existing one) with the answer
@@ -188,7 +187,7 @@ Append-only chronological log. Every ingest, query (if filed), lint, and signifi
 ## Shortcuts & Efficiency
 
 - **Before answering any question**, always read `wiki/index.md` first so you know what's available
-- **When touching multiple pages**, batch your reads (parallel glob/grep) and writes to be efficient
+- **When touching multiple pages**, batch your reads (parallel) and writes to be efficient
 - **When in doubt**, ask the user. Don't guess what they want emphasized or where to file something
 - **Be conservative about creating new categories** — try to fit pages into existing categories first
 - **Suggest lint** after approximately every 5 ingest operations or when you notice inconsistencies
