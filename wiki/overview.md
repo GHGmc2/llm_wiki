@@ -10,7 +10,7 @@ status: stable
 
 # Overview
 
-*51 pages across 26+ sources. Covers LLM architecture, training systems, GPU hardware, scaling laws, RL, inference, and networking.*
+*52 pages across 27+ sources. Covers LLM architecture, training systems, GPU hardware, scaling laws, RL, inference, and networking.*
 
 ## Model Lineage (DeepSeek)
 
@@ -33,6 +33,7 @@ status: stable
 | Muon Optimizer | Matrix orthogonalization, ~2× vs AdamW, Moonlight MoE | [muon](learning/muon-optimizer.md) |
 | Comm Overlap via Decomposition | Google ASPLOS 2023 — decompose collectives for TP overlap | [comm-overlap](learning/communication-overlap-decomposition.md) |
 | How To Scale Your Model (DeepMind) | Textbook: roofline, TPU, sharding, parallelism — FSDP/TP/PP cost analysis | [scaling-book](learning/scaling-book.md) |
+| TSP: Folding TP + Sequence Parallelism | Single-axis folding of TP+SP, ring-based weight circulation + KV exchange | [tsp](learning/tsp-folding-parallelism.md) |
 
 ## Scaling Laws
 

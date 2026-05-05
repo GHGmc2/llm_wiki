@@ -88,13 +88,13 @@ Direct GPU-to-GPU memory access via NVLink. NCCL uses:
 
 ### Intra-Node (NVLink)
 
-![NCCL intra-node communication architecture](../assets/nccl_intra_node.png)
+![NCCL intra-node communication architecture](../../raw/assets/nccl_intra_node.png)
 
 *Figure: Intra-node data movement — direct GPU-to-GPU memory access via NVLink with load/store and copy engines. [src](raw/demystifying-nccl.pdf)*
 
 ### Inter-Node (InfiniBand / RoCE)
 
-![NCCL inter-node communication architecture](../assets/nccl_inter_node.png)
+![NCCL inter-node communication architecture](../../raw/assets/nccl_inter_node.png)
 
 *Figure: Inter-node data movement — GPUDirect RDMA enables NIC DMA directly to GPU memory across nodes. [src](raw/demystifying-nccl.pdf)*
 
@@ -113,11 +113,11 @@ NCCL dynamically selects protocols based on:
 
 ## Ring vs Tree Algorithms
 
-![NCCL ring-based all-reduce topology](../assets/nccl_ring.png)
+![NCCL ring-based all-reduce topology](../../raw/assets/nccl_ring.png)
 
 *Figure: Ring algorithm for all-reduce — data flows unidirectionally around a ring, each GPU receives, reduces, and forwards. Bandwidth-optimal for large messages. [src](raw/demystifying-nccl.pdf)*
 
-![NCCL double binary tree topology](../assets/nccl_tree.png)
+![NCCL double binary tree topology](../../raw/assets/nccl_tree.png)
 
 *Figure: Double binary tree algorithm — two complementary trees for latency-optimal reduction. Good for small messages. [src](raw/demystifying-nccl.pdf)*
 
@@ -190,15 +190,15 @@ PAT is a new algorithm for AllGather and ReduceScatter in NCCL, designed to fill
 
 ### Algorithm
 
-![PAT algorithm structure — tree-based aggregation with logarithmic depth](../assets/pat_algorithm.png)
+![PAT algorithm structure — tree-based aggregation with logarithmic depth](../../raw/assets/pat_algorithm.png)
 
 *Figure: PAT algorithm structure — tree-based aggregation with logarithmic depth. [src](raw/pat-algorithm.pdf)*
 
-![PAT tree with aggregation factor 8 on 16 ranks](../assets/pat_tree.png)
+![PAT tree with aggregation factor 8 on 16 ranks](../../raw/assets/pat_tree.png)
 
 *Figure: PAT tree with aggregation=8 on 16 ranks. Each rank participates in O(log P) exchanges. [src](raw/pat-algorithm.pdf)*
 
-![Brucks construction for PAT global connectivity](../assets/pat_brucks.png)
+![Brucks construction for PAT global connectivity](../../raw/assets/pat_brucks.png)
 
 *Figure: Brucks construction defining global connectivity for PAT tree building. [src](raw/pat-algorithm.pdf)*
 

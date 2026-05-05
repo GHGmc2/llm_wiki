@@ -30,7 +30,7 @@ DeepSeek-V3 builds on DeepSeek-V2's MLA and DeepSeekMoE, adding:
 - FP8 mixed-precision training (first open-source large model)
 - Auxiliary-loss-free load balancing
 
-![DeepSeek-V3 basic architecture with FP8 precision annotations](../assets/v3_architecture.png)
+![DeepSeek-V3 basic architecture with FP8 precision annotations](../../raw/assets/v3_architecture.png)
 
 *Figure 1: Basic architecture of DeepSeek-V3 — MLA, DeepSeekMoE, MTP, and FP8 mixed precision. Colored annotations show precision used in each component. [src](raw/insights-into-deepseek-v3.pdf)*
 

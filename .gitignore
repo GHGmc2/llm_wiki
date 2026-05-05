@@ -1,6 +1,6 @@
 /.DS_Store
 /.idea
 /.venv
-/raw
+/raw/*.pdf
 /wiki/.obsidian
 /wiki/.DS_Store

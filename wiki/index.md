@@ -2,7 +2,7 @@
 
 *Last updated: 2026-05-04*
 
-## Learning (51 pages)
+## Learning (52 pages)
 
 ### AI Systems Performance Engineering (11 pages)
 | Page | Summary | Type | Tags | Updated |
@@ -25,7 +25,7 @@
 | [LLM Scaling Techniques Overview](learning/usp-scaling-techniques-overview.md) |  | concept | llm-training, distributed-training, scaling, data-parallelism, zero, tensor-parallelism, pipeline-parallelism, context-parallelism, expert-parallelism | 2026-05-02 |
 | [The Ultra-Scale Playbook: Training LLMs on GPU Clusters](learning/usp-ultra-scale-playbook.md) |  | source-note | llm-training, distributed-training, scaling, parallelism, gpu, hf, nanotron, educational | 2026-05-02 |
 
-### Other (38 pages)
+### Other (39 pages)
 | Page | Summary | Type | Tags | Updated |
 |------|---------|------|------|---------|
 | [A Survey on Auto-Parallelism of Neural Networks Training](learning/auto-parallelism-survey.md) |  | source-note | auto-parallelism, distributed-training, parallelism, survey, dp, tp, pp, mcts, rl | 2026-05-03 |
@@ -39,6 +39,7 @@
 | [DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence](learning/deepseek-v4.md) |  | source-note | llm, mixture-of-experts, deepseek, long-context, hybrid-attention, csa, hca, mhc, muon, post-training, infrastructure | 2026-05-03 |
 | [Efficient Training of Large Language Models on Distributed Infrastructures: A Survey](learning/efficient-llm-training-survey.md) |  | source-note | llm-training, survey, distributed-systems, parallelism, infrastructure, fault-tolerance | 2026-05-03 |
 | [FlashAttention: Memory-Efficient Exact Attention](learning/flashattention.md) |  | concept | attention, flash-attention, gpu, kernel-fusion, tiling, hbm, online-softmax | 2026-05-02 |
+| [Folding Tensor and Sequence Parallelism for Memory-Efficient Transformer Training & Inference](learning/tsp-folding-parallelism.md) |  | source-note | tensor-parallelism, sequence-parallelism, training, inference, memory-efficiency, long-context, parallelism, attention, mlp | 2026-05-04 |
 | [The Landscape of GPU-Centric Communication](learning/gpu-communication-landscape.md) |  | source-note | gpu, communication, nccl, nvshmem, gpudirect, collective, survey | 2026-05-03 |
 | [GRPO: Group Relative Policy Optimization](learning/grpo.md) |  | source-note | reinforcement-learning, grpo, ppo, deepseek, policy-gradient, llm | 2026-05-04 |
 | [GSPMD: General and Scalable Parallelization for ML Computation Graphs](learning/gspmd.md) |  | source-note | compiler, parallelization, spmd, gspmd, google, tpu, device-mesh, sharding | 2026-05-02 |

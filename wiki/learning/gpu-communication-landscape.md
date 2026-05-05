@@ -20,15 +20,15 @@ status: stable
 
 ### Communication Stack
 
-![GPU communication software stack — from hardware to applications](../assets/gpu_comm_stack.png)
+![GPU communication software stack — from hardware to applications](../../raw/assets/gpu_comm_stack.png)
 
 *Figure: Software stack for GPU-centric communication — hardware, vendor APIs, collective libraries, and application-level frameworks. [src](raw/gpu-communication-landscape.pdf)*
 
-![GPU communication system overview — multi-node architecture](../assets/gpu_comm_system.png)
+![GPU communication system overview — multi-node architecture](../../raw/assets/gpu_comm_system.png)
 
 *Figure 1: Multi-node GPU communication system with NVLink intra-node and InfiniBand inter-node. [src](raw/gpu-communication-landscape.pdf)*
 
-![Technology timeline of GPU communication evolution](../assets/gpu_comm_timeline.png)
+![Technology timeline of GPU communication evolution](../../raw/assets/gpu_comm_timeline.png)
 
 *Figure: Timeline of GPU communication technology evolution — from early PCIe to NVLink 5 and NVSHMEM. [src](raw/gpu-communication-landscape.pdf)*
 

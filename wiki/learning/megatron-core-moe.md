@@ -79,6 +79,7 @@ Same model can require completely different strategies on different hardware (se
 - [Performance Best Practices](#performance-best-practices) — three-phase optimization workflow
 - [DeepSeek-V3](deepseek-v3.md) — trains on Megatron-Core infrastructure
 - [DeepSeek-V4](deepseek-v4.md) — successor architecture
+- [TSP: Folding TP + Sequence Parallelism](tsp-folding-parallelism.md) — different "folding": TSP coalesces TP+SP on single axis, Megatron decouples parallelism per-layer
 - [NCCL Demystifying](nccl-demystifying.md) — communication protocols used by dispatchers
 - [GPU Hardware Architecture](aspe-gpu-hardware-architecture.md) — NVL72, NVLink 5
 - [Comet: MoE Overlap](comet-moe-overlap.md) — finer-grained EP overlap approach
@@ -155,7 +156,7 @@ Parallel Folding: World = TP × CP × DP × PP
 *Figure: Parallel Folding decouples attention (TP/CP/DP/PP) and MoE (ETP/EP/EDP/PP) configurations. The mapping switch enables each layer type to use its optimal topology independently. [src](raw/moe-parallel-folding.pdf)*
 ```
 
-![Parallel Folding — decoupled attention and MoE parallelism mappings](../assets/parallel_folding_mapping.png)
+![Parallel Folding — decoupled attention and MoE parallelism mappings](../../raw/assets/parallel_folding_mapping.png)
 
 
 **Concrete example**: Attention configured with TP=4, CP=2, DP=8, PP=4 (256 GPUs)
@@ -331,7 +332,7 @@ The memory optimization stack transforms DeepSeek-V3 from 199.5 GB/GPU (impossib
 
 The exact stack depends on hardware. On GB200 (192 GB), fewer techniques are needed
 
-![Selective recomputation — memory vs compute trade-off](../assets/megatron_recomputation.png)
+![Selective recomputation — memory vs compute trade-off](../../raw/assets/megatron_recomputation.png)
 
 *Figure: Selective recomputation strategies trading compute for memory. Full recomputation saves maximum memory at 30-40% compute cost; selective hits the sweet spot. [src](raw/scalable-training-moe-megatron-core.pdf)* — typically just FP8 + selective recomputation (mlp only) + memory-efficient permutation.
 
@@ -339,7 +340,7 @@ The exact stack depends on hardware. On GB200 (192 GB), fewer techniques are nee
 
 **Source**: Megatron-Core MoE Technical Report, Section 4.2 [src](raw/scalable-training-moe-megatron-core.pdf)
 
-![EP communication overlap — forward and backward dispatch/combine overlapped with compute](../assets/megatron_ep_overlap.png)
+![EP communication overlap — forward and backward dispatch/combine overlapped with compute](../../raw/assets/megatron_ep_overlap.png)
 
 *Figure: EP communication overlap using 1F1B pipelining — Layer N+1 dispatch overlaps with Layer N expert compute. [src](raw/scalable-training-moe-megatron-core.pdf)*
 
@@ -484,7 +485,7 @@ These fusions reduce kernel launch count per MoE layer from ~15-20 to ~5-8.
 
 ## 3. CUDA Graphs
 
-![Partial CUDA Graphs for MoE — Nsight Systems timeline showing eliminated CPU gaps](../assets/megatron_cuda_graphs.png)
+![Partial CUDA Graphs for MoE — Nsight Systems timeline showing eliminated CPU gaps](../../raw/assets/megatron_cuda_graphs.png)
 
 *Figure: Partial CUDA Graphs capture attention, router, and MoE preprocessing into static graphs. GPU idle gaps eliminated. [src](raw/scalable-training-moe-megatron-core.pdf)*
 

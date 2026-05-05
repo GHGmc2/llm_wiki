@@ -32,7 +32,7 @@ The paper argues the gap between open and closed models was **widening** (not co
 
 The only architectural change from V3.1-Terminus. DSA selects a sparse subset of KV entries per query token, reducing attention FLOPs while maintaining quality.
 
-![DSA instantiated under MLA — Lightning Indexer + Fine-Grained Token Selection](../assets/dsa_architecture.png)
+![DSA instantiated under MLA — Lightning Indexer + Fine-Grained Token Selection](../../raw/assets/dsa_architecture.png)
 
 *Figure 2: DSA architecture under MLA. The green part shows how the Lightning Indexer selects top-k key-value entries for sparse attention. [src](raw/DeepSeek-V3.2.pdf)*
 

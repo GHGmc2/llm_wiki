@@ -23,7 +23,7 @@ status: stable
 - Classification fine-tuning scales smoothly even as generative loss plateaus
 - 33 figures, covering scaling across all major modalities at the time
 
-![Image VQ16 full loss decomposition — test loss (colored) with fitted curve showing irreducible loss asymptote at 4.09 nats](../assets/cross_scaling_ImageVQ16ComputeFullLoss.png)
+![Image VQ16 full loss decomposition — test loss (colored) with fitted curve showing irreducible loss asymptote at 4.09 nats](../../raw/assets/cross_scaling_ImageVQ16ComputeFullLoss.png)
 
 ## The Universal Scaling Law
 

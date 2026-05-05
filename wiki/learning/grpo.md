@@ -66,7 +66,7 @@ $$
 | **Memory** | 2× (policy + value) | 1× (policy only) |
 | **Per-token accuracy** | Value function must be accurate at every token | Group reward is sequence-level, applies uniformly |
 
-![GRPO vs PPO: GRPO foregoes the value model, estimating baseline from group scores](../assets/grpo_vs_ppo.png)
+![GRPO vs PPO: GRPO foregoes the value model, estimating baseline from group scores](../../raw/assets/grpo_vs_ppo.png)
 
 *Figure 4 from the paper: PPO (left) requires a value model trained alongside the policy. GRPO (right) eliminates the value model entirely by using group-based advantage estimation. [src](raw/deepseek-math-grpo.pdf)*
 

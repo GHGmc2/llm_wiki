@@ -20,7 +20,7 @@ status: stable
 - **Automatic sharding propagation**: Infers partitioning for every operator from limited user annotations
 - Scaled to 1-trillion-parameter models on 2048 TPUv3 cores
 
-![GSPMD sharding representation — how tensor sharding maps to device mesh dimensions](../assets/gspmd_fig_sharding_rep.png)
+![GSPMD sharding representation — how tensor sharding maps to device mesh dimensions](../../raw/assets/gspmd_fig_sharding_rep.png)
 
 ## Core Abstraction: Device Mesh + Sharding Annotations
 
@@ -69,7 +69,7 @@ mesh_split(tensor, device_mesh, dims_mapping)
 
 ### Annotation → Propagation → Partitioning
 
-![GSPMD sharding propagation — how annotations flow through the computation graph with automatic collective insertion](../assets/gspmd_fig_sharding_prop.png)
+![GSPMD sharding propagation — how annotations flow through the computation graph with automatic collective insertion](../../raw/assets/gspmd_fig_sharding_prop.png)
 
 1. **User annotates** a few key tensors (typically inputs and weights) with `mesh_split`
 2. **GSPMD propagates** sharding annotations through the computation graph using a set of propagation rules for each operator type

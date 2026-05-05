@@ -31,7 +31,7 @@ When a model layer is partitioned across devices (tensor parallelism):
 2. Results must be aggregated via collective communication (AllReduce, AllGather)
 3. Communication cannot start until ALL devices finish computation — **dependent communication**
 
-![Decomposition technique — original AllGather+Einsum (top) vs overlapped version (bottom) with async send/recv hiding communication behind computation](../assets/comm_overlap_p5_865x592.png)
+![Decomposition technique — original AllGather+Einsum (top) vs overlapped version (bottom) with async send/recv hiding communication behind computation](../../raw/assets/comm_overlap_p5_865x592.png)
 
 This dependency creates idle time: devices that finish early must wait for stragglers, and communication latency is fully exposed.
 

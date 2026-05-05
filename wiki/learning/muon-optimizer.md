@@ -22,7 +22,7 @@ status: stable
 - Used in **DeepSeek-V4** training (Muon is one of the key training innovations in V4)
 - Released pretrained, instruction-tuned, and intermediate checkpoints
 
-![Muon scaling law — ~2× compute efficiency vs AdamW at compute-optimal training](../assets/muon_chinlaw_8k.png)
+![Muon scaling law — ~2× compute efficiency vs AdamW at compute-optimal training](../../raw/assets/muon_chinlaw_8k.png)
 
 ## Why Muon?
 

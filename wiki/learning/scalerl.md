@@ -47,7 +47,7 @@ RC - R0 = (A - R0) × 1 / (1 + (Cmid / C)^B)
 
 **Key insight**: A (asymptote) and B (efficiency) are **decoupled** — different design choices affect different parameters. This means you can separately optimize for "how good" (A) and "how fast" (B).
 
-![Figure 3: Interpreting equation (1) — visual explanation of sigmoid parameters A (asymptote), B (steepness), Cmid (midpoint at 50% gain), and R0 (baseline)](../assets/scalerl_figure3_interpreting_eq1.png)
+![Figure 3: Interpreting equation (1) — visual explanation of sigmoid parameters A (asymptote), B (steepness), Cmid (midpoint at 50% gain), and R0 (baseline)](../../raw/assets/scalerl_figure3_interpreting_eq1.png)
 
 ## Three Key Findings
 

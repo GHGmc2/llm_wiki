@@ -39,7 +39,7 @@ For large models at long sequences (e.g., LLaMA-3.1 405B at 128K tokens), this c
 
 MLA takes a fundamentally different approach: **compress the KV representation into a low-rank latent space** rather than just reducing the number of heads or bit-width.
 
-![MLA within the DeepSeek-V3 architecture — KV cache compressed to latent c_KV](../assets/v3_architecture.png)
+![MLA within the DeepSeek-V3 architecture — KV cache compressed to latent c_KV](../../raw/assets/v3_architecture.png)
 
 *Figure: MLA compresses Keys and Values into a shared latent vector `c_KV` via low-rank projection. Only the compressed latent is cached; full KV is up-projected on-the-fly during attention. [src](raw/DeepSeek-V3.pdf)*
 

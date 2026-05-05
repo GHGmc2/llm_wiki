@@ -1,7 +1,11 @@
 # Log
 
 
-## [2026-05-04] ingest | Book: How To Scale Your Model (Austin et al., Google DeepMind, 2025)
+## [2026-05-04] ingest | Paper: Folding Tensor and Sequence Parallelism — TSP (Shyam et al., Apr 2026)
+- Created: learning/tsp-folding-parallelism.md
+- Source: raw/tsp-folding-parallelism.pdf (arXiv:2604.26294)
+- Folds TP+SP onto single mesh axis — ring-based weight circulation + KV exchange for attention
+- 1 page touched
 - Created: learning/scaling-book.md
 - Short textbook on scaling LLMs on TPUs: roofline analysis, TPU architecture, sharding, parallelism (FSDP/TP/PP/EP), Transformer math, inference, profiling, JAX
 - 1 page touched

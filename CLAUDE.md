@@ -77,8 +77,8 @@ When the user adds a file to `raw/` and asks you to process it:
 1. **Read the source** thoroughly. For PDFs, use PyPDF2 or PyMuPDF to extract text. If the PDF is too large to read inline, extract sections progressively.
 2. **Extract figures**: 
    - For arXiv papers: download the LaTeX source from `arxiv.org/src/{id}`, extract original vector figures from the `figures/` directory, convert to PNG at 2-3× resolution via PyMuPDF, save to `wiki/assets/`
+   - **THIS STEP IS MANDATORY for all arXiv papers.** Never skip figure extraction.
    - For non-arxiv sources: render the figure page from PDF, crop to the figure area only (no headers/footers/surrounding text). Never use full-page renders.
-   - Reference figures as `![caption](../assets/filename.png)` with `[src](raw/paper.pdf)` attribution
 3. **Discuss key takeaways** with the user — what stood out, what's interesting, what connects to existing wiki content. Ask what they want to emphasize
 4. **Read `wiki/index.md`** to understand what's already in the wiki
 5. **Create a source-note page** summarizing the source in the appropriate category. Include:

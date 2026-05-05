@@ -22,7 +22,7 @@ status: stable
 - Orthogonal to FlashAttention — can be combined for even better memory efficiency
 - Extension: **Striped Attention** handles causal masks more efficiently than basic Ring Attention
 
-![Ring topology — each GPU holds one Q chunk and K,V are rotated around the ring over N iterations](../assets/ring_attn_ring.png)
+![Ring topology — each GPU holds one Q chunk and K,V are rotated around the ring over N iterations](../../raw/assets/ring_attn_ring.png)
 
 ## The Problem: Attention Memory Grows with Sequence Length
 
@@ -76,7 +76,7 @@ While GPU $i$ computes with current $K_j, V_j$, it simultaneously:
 - Sends $K_j, V_j$ to GPU $i+1$
 - Receives $K_{j-1}, V_{j-1}$ from GPU $i-1$
 
-![Communication-compute overlap — each GPU computes with local K,V while receiving the next block from its neighbor](../assets/ring_attn_KV-overlap-large.gif)
+![Communication-compute overlap — each GPU computes with local K,V while receiving the next block from its neighbor](../../raw/assets/ring_attn_KV-overlap-large.gif)
 
 When computation time $\geq$ transmission time, communication is **completely hidden**.
 

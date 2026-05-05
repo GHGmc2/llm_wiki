@@ -20,7 +20,7 @@ status: stable
 - **Outperforms state-of-the-art**: Better than expert-crafted and previous auto-partitioning strategies across diverse models and hardware
 - Discovers previously unknown superior solutions
 
-![TOAST system architecture — static Named Dimension Analysis feeds an MCTS search agent](../assets/toast_toast_arch_simpl.png)
+![TOAST system architecture — static Named Dimension Analysis feeds an MCTS search agent](../../raw/assets/toast_toast_arch_simpl.png)
 
 ## The Problem: Auto-Partitioning Search Space
 
