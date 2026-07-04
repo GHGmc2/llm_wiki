@@ -1,76 +1,115 @@
 # Index
 
-*Last updated: 2026-05-04*
+*67 pages · Last updated: 2026-05-04*
 
-## Learning (52 pages)
+## Model Lineage — GPT (OpenAI)
 
-### AI Systems Performance Engineering (11 pages)
-| Page | Summary | Type | Tags | Updated |
-|------|---------|------|------|---------|
-| [AI Systems Performance Engineering](learning/aspe-overview.md) |  | source-note | performance, cuda, gpu, pytorch, profiling, inference, training, systems, book | 2026-05-03 |
-| [CUDA Graphs, Streams, and GPU Orchestration](learning/aspe-cuda-graphs-and-orchestration.md) |  | concept | cuda, gpu, cuda-graphs, streams, atomics, dynamic-scheduling, nvshmem, nccl | 2026-05-02 |
-| [CUDA Kernel Optimization: Occupancy, Warp Efficiency, and Arithmetic Intensity](learning/aspe-cuda-kernel-optimization.md) |  | concept | cuda, gpu, kernel-optimization, occupancy, warp-divergence, ilp, kernel-fusion, tensor-cores | 2026-05-02 |
-| [Distributed Networking: NCCL Tuning, GPUDirect, and SHARP](learning/aspe-distributed-networking-tuning.md) |  | concept | networking, nccl, gpudirect, rdma, sharp, magnum-io, nixl, nvshmem | 2026-05-02 |
-| [GPU Hardware Architecture: NVIDIA Roadmap and Rack-Scale Systems](learning/aspe-gpu-hardware-architecture.md) |  | concept | gpu, hardware, nvidia, h100, b200, gb200, nvl72, nvlink, nvswitch, roadmap | 2026-05-02 |
-| [GPU Memory Hierarchy and CUDA Programming Model](learning/aspe-gpu-memory-hierarchy.md) |  | concept | cuda, gpu, memory-hierarchy, shared-memory, registers, tiling, hbm, tensor-cores | 2026-05-02 |
-| [GPU Storage I/O and Data Pipeline Optimization](learning/aspe-gpu-storage-io.md) |  | concept | storage, gpu, gpudirect-storage, nvme, data-pipeline, deepseek-3fs, nemo-curator, dali | 2026-05-02 |
-| [Inference Optimization: Disaggregation, Autotuning, and Precision Switching](learning/aspe-inference-optimization-techniques.md) |  | concept | inference, llm, disaggregation, autotuning, precision, kv-cache, speculative-decoding, performance | 2026-05-02 |
-| [OS, Docker, and Kubernetes Tuning for GPU Workloads](learning/aspe-os-docker-k8s-tuning.md) |  | concept | linux, docker, kubernetes, gpu, numa, hugepages, mig, cgroups, performance | 2026-05-02 |
-| [PyTorch Profiling, Compilation, and Performance Tuning](learning/aspe-pytorch-profiling-tuning.md) |  | concept | pytorch, profiling, torch-compile, nsight, triton, cutlass, performance | 2026-05-02 |
-| [Thread Block Clusters, DSMEM, and Warp Specialization](learning/aspe-thread-block-clusters.md) |  | concept | cuda, gpu, thread-block-clusters, warp-specialization, dsmem, persistent-kernels, cutlass | 2026-05-02 |
+- **GPT-1** (2018) — Semi-supervised pre-training + fine-tuning, 117M · [page](gpt-1.md)
+- **GPT-2** (2019) — Zero-shot transfer, 1.5B, task emergence with scale · [page](gpt-2.md)
+- **GPT-3** (2020) — In-context few-shot learning, 175B · [page](gpt-3.md)
+- **InstructGPT** (2022) — RLHF: SFT → Reward Model → PPO alignment · [page](instruct-gpt.md)
+- **GPT-4** (2023) — Multimodal, predictable scaling, undisclosed architecture · [page](gpt-4.md)
 
-### Ultra-Scale Playbook (2 pages)
-| Page | Summary | Type | Tags | Updated |
-|------|---------|------|------|---------|
-| [LLM Scaling Techniques Overview](learning/usp-scaling-techniques-overview.md) |  | concept | llm-training, distributed-training, scaling, data-parallelism, zero, tensor-parallelism, pipeline-parallelism, context-parallelism, expert-parallelism | 2026-05-02 |
-| [The Ultra-Scale Playbook: Training LLMs on GPU Clusters](learning/usp-ultra-scale-playbook.md) |  | source-note | llm-training, distributed-training, scaling, parallelism, gpu, hf, nanotron, educational | 2026-05-02 |
+## Model Lineage — DeepSeek
 
-### Other (39 pages)
-| Page | Summary | Type | Tags | Updated |
-|------|---------|------|------|---------|
-| [A Survey on Auto-Parallelism of Neural Networks Training](learning/auto-parallelism-survey.md) |  | source-note | auto-parallelism, distributed-training, parallelism, survey, dp, tp, pp, mcts, rl | 2026-05-03 |
-| [The Bitter Lesson for RL: Verification as the Key to Reasoning LLMs](learning/bitter-lesson-rl.md) |  | source-note | reinforcement-learning, verification, reasoning, bitter-lesson, generative-verifiers, test-time-compute | 2026-05-02 |
-| [Comet: Fine-grained Computation-Communication Overlapping for MoE](learning/comet-moe-overlap.md) |  | source-note | moe, communication, overlapping, fine-grained, comet, megatron, gpu | 2026-05-03 |
-| [Communication Overlap via Decomposition in Large Deep Learning Models](learning/communication-overlap-decomposition.md) |  | source-note | communication, computation-overlap, intra-layer-parallelism, tp, collective-decomposition, gpu, tpu, google, asplos | 2026-05-04 |
-| [DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning](learning/deepseek-r1.md) |  | source-note | llm, deepseek, reinforcement-learning, grpo, reasoning, r1, chain-of-thought, distillation | 2026-05-02 |
-| [Insights into DeepSeek-V3: Scaling Challenges and Hardware Reflections](learning/deepseek-v3-insights.md) |  | source-note | llm, deepseek, deepseek-v3, mla, fp8, moe, hardware-codesign, network, isca | 2026-05-02 |
-| [DeepSeek-V3.2: Pushing the Frontier of Open Large Language Models](learning/deepseek-v3.2.md) |  | source-note | llm, deepseek, deepseek-v3.2, sparse-attention, dsa, rl, agent, imo | 2026-05-02 |
-| [DeepSeek-V3 Technical Report](learning/deepseek-v3.md) |  | source-note | llm, deepseek, deepseek-v3, mla, moe, fp8, multi-token-prediction, dualpipe | 2026-05-02 |
-| [DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence](learning/deepseek-v4.md) |  | source-note | llm, mixture-of-experts, deepseek, long-context, hybrid-attention, csa, hca, mhc, muon, post-training, infrastructure | 2026-05-03 |
-| [Efficient Training of Large Language Models on Distributed Infrastructures: A Survey](learning/efficient-llm-training-survey.md) |  | source-note | llm-training, survey, distributed-systems, parallelism, infrastructure, fault-tolerance | 2026-05-03 |
-| [FlashAttention: Memory-Efficient Exact Attention](learning/flashattention.md) |  | concept | attention, flash-attention, gpu, kernel-fusion, tiling, hbm, online-softmax | 2026-05-02 |
-| [Folding Tensor and Sequence Parallelism for Memory-Efficient Transformer Training & Inference](learning/tsp-folding-parallelism.md) |  | source-note | tensor-parallelism, sequence-parallelism, training, inference, memory-efficiency, long-context, parallelism, attention, mlp | 2026-05-04 |
-| [The Landscape of GPU-Centric Communication](learning/gpu-communication-landscape.md) |  | source-note | gpu, communication, nccl, nvshmem, gpudirect, collective, survey | 2026-05-03 |
-| [GRPO: Group Relative Policy Optimization](learning/grpo.md) |  | source-note | reinforcement-learning, grpo, ppo, deepseek, policy-gradient, llm | 2026-05-04 |
-| [GSPMD: General and Scalable Parallelization for ML Computation Graphs](learning/gspmd.md) |  | source-note | compiler, parallelization, spmd, gspmd, google, tpu, device-mesh, sharding | 2026-05-02 |
-| [GSPO: Group Sequence Policy Optimization](learning/gspo.md) |  | source-note | reinforcement-learning, gspo, grpo, sequence-level, policy-gradient, llm, qwen | 2026-05-04 |
-| [How To Scale Your Model](learning/scaling-book.md) |  | source-note | scaling, tpu, jax, roofline, training, inference, sharding, parallelism, google-deepmind, book, transformers | 2026-05-04 |
-| [Inside vLLM: Anatomy of a High-Throughput LLM Inference System](learning/vllm-anatomy.md) |  | source-note | inference, vllm, paged-attention, continuous-batching, kv-cache, speculative-decoding, prefix-caching, guided-decoding, cuda-graphs, tp, pp, distributed | 2026-05-04 |
-| [LLM Architecture Comparison and Attention Variants](learning/llm-architecture-comparison.md) |  | source-note | llm, architecture, attention, mha, gqa, mla, swa, dsa, moe, comparison | 2026-05-03 |
-| [LLM Scaling Laws: From GPT-3 to the Plateau](learning/llm-scaling-laws.md) |  | source-note | scaling-laws, llm, pretraining, kaplan, power-law | 2026-05-02 |
-| [Megatron-Core MoE: Scalable Training of Mixture-of-Experts Models](learning/megatron-core-moe.md) |  | source-note | llm-training, mixture-of-experts, distributed-systems, nvidia, parallelism, megatron, memory, communication, compute, fp8 | 2026-05-03 |
-| [Multi-Head Latent Attention (MLA)](learning/multi-head-latent-attention.md) |  | concept | llm, attention, deepseek, kv-cache, memory-optimization, inference, mla | 2026-05-02 |
-| [Muon is Scalable for LLM Training](learning/muon-optimizer.md) |  | source-note | optimizer, muon, adamw, training, scaling-laws, moe, moonlight, deepseek, orthogonalization | 2026-05-04 |
-| [Demystifying NCCL: GPU Communication Protocols and Algorithms](learning/nccl-demystifying.md) |  | source-note | nccl, gpu, communication, collectives, hpc, nvidia, distributed-training | 2026-05-02 |
-| [GPU-Initiated Networking for NCCL: Device API and GIN](learning/nccl-device-api-gin.md) |  | source-note | nccl, gpu, networking, rdma, device-api, gin, deep-ep, moe, nvidia | 2026-05-02 |
-| [NCCL EP: Unified Expert Parallel Communication API](learning/nccl-ep.md) |  | source-note | nccl, expert-parallelism, moe, gpu, deep-ep, hybrid-ep, vllm, dispatch, combine | 2026-05-02 |
-| [NVIDIA GPU Architecture: Ampere, Hopper, and Blackwell Microbenchmark Analysis](learning/nvidia-gpu-architecture-microbenchmarks.md) |  | source-note | gpu, nvidia, ampere, hopper, blackwell, microbenchmarking, architecture, tensor-cores | 2026-05-03 |
-| [PartIR: Composing SPMD Partitioning Strategies for Machine Learning](learning/partir.md) |  | source-note | compiler, spmd, partitioning, mlir, part IR, google, sharding, tactics | 2026-05-02 |
-| [PPO: Proximal Policy Optimization Algorithms](learning/ppo.md) |  | source-note | reinforcement-learning, ppo, policy-gradient, grpo, llm, rl | 2026-05-04 |
-| [Mathematical Foundations of Reinforcement Learning](learning/rl-foundations.md) |  | source-note | reinforcement-learning, textbook, bellman, mdp, policy-gradient, td-learning, sgd | 2026-05-04 |
-| [PyTorch Compilation: torch.compile Guide and State](learning/pytorch-compilation.md) |  | source-note | pytorch, torch-compile, inductor, dynamo, compilation, performance, triton | 2026-05-04 |
-| [Rail-only: A Low-Cost High-Performance Network for Training LLMs with Trillion Parameters](learning/rail-only-network.md) |  | source-note | network, datacenter, llm-training, rail-only, spine-leaf, communication, scaling, gpu-cluster, moe, all-to-all | 2026-05-04 |
-| [Ring Attention Explained](learning/ring-attention.md) |  | source-note | attention, ring-attention, long-context, distributed, sequence-parallelism, online-softmax, safe-softmax, gpu, scaling | 2026-05-04 |
-| [ScaleRL: The Art of Scaling Reinforcement Learning Compute for LLMs](learning/scalerl.md) |  | source-note | reinforcement-learning, scaling-laws, grpo, llm, rl, scalerl, cispo, pipeline-rl | 2026-05-02 |
-| [Scaling Laws for Autoregressive Generative Modeling](learning/cross-domain-scaling-laws.md) |  | source-note | scaling-laws, autoregressive, cross-domain, openai, power-law, kl-divergence, compute-optimal, multimodality | 2026-05-04 |
-| [Stabilizing Reinforcement Learning with LLMs: Formulation and Practices](learning/stabilizing-rl-llms.md) |  | source-note | reinforcement-learning, llm, policy-gradient, stability, importance-sampling, routing-replay, moe, qwen | 2026-05-04 |
-| [Tensor Core Evolution: From Volta to Blackwell](learning/tensor-core-evolution.md) |  | source-note | gpu, nvidia, tensor-cores, volta, ampere, hopper, blackwell, ptx, sass, mma, wgmma, tcgen05 | 2026-05-03 |
-| [TOAST: Fast and Scalable Auto-Partitioning via Static Analysis and MCTS](learning/toast.md) |  | source-note | compiler, auto-partitioning, mcts, static-analysis, sharding, google, toast | 2026-05-02 |
-| [TRPO: Trust Region Policy Optimization](learning/trpo.md) |  | source-note | reinforcement-learning, trpo, policy-gradient, trust-region, ppo, foundation | 2026-05-04 |
+- **DeepSeek-V3** (Dec 2024) — MLA, FP8 training, auxiliary-loss-free MoE, MTP · [page](deepseek-v3.md)
+- **V3 Insights** (ISCA 2025) — Hardware-aware co-design, Multi-Plane Network · [page](deepseek-v3-insights.md)
+- **DeepSeek-R1** (Jan 2025) — Pure RL (GRPO), emergent reasoning, distillation · [page](deepseek-r1.md)
+- **DeepSeek-V3.2** (Dec 2025) — DSA sparse attention, scalable RL, IMO/IOI gold · [page](deepseek-v3.2.md)
+- **DeepSeek-V4** (Apr 2026) — CSA+HCA hybrid attention, 1M context, OPD, Muon · [page](deepseek-v4.md)
 
-## Reading (3 pages)
-| Page | Summary | Type | Tags | Updated |
-|------|---------|------|------|---------|
-| [Don't Teach. Incentivize.](reading/dont-teach-incentivize.md) |  | source-note | research-philosophy, rl, scaling, incentives, deepseek, bitter-lesson | 2026-05-04 |
-| [The Bitter Lesson](reading/the-bitter-lesson.md) |  | source-note | ai, scaling, search, learning, philosophy, rich-sutton, bitter-lesson | 2026-05-03 |
-| [You and Your Research](reading/you-and-your-research.md) |  | source-note | research, philosophy, productivity, hamming, methodology | 2026-05-04 |
+## Training Systems & Parallelism
+
+- **Megatron-Core MoE** — Production stack: Three Walls, Parallel Folding, FP8/FP4 · `moe, megatron, nvidia` · [page](megatron-core-moe.md)
+- **Ultra-Scale Playbook** — Educational foundation: DP, ZeRO, TP, SP, CP, PP, EP · `scaling, hf` · [page](usp-ultra-scale-playbook.md)
+- **How To Scale Your Model** (DeepMind) — Textbook: roofline, TPU, sharding, FSDP/TP/PP · `scaling, tpu, jax` · [page](scaling-book.md)
+- **Scaling Techniques Overview** — 5D parallelism systematic overview · `dp, tp, pp, ep, cp` · [page](usp-scaling-techniques-overview.md)
+- **Efficient LLM Training Survey** — Taxonomy of training systems, 380+ refs · `survey, training` · [page](efficient-llm-training-survey.md)
+- **Comet** — Fine-grained EP communication overlap · `moe, communication` · [page](comet-moe-overlap.md)
+- **FlashMoE** (NeurIPS '25) — Single-kernel MoE: dispatch+compute+combine, GPU-initiated RDMA · `moe, gpu-kernel, rdma` · [page](flashmoe.md)
+- **Comm Overlap via Decomposition** (ASPLOS '23) — Decompose collectives for TP, 1.14-1.38× · `communication, tp` · [page](communication-overlap-decomposition.md)
+- **TSP: Folding TP + SP** — Single-axis TP+SP folding, ring weight circulation + KV exchange · `tp, sp, parallelism` · [page](tsp-folding-parallelism.md)
+- **veScale-FSDP** — RaggedShard flexible format, zero-copy FSDP, supports Muon/Shampoo · `fsdp, sharding` · [page](vescale-fsdp.md)
+- **Maestro** (Qwen) — Section-centric training, wavefront scheduling, ~40% GPU reduction · `training, scheduling` · [page](maestro.md)
+- **Muon Optimizer** — Matrix orthogonalization, ~2× vs AdamW, Moonlight MoE · `optimizer, muon` · [page](muon-optimizer.md)
+
+## Scaling Laws
+
+- **Kaplan et al.** (2020) — $L(N) \propto N^{-\alpha}$, $D \propto N^{0.74}$, 7 orders of magnitude · [page](llm-scaling-laws.md)
+- **Henighan et al.** (2020) — Cross-domain: images, video, multimodal, math — universal exponents · [page](cross-domain-scaling-laws.md)
+
+## Reinforcement Learning
+
+- **RL Mathematical Foundations** (Zhao) — 288-page textbook: MDP → Bellman → TD → Policy Gradient · [page](rl-foundations.md)
+- **TRPO** (Schulman et al., 2015) — Trust region via KL constraint, foundation of PPO/GRPO/GSPO · [page](trpo.md)
+- **PPO** (Schulman et al., 2017) — Clipped surrogate objective, GAE, simplifies TRPO · [page](ppo.md)
+- **GRPO** (DeepSeekMath, 2024) — Eliminates critic via group-based advantage, foundation of R1 · [page](grpo.md)
+- **GSPO** (Qwen, 2025) — Sequence-level IS + clipping, used in Qwen3 · [page](gspo.md)
+- **ScaleRL** (Meta) — Sigmoid compute-performance curves, 400K+ GPU-hour study · [page](scalerl.md)
+- **Stabilizing RL with LLMs** (Qwen) — Token-level first-order approx, Routing Replay · [page](stabilizing-rl-llms.md)
+- **Bitter Lesson for RL** — Verification as the key to reasoning LLMs · [page](bitter-lesson-rl.md)
+- **KL Estimators in RL** (Wang) — Gradient-correct $k_1, k_2, k_3$: which estimator for which setting · [page](kl-estimators.md)
+- **Async RL Training Landscape** (HF, 2026) — Survey: 16 open-source libraries across 7 design axes · [page](async-rl-training-landscape.md)
+
+## LLM Architecture & Attention
+
+- **Architecture Comparison** (Raschka) — 23 models: MHA→GQA→MLA→SWA→DSA evolution · [page](llm-architecture-comparison.md)
+- **Multi-Head Latent Attention** — MLA deep-dive: KV compressed to latent space, 10× cache reduction · [page](multi-head-latent-attention.md)
+- **FlashAttention** — Tiling, online softmax, O(N) HBM attention · [page](flashattention.md)
+- **Ring Attention** — Distributed attention across GPU ring, zero communication overhead · [page](ring-attention.md)
+
+## Inference Systems
+
+- **Inside vLLM** (Gordić, 2025) — Engine V1: scheduler, paged attention, prefix caching, specdec, disaggregated P/D, MultiProcExecutor · [page](vllm-anatomy.md)
+
+## GPU Hardware & Architecture
+
+- **AI Systems Perf Engineering** (Fregly) — 1061-page reference: CUDA → cluster · [page](aspe-overview.md)
+- **GPU Hardware Architecture** — NVIDIA roadmap: H100, B200, GB200, NVL72, NVLink · [page](aspe-gpu-hardware-architecture.md)
+- **GPU Memory Hierarchy** — Registers → HBM, SMEM, TMEM, TMA · [page](aspe-gpu-memory-hierarchy.md)
+- **CUDA Kernel Optimization** — Occupancy, warp efficiency, ILP, kernel fusion · [page](aspe-cuda-kernel-optimization.md)
+- **CUDA Graphs & Orchestration** — Streams, CUDA graphs, atomics, NVSHMEM · [page](aspe-cuda-graphs-and-orchestration.md)
+- **Tensor Core Evolution** — Volta → Blackwell MMA, PTX/SASS, TMEM · [page](tensor-core-evolution.md)
+- **NVIDIA GPU Microbenchmarks** — Ampere/Hopper/Blackwell instruction latency · [page](nvidia-gpu-architecture-microbenchmarks.md)
+- **Thread Block Clusters** — DSMEM, warp specialization, persistent kernels · [page](aspe-thread-block-clusters.md)
+- **OS/Docker/K8s Tuning** — NUMA, THP, MIG, cgroup isolation · [page](aspe-os-docker-k8s-tuning.md)
+- **GPU Storage I/O** — GPUDirect Storage, NVMe, NeMo Curator, 3FS · [page](aspe-gpu-storage-io.md)
+- **PyTorch Profiling** — Profiler, torch.compile, Triton, CUTLASS · [page](aspe-pytorch-profiling-tuning.md)
+- **Inference Optimization** — Disaggregation, autotuning, precision switching · [page](aspe-inference-optimization-techniques.md)
+
+## Communication & Networking
+
+- **Demystifying NCCL** — Protocols, ring/tree algorithms, channels, PAT · [page](nccl-demystifying.md)
+- **Demystifying NVSHMEM** — PGAS symmetric memory, device-initiated put/get, DeepEP case study · [page](nvshmem.md)
+- **NCCL Device API / GIN** — GPU-initiated networking, device-side RDMA · [page](nccl-device-api-gin.md)
+- **NCCL EP** — Unified expert parallel communication API · [page](nccl-ep.md)
+- **GPU Communication Landscape** — Full stack survey: NCCL, NVSHMEM, UCX, MPI · [page](gpu-communication-landscape.md)
+- **Distributed Networking** — Magnum IO, SHARP, GPUDirect tuning · [page](aspe-distributed-networking-tuning.md)
+- **Rail-only Network** — Eliminate spine layer, 38-77% network cost reduction · [page](rail-only-network.md)
+
+## Compiler & Auto-Parallelism
+
+- **GSPMD** — Compiler-based auto-parallelization, device mesh + sharding annotations · [page](gspmd.md)
+- **PartIR** — Composable SPMD tactics, MLIR-based · [page](partir.md)
+- **TOAST** — Static analysis + MCTS auto-partitioning · [page](toast.md)
+- **Auto-Parallelism Survey** — 30+ systems, 7 searching methods · [page](auto-parallelism-survey.md)
+- **PyTorch Compilation** — torch.compile guide, Inductor, Dynamo · [page](pytorch-compilation.md)
+
+## Research Philosophy
+
+- **MAI-Thinking-1** (Microsoft, 2026) — Hill-climbing machine: system-level optimization, scientific rigor in model development · [page](mai-thinking-1.md)
+- **The Bitter Lesson** (Sutton) — General methods + computation > human knowledge · [page](the-bitter-lesson.md)
+- **You and Your Research** (Hamming) — Work on important problems, compound advantage · [page](you-and-your-research.md)
+- **Don't Teach. Incentivize.** (Chung) — Scaling as the ultimate incentive · [page](dont-teach-incentivize.md)
+
+## Cross-Cutting Themes
+
+- **Memory / Communication / Compute** — Three constraints appear across all sources
+- **FP8/FP4** — From DeepSeek-V3's pioneering FP8 training to Blackwell's NVFP4
+- **Attention efficiency** — MLA (V3) → DSA (V3.2) → CSA+HCA (V4), Ring Attention for distributed long context
+- **Post-training evolution** — SFT+RL (V3) → Pure RL/GRPO (R1) → On-Policy Distillation (V4)
+- **EP communication** — Layer-level 1F1B (Megatron) → Expert-level (V4) → Sub-kernel (Comet)
+- **RL theory** — PPO → GRPO → token-level first-order approx → sigmoid scaling curves
+- **Network design** — Rail-only, NCCL ring/tree, GPU-initiated RDMA
+- **Optimizer evolution** — AdamW → Muon (matrix orthogonalization, ~2× efficiency)
+- **Kernel co-design** — CUDA Graphs → FlashAttention → FlashMoE (single persistent kernel)

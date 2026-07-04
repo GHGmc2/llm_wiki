@@ -4,7 +4,7 @@ type: source-note
 tags: [research-philosophy, rl, scaling, incentives, deepseek, bitter-lesson]
 created: 2026-05-04
 updated: 2026-05-04
-sources: [raw/Don't-teach_Incentivize.pdf]
+sources: [raw/dont-teach-incentivize.pdf]
 status: stable
 ---
 
@@ -52,7 +52,7 @@ The "incentivize" philosophy is the operational principle behind scaling laws: i
 ## Connections
 
 - [The Bitter Lesson](the-bitter-lesson.md) — Sutton's essay: general methods + computation > human knowledge
-- [DeepSeek-R1](../learning/deepseek-r1.md) — Pure RL (no SFT) → emergent reasoning behaviors
-- [LLM Scaling Laws](../learning/llm-scaling-laws.md) — Performance improves predictably with compute
+- [DeepSeek-R1](deepseek-r1.md) — Pure RL (no SFT) → emergent reasoning behaviors
+- [LLM Scaling Laws](llm-scaling-laws.md) — Performance improves predictably with compute
 - [You and Your Research](you-and-your-research.md) — Hamming on finding important problems
-- [Stabilizing RL with LLMs](../learning/stabilizing-rl-llms.md) — Theoretical framework for why token-level RL works
+- [Stabilizing RL with LLMs](stabilizing-rl-llms.md) — Theoretical framework for why token-level RL works

@@ -16,17 +16,11 @@ This is a **personal knowledge base** that compounds over time. Every source ing
 llm_wiki/
 ├── AGENTS.md              # This file — wiki schema and operating instructions
 ├── raw/                   # Immutable source documents (articles, papers, PDFs, notes)
-├── wiki/                  # All LLM-generated and maintained content
-│   ├── index.md           # Master catalog — every page listed with summary
-│   ├── log.md             # Chronological log of all operations
-│   ├── overview.md        # High-level synthesis of everything in the wiki
-│   ├── health/            # Physical health, mental health, habits
-│   ├── goals/             # Short and long-term goals, progress tracking
-│   ├── learning/          # Topics being studied, courses, skills
-│   ├── reading/           # Book notes, article notes, reading lists
-│   ├── journal/           # Time-based reflections and entries
-│   ├── people/            # Important people, relationships
-│   └── ideas/             # Brainstorms, project ideas, things to explore
+│   └── assets/            # All figures extracted from papers (PNG/GIF)
+└── wiki/                  # All LLM-generated and maintained content
+    ├── index.md          # Master catalog — thematic categories with pages, types, tags
+    ├── log.md             # Chronological log of all operations
+    └── *.md               # All wiki pages (flat structure)
 ```
 
 New categories can be added organically as needed. When adding a category, update this file and `index.md`.
@@ -77,7 +71,8 @@ When the user adds a file to `raw/` and asks you to process it:
 1. **Read the source** thoroughly. For PDFs, use PyPDF2 or PyMuPDF to extract text. If the PDF is too large to read inline, extract sections progressively.
 2. **Extract figures**: 
    - For arXiv papers: download the LaTeX source from `arxiv.org/src/{id}`, extract original vector figures from the `figures/` directory, convert to PNG at 2-3× resolution via PyMuPDF, save to `wiki/assets/`
-   - **THIS STEP IS MANDATORY for all arXiv papers.** Never skip figure extraction.
+   - **THIS STEP IS MANDATORY for every arXiv paper.** Never skip figure extraction. Never wait to be reminded.
+   - Add the 1-3 most informative figures (architecture diagrams, key results, method illustrations) to the wiki page.
    - For non-arxiv sources: render the figure page from PDF, crop to the figure area only (no headers/footers/surrounding text). Never use full-page renders.
 3. **Discuss key takeaways** with the user — what stood out, what's interesting, what connects to existing wiki content. Ask what they want to emphasize
 4. **Read `wiki/index.md`** to understand what's already in the wiki
@@ -91,10 +86,9 @@ When the user adds a file to `raw/` and asks you to process it:
    - Note contradictions
    - Strengthen or challenge existing claims
    - Update `updated` date and add the source to the `sources` list
-7. **Update `wiki/index.md`** — add entry for the new page, update entries for modified pages
-8. **Update `wiki/overview.md`** — ALWAYS update. Add new pages to the appropriate category section and keep the page count accurate. This is never optional.
-9. **Append to `wiki/log.md`** — log the ingest with consistent prefix format
-10. **Tell the user which pages were touched** so they can browse them
+7. **Update `wiki/index.md`** — add the new page to the appropriate thematic category, keep page count accurate
+8. **Append to `wiki/log.md`** — log the ingest with consistent prefix format
+9. **Tell the user which pages were touched** so they can browse them
 
 ### Math & Formula Conventions
 
@@ -134,7 +128,7 @@ When the user shares information, insights, or decisions in conversation:
 
 ## index.md Format
 
-A table-based catalog, organized by category. Every wiki page appears here.
+A thematic, table-based catalog organized by topic. Every wiki page appears in its category.
 
 ```markdown
 # Index

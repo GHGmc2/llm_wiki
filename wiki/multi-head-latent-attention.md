@@ -4,13 +4,13 @@ type: concept
 tags: [llm, attention, deepseek, kv-cache, memory-optimization, inference, mla]
 created: 2026-05-02
 updated: 2026-05-02
-sources: [raw/insights-into-deepseek-v3.pdf, raw/DeepSeek-V4.pdf]
+sources: [raw/insights-into-deepseek-v3.pdf, raw/deepseek-v4.pdf]
 status: stable
 ---
 
 # Multi-Head Latent Attention (MLA)
 
-**Source**: DeepSeek-V3 Insights (ISCA 2025) [src](raw/insights-into-deepseek-v3.pdf), DeepSeek-V4 report [src](raw/DeepSeek-V4.pdf)
+**Source**: DeepSeek-V3 Insights (ISCA 2025) [src](raw/insights-into-deepseek-v3.pdf), DeepSeek-V4 report [src](raw/deepseek-v4.pdf)
 
 ## Key Points
 

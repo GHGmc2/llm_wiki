@@ -1,7 +1,30 @@
 # Log
 
 
-## [2026-05-04] ingest | Paper: Folding Tensor and Sequence Parallelism — TSP (Shyam et al., Apr 2026)
+## [2026-05-04] ingest | Paper: MAI-Thinking-1 — Building a Hill-Climbing Machine (Microsoft AI, 2026)
+- Created: wiki/mai-thinking-1.md
+- Source: raw/mai-thinking-1.pdf (109 pages)
+- System-level optimization philosophy for AI model development
+- 1 page touched
+- Created: learning/nvshmem.md, learning/kl-estimators.md
+- NVSHMEM: PGAS symmetric memory, device-initiated GPU communication, DeepEP case study (arXiv:2606.05951)
+- KL Estimators: rigorous gradient analysis of $k_1, k_2, k_3$ for on/off-policy reverse KL optimization
+- 2 pages touched
+- Created: learning/async-rl-training-landscape.md
+- Comprehensive survey of 16 async RL libraries across 7 design axes
+- Source: HTML downloaded from huggingface.co/blog/async-rl-training-landscape
+- 1 page touched
+- Created: learning/gpt-1.md, learning/gpt-2.md, learning/gpt-3.md, learning/instruct-gpt.md, learning/gpt-4.md
+- GPT-1 (2018): 117M, semi-supervised pre-training + fine-tuning, 12-layer decoder
+- GPT-2 (2019): 1.5B, zero-shot transfer via natural language conditioning
+- GPT-3 (2020): 175B, in-context few-shot learning, emergent task capabilities
+- InstructGPT (2022): RLHF pipeline (SFT → RM → PPO), alignment with human preferences
+- GPT-4 (2023): multimodal, predictable scaling, undisclosed architecture
+- 5 pages touched
+- Created: learning/flashmoe.md
+- Source: raw/flashmoe.pdf (arXiv:2506.04667)
+- Single persistent GPU kernel: fused dispatch+compute+combine, one-sided RDMA, 9× GPU util
+- 1 page touched
 - Created: learning/tsp-folding-parallelism.md
 - Source: raw/tsp-folding-parallelism.pdf (arXiv:2604.26294)
 - Folds TP+SP onto single mesh axis — ring-based weight circulation + KV exchange for attention
@@ -163,7 +186,7 @@
 - Created: learning/deepseek-v4.md
 - Created: learning/deepseek-v4.md
 - Updated: wiki/overview.md
-- Source: raw/DeepSeek-V4.pdf (58 pages)
+- Source: raw/deepseek-v4.pdf (58 pages)
 - User requested all sections: architecture, post-training, infrastructure, benchmarks
 - 4 pages touched
 

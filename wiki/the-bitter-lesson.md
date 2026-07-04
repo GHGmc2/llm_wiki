@@ -75,9 +75,9 @@ These are the **only two methods** that continue to improve as computation incre
 
 ## Connections to Modern AI
 
-- **[The Bitter Lesson for RL](../learning/bitter-lesson-rl.md)** — Applies this principle to LLM reasoning: verification + RL scale, human-crafted reasoning patterns don't
-- **[LLM Scaling Laws](../learning/llm-scaling-laws.md)** — The mathematical formalization: test loss follows a power law with compute
-- **[DeepSeek-R1](../learning/deepseek-r1.md)** — Pure RL with rule-based verifiers (no human reasoning traces) → emergent reasoning behaviors
-- **[ScaleRL](../learning/scalerl.md)** — Systematic framework for scaling RL compute predictably
+- **[The Bitter Lesson for RL](bitter-lesson-rl.md)** — Applies this principle to LLM reasoning: verification + RL scale, human-crafted reasoning patterns don't
+- **[LLM Scaling Laws](llm-scaling-laws.md)** — The mathematical formalization: test loss follows a power law with compute
+- **[DeepSeek-R1](deepseek-r1.md)** — Pure RL with rule-based verifiers (no human reasoning traces) → emergent reasoning behaviors
+- **[ScaleRL](scalerl.md)** — Systematic framework for scaling RL compute predictably
 
 The bitter lesson explains *why* the scaling approach in these papers works. Human knowledge plateaus. Computation doesn't.

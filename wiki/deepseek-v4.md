@@ -4,7 +4,7 @@ type: source-note
 tags: [llm, mixture-of-experts, deepseek, long-context, hybrid-attention, csa, hca, mhc, muon, post-training, infrastructure]
 created: 2026-05-02
 updated: 2026-05-03
-sources: [raw/DeepSeek-V4.pdf]
+sources: [https://arxiv.org/abs/2606.19348, raw/deepseek-v4.pdf]
 status: stable
 ---
 
@@ -39,6 +39,8 @@ status: stable
 V4-Flash-Base surpasses V3.2-Base on most benchmarks despite having 42% of V3.2's total parameters — architectural and data-quality improvements drive the gain.
 
 ## Architecture Innovations
+
+![DeepSeek-V4 basic architecture — hybrid CSA+HCA attention, MoE FFN, mHC residual connections](../../raw/assets/dsv4_basic_arch.png)
 
 ### Hybrid Attention: CSA + HCA
 
@@ -100,6 +102,8 @@ See: [DeepSeek-V4 Infrastructure]#infrastructure
 
 ## Benchmarks: V4-Pro-Max vs Frontier
 
+![DeepSeek-V4 performance — V4-Pro-Max achieves SOTA on LiveCodeBench, Codeforces, Apex, and Putnam vs frontier closed models](../../raw/assets/dsv4_dsv4_performance.png)
+
 | Benchmark | V4-Pro-Max | Best Frontier | Leader |
 |-----------|-----------|---------------|--------|
 | LiveCodeBench (Pass@1) | **93.5** | 91.7 (Gemini) | V4 |
@@ -126,7 +130,7 @@ See: [DeepSeek-V4 Infrastructure]#infrastructure
 
 # DeepSeek-V4 Architecture
 
-**Source**: DeepSeek-V4 Technical Report, Section 2 [src](raw/DeepSeek-V4.pdf)
+**Source**: DeepSeek-V4 Technical Report, Section 2 [src](raw/deepseek-v4.pdf)
 
 ## Inherited from DeepSeek-V3
 
@@ -144,6 +148,8 @@ Multi-Token Prediction (MTP) carried over unchanged from V3.
 The core efficiency breakthrough. Two attention types are **interleaved across layers** — neither alone achieves the full efficiency gain.
 
 ### Compressed Sparse Attention (CSA)
+
+![CSA — two-stage compression + sparse selection via Lightning Indexer with sliding window](../../raw/assets/dsv4_CSA.png)
 
 **Compression + sparsity in two stages**:
 
@@ -166,6 +172,8 @@ Selection:       CSprsComp_t = {CComp_s | I_{t,s} in Top-k}
 
 ### Heavily Compressed Attention (HCA)
 
+![HCA — extreme compression (m\' >> m), dense attention over compressed KV for global long-range view](../../raw/assets/dsv4_HCA.png)
+
 **Extreme compression, dense attention**:
 
 - Compression rate `m'` is much larger than CSA's `m` (m'=128 for both models)
@@ -184,6 +192,8 @@ At 1M-token context, the hybrid attention delivers dramatic savings vs V3.2:
 |--------|--------|----------|
 | Single-token FLOPs (vs V3.2) | 27% | 10% |
 | KV cache size (vs V3.2) | 10% | 7% |
+
+![KV cache efficiency — V4 achieves 10× compression vs V3.2 through CSA+HCA hybrid attention](../../raw/assets/dsv4_kv_cache.png)
 
 The savings come from: (1) compressed KV entries reducing both storage and attention computation, (2) sparse top-k selection in CSA further reducing attention FLOPs, (3) FP4 precision for expert weights reducing memory.
 
@@ -249,7 +259,7 @@ Replaces AdamW for the **majority of parameters**. Embedding module, prediction 
 
 # DeepSeek-V4 Post-Training
 
-**Source**: DeepSeek-V4 Technical Report, Section 5 [src](raw/DeepSeek-V4.pdf)
+**Source**: DeepSeek-V4 Technical Report, Section 5 [src](raw/deepseek-v4.pdf)
 
 ## Pipeline Overview
 
@@ -369,7 +379,7 @@ A latency optimization for chatbot scenarios. Auxiliary tasks (web search trigge
 
 # DeepSeek-V4 Infrastructure
 
-**Source**: DeepSeek-V4 Technical Report, Section 3 [src](raw/DeepSeek-V4.pdf)
+**Source**: DeepSeek-V4 Technical Report, Section 3 [src](raw/deepseek-v4.pdf)
 
 ## 1. Fine-Grained EP Communication-Computation Overlap
 

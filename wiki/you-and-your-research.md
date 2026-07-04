@@ -59,4 +59,4 @@ This repeated self-interrogation was, in his view, the single biggest factor sep
 ## Connections
 
 - [The Bitter Lesson](the-bitter-lesson.md) — Sutton on the same theme: follow the methods that scale, not the methods that feel clever
-- [LLM Scaling Laws](../learning/llm-scaling-laws.md) — The modern instantiation: identify what scales and invest compute there
+- [LLM Scaling Laws](llm-scaling-laws.md) — The modern instantiation: identify what scales and invest compute there
