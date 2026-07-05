@@ -16,17 +16,17 @@ status: stable
 
 A systematic comparison of architectural design choices across modern open-weight LLMs.
 
-![A subset of LLM architectures covered — from DeepSeek V3 to Qwen3](../../raw/assets/raschka_arch_overview.png)
+![A subset of LLM architectures covered — from DeepSeek V3 to Qwen3](../raw/assets/raschka_arch_overview.png)
 
 *Figure 1: Overview of 23 architectures compared in this article. [src](https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison)*
 
 ### Attention Mechanisms
 
-![MHA vs GQA: K/V heads shared across query head groups](../../raw/assets/mha_vs_gqa.png)
+![MHA vs GQA: K/V heads shared across query head groups](../raw/assets/mha_vs_gqa.png)
 
 *Figure 2: MHA (all K/V independent) vs GQA (K/V shared across groups). GQA reduces parameter count and KV cache without noticeable quality loss. [src](https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison)*
 
-![MLA vs MHA: K/V compressed to latent space, expanded on-the-fly](../../raw/assets/mla_vs_mha.png)
+![MLA vs MHA: K/V compressed to latent space, expanded on-the-fly](../raw/assets/mla_vs_mha.png)
 
 *Figure 3: MLA compresses K/V to a lower-dimensional latent, caches the compressed representation, and up-projects on-the-fly. More complex than GQA but better modeling quality. [src](https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison)*
 
@@ -82,7 +82,7 @@ A systematic comparison of architectural design choices across modern open-weigh
 
 ### Normalization Placement Comparison
 
-![Post-Norm, Pre-Norm, and OLMo 2's flavor of Post-Norm](../../raw/assets/norm_comparison.png)
+![Post-Norm, Pre-Norm, and OLMo 2's flavor of Post-Norm](../raw/assets/norm_comparison.png)
 
 *Figure 8: Normalization placement comparison — Post-Norm (original Transformer), Pre-Norm (GPT-2, Llama), and OLMo 2's Post-Norm-inside-residual. [src](https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison)*
 
@@ -99,7 +99,7 @@ Pre-Norm provides better gradient behavior at initialization and works without l
 
 The year's defining trend: Mixture-of-Experts went from niche to mainstream:
 
-![MoE module: multiple FeedForward experts with router selecting a subset per token](../../raw/assets/moe_illustration.png)
+![MoE module: multiple FeedForward experts with router selecting a subset per token](../raw/assets/moe_illustration.png)
 
 *Figure 5: MoE replaces single FeedForward with multiple experts. Only a subset activates per token — total parameters grow but inference cost stays low. [src](https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison)*
 
@@ -122,7 +122,7 @@ The year's defining trend: Mixture-of-Experts went from niche to mainstream:
 
 ### KV Cache Size Comparison
 
-![GQA KV cache savings: lower is better, advantage grows with context length](../../raw/assets/gqa_kv_savings.png)
+![GQA KV cache savings: lower is better, advantage grows with context length](../raw/assets/gqa_kv_savings.png)
 
 *Figure 11: KV cache size vs sequence length — GQA savings become more pronounced as context grows. MQA (1 group) is cheapest, MHA is most expensive. [src](https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison)*
 

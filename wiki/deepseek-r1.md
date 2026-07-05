@@ -26,7 +26,7 @@ status: stable
 
 The key experiment: skip SFT entirely and apply RL directly to DeepSeek-V3-Base. The hypothesis: human-defined reasoning patterns may limit model exploration, while unrestricted RL can better incentivize emergent reasoning.
 
-![R1-Zero AIME accuracy during training](../../raw/assets/r1_aime_accuracy.png)
+![R1-Zero AIME accuracy during training](../raw/assets/r1_aime_accuracy.png)
 
 *Figure 1a: AIME accuracy during training — pass@1 jumps from 15.6% to 77.9%. Cons@16 reaches 86.7%. [src](raw/DeepSeek-R1.pdf)*
 
@@ -77,7 +77,7 @@ During RL training, R1-Zero spontaneously developed:
 
 **Thinking time**: Response length steadily increased throughout training — the model autonomously learned that more thinking = better results.
 
-![R1-Zero average response length during training](../../raw/assets/r1_response_length.png)
+![R1-Zero average response length during training](../raw/assets/r1_response_length.png)
 
 *Figure 1b: Average response length — the model autonomously develops longer chain-of-thought. Step 8.2K marks a discontinuous jump when max token limit increased. [src](raw/DeepSeek-R1.pdf)*
 
@@ -91,7 +91,7 @@ During RL training, R1-Zero spontaneously developed:
 
 To address R1-Zero's limitations, R1 uses a four-stage pipeline:
 
-![Multi-stage pipeline of DeepSeek-R1](../../raw/assets/r1_pipeline.png)
+![Multi-stage pipeline of DeepSeek-R1](../raw/assets/r1_pipeline.png)
 
 *Figure 2: The multi-stage pipeline — V3-Base → R1-Zero → Cold-Start SFT → RL (Dev1→Dev2) → Rejection Sampling + SFT (Dev3) → RL with diverse rewards (R1). [src](raw/DeepSeek-R1.pdf)*
 
@@ -268,7 +268,7 @@ USAMO qualification threshold: 251.5. R1 qualifies — positions among top-tier 
 
 ### Human Comparison
 
-![Benchmark comparison with human scores](../../raw/assets/r1_benchmark_human.png)
+![Benchmark comparison with human scores](../raw/assets/r1_benchmark_human.png)
 
 *Figure 10: DeepSeek-R1 and R1-Zero compared with human scores. AIME/Codeforces: average competitor. GPQA: PhD-level with web. [src](raw/DeepSeek-R1.pdf)*
 

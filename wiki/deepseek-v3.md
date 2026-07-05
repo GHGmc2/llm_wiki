@@ -26,7 +26,7 @@ status: stable
 
 DeepSeek-V3 retains the architecture validated in DeepSeek-V2:
 
-![DeepSeek-V3 basic architecture with MLA, DeepSeekMoE, MTP, and FP8](../../raw/assets/v3_architecture.png)
+![DeepSeek-V3 basic architecture with MLA, DeepSeekMoE, MTP, and FP8](../raw/assets/v3_architecture.png)
 
 *Figure 1: Basic architecture — MLA, DeepSeekMoE with auxiliary-loss-free load balancing, Multi-Token Prediction, FP8 mixed precision. [src](raw/DeepSeek-V3.pdf)*
 
@@ -140,7 +140,7 @@ DeepSeek-V3 is trained on the **HAI-LLM** framework, a lightweight training syst
 
 DualPipe enables bidirectional pipeline scheduling with computation-communication overlap:
 
-![DualPipe scheduling for 8 PP ranks and 20 micro-batches](../../raw/assets/v3_dualpipe.png)
+![DualPipe scheduling for 8 PP ranks and 20 micro-batches](../raw/assets/v3_dualpipe.png)
 
 *Figure 5: DualPipe scheduling — forward and backward passes in opposite directions, overlapping with EP all-to-all and PP communication. [src](raw/DeepSeek-V3.pdf)*
 
@@ -180,7 +180,7 @@ These optimizations enable training without Tensor Parallelism (TP) — saving t
 
 ### Framework Design
 
-![FP8 mixed precision framework](../../raw/assets/v3_fp8_framework.png)
+![FP8 mixed precision framework](../raw/assets/v3_fp8_framework.png)
 
 *Figure 6: Mixed precision framework — most compute-dense operations in FP8, sensitive components in BF16/FP32. [src](raw/DeepSeek-V3.pdf)*
 

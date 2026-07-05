@@ -45,7 +45,7 @@ Four papers tracing GPU architecture evolution through microbenchmarking and ins
 
 **Source**: Luo et al., 2024. 12 pages. arXiv:2402.13499.
 
-![Hopper SM architecture — 4th-gen tensor cores, TMA, DSMEM](../../raw/assets/hopper_architecture.png)
+![Hopper SM architecture — 4th-gen tensor cores, TMA, DSMEM](../raw/assets/hopper_architecture.png)
 
 *Figure: Hopper SM with 4th-gen tensor cores, Tensor Memory Accelerator (TMA), and distributed shared memory. [src](raw/dissecting-hopper-gpu-architecture.pdf)*
 
@@ -88,15 +88,15 @@ Four papers tracing GPU architecture evolution through microbenchmarking and ins
 
 ### Key Benchmarks
 
-![Blackwell vs Hopper throughput comparison](../../raw/assets/blackwell_vs_hopper.png)
+![Blackwell vs Hopper throughput comparison](../raw/assets/blackwell_vs_hopper.png)
 
 *Figure: Blackwell (RTX 5080) vs Hopper (H100) — relative throughput across memory bandwidth, latency, and compute workloads. [src](raw/dissecting-blackwell-architecture.pdf)*
 
-![Memory latency across hierarchy levels](../../raw/assets/blackwell_memory_latency.png)
+![Memory latency across hierarchy levels](../raw/assets/blackwell_memory_latency.png)
 
 *Figure: Combined L1 and shared memory latency — Blackwell shows generational improvement in cache hierarchy. [src](raw/dissecting-blackwell-architecture.pdf)*
 
-![Power efficiency under GEMM workloads](../../raw/assets/blackwell_power.png)
+![Power efficiency under GEMM workloads](../raw/assets/blackwell_power.png)
 
 *Figure: GEMM power usage vs matrix size — Blackwell demonstrates improved power efficiency for AI workloads. [src](raw/dissecting-blackwell-architecture.pdf)*
 
@@ -121,7 +121,7 @@ Four papers tracing GPU architecture evolution through microbenchmarking and ins
 
 **Source**: Huerta et al., 2025. 15 pages. arXiv:2503.20481.
 
-![Reverse-engineered modern NVIDIA GPU core pipeline](../../raw/assets/gpu_core_architecture.png)
+![Reverse-engineered modern NVIDIA GPU core pipeline](../raw/assets/gpu_core_architecture.png)
 
 *Figure: Modern GPU core pipeline — sub-cores with independent issue schedulers, register file cache, L1 instruction cache. [src](raw/analyzing-modern-nvidia-gpu-cores.pdf)*
 

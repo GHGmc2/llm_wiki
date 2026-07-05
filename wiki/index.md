@@ -1,8 +1,10 @@
 # Index
 
-*67 pages · Last updated: 2026-05-04*
+*69 pages · Last updated: 2026-05-04*
 
-## Model Lineage — GPT (OpenAI)
+## Tech Reports
+
+### GPT (OpenAI)
 
 - **GPT-1** (2018) — Semi-supervised pre-training + fine-tuning, 117M · [page](gpt-1.md)
 - **GPT-2** (2019) — Zero-shot transfer, 1.5B, task emergence with scale · [page](gpt-2.md)
@@ -10,13 +12,17 @@
 - **InstructGPT** (2022) — RLHF: SFT → Reward Model → PPO alignment · [page](instruct-gpt.md)
 - **GPT-4** (2023) — Multimodal, predictable scaling, undisclosed architecture · [page](gpt-4.md)
 
-## Model Lineage — DeepSeek
+### DeepSeek
 
 - **DeepSeek-V3** (Dec 2024) — MLA, FP8 training, auxiliary-loss-free MoE, MTP · [page](deepseek-v3.md)
 - **V3 Insights** (ISCA 2025) — Hardware-aware co-design, Multi-Plane Network · [page](deepseek-v3-insights.md)
 - **DeepSeek-R1** (Jan 2025) — Pure RL (GRPO), emergent reasoning, distillation · [page](deepseek-r1.md)
 - **DeepSeek-V3.2** (Dec 2025) — DSA sparse attention, scalable RL, IMO/IOI gold · [page](deepseek-v3.2.md)
 - **DeepSeek-V4** (Apr 2026) — CSA+HCA hybrid attention, 1M context, OPD, Muon · [page](deepseek-v4.md)
+
+### Microsoft
+
+- **MAI-Thinking-1** (2026) — Hill-climbing machine: 35B MoE, system-level optimization, 8K GB200s · [page](mai-thinking-1.md)
 
 ## Training Systems & Parallelism
 
@@ -40,6 +46,8 @@
 
 ## Reinforcement Learning
 
+### Algorithms
+
 - **RL Mathematical Foundations** (Zhao) — 288-page textbook: MDP → Bellman → TD → Policy Gradient · [page](rl-foundations.md)
 - **TRPO** (Schulman et al., 2015) — Trust region via KL constraint, foundation of PPO/GRPO/GSPO · [page](trpo.md)
 - **PPO** (Schulman et al., 2017) — Clipped surrogate objective, GAE, simplifies TRPO · [page](ppo.md)
@@ -49,7 +57,12 @@
 - **Stabilizing RL with LLMs** (Qwen) — Token-level first-order approx, Routing Replay · [page](stabilizing-rl-llms.md)
 - **Bitter Lesson for RL** — Verification as the key to reasoning LLMs · [page](bitter-lesson-rl.md)
 - **KL Estimators in RL** (Wang) — Gradient-correct $k_1, k_2, k_3$: which estimator for which setting · [page](kl-estimators.md)
+
+### Infrastructure
+
 - **Async RL Training Landscape** (HF, 2026) — Survey: 16 open-source libraries across 7 design axes · [page](async-rl-training-landscape.md)
+- **RL Systems: Mind the Gap** (SemiAnalysis, 2026) — Matching trainer-generator throughput, case studies at scale · [page](rl-systems-mind-the-gap.md)
+- **Predicting Staleness in Async RL** (Applied Compute, 2026) — Closed-form staleness formulas, queue theory, Pareto frontier · [page](staleness-in-async-rl.md)
 
 ## LLM Architecture & Attention
 
@@ -97,7 +110,6 @@
 
 ## Research Philosophy
 
-- **MAI-Thinking-1** (Microsoft, 2026) — Hill-climbing machine: system-level optimization, scientific rigor in model development · [page](mai-thinking-1.md)
 - **The Bitter Lesson** (Sutton) — General methods + computation > human knowledge · [page](the-bitter-lesson.md)
 - **You and Your Research** (Hamming) — Work on important problems, compound advantage · [page](you-and-your-research.md)
 - **Don't Teach. Incentivize.** (Chung) — Scaling as the ultimate incentive · [page](dont-teach-incentivize.md)

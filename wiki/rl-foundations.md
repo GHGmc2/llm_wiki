@@ -22,9 +22,9 @@ status: stable
 
 ## Structure
 
-![RL algorithms overview — from MDPs to policy gradient](../../raw/assets/rl_algorithms_overview.png)
+![RL algorithms overview — from MDPs to policy gradient](../raw/assets/rl_algorithms_overview.png)
 
-*Figure: The RL algorithm landscape — from value-based (Bellman, TD, Q-learning) through policy-based (REINFORCE, actor-critic) to modern LLM RL (PPO, GRPO). [src](../../raw/assets/rl_algorithms_overview.png)*
+*Figure: The RL algorithm landscape — from value-based (Bellman, TD, Q-learning) through policy-based (REINFORCE, actor-critic) to modern LLM RL (PPO, GRPO). [src](../raw/assets/rl_algorithms_overview.png)*
 
 | Chapter | Topic | Key Concepts |
 |---------|-------|-------------|

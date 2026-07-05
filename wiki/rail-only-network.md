@@ -21,7 +21,7 @@ status: stable
 - **MoE support**: all-to-all expert routing handled via forwarding through intermediate GPUs with only 8.2–11.2% completion time overhead
 - Failure robustness analysis: Rail-only degrades gracefully under switch/GPU failures
 
-![Traffic composition on GH200 — DP dominates (50%), followed by TP (39%), PP (10%); matrices show sparse, localized patterns](../../raw/assets/rail_only_gh200_gpt1t_new.png)
+![Traffic composition on GH200 — DP dominates (50%), followed by TP (39%), PP (10%); matrices show sparse, localized patterns](../raw/assets/rail_only_gh200_gpt1t_new.png)
 
 ## The Insight: LLM Communication is Sparse
 

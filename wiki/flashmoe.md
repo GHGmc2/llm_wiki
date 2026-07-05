@@ -21,7 +21,7 @@ status: stable
 - On 8×H100 with 128 experts, 16K tokens: **9× GPU utilization, 6× lower latency, 5.7× higher throughput, 4× better overlap** vs baselines — in FP32 vs FP16 baselines
 - Code: [github.com/osayamenja/FlashMoE](https://github.com/osayamenja/FlashMoE)
 
-![FlashMoE architecture — single persistent GPU kernel fusing dispatch, compute, and combine with one-sided RDMA](../../raw/assets/flashmoe_architecture.png)
+![FlashMoE architecture — single persistent GPU kernel fusing dispatch, compute, and combine with one-sided RDMA](../raw/assets/flashmoe_architecture.png)
 
 ## The Problem: CPU-Bottlenecked MoE
 

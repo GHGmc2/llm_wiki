@@ -24,7 +24,7 @@ status: stable
 - Significant improvement on **multilingual** benchmarks vs GPT-3.5
 - Supports 8K and 32K context windows
 
-![GPT-4 exam performance — top percentiles on bar exam, SAT, GRE, AP exams vs GPT-3.5](../../raw/assets/gpt4_exam_perf.png)
+![GPT-4 exam performance — top percentiles on bar exam, SAT, GRE, AP exams vs GPT-3.5](../raw/assets/gpt4_exam_perf.png)
 
 ## What We Know (from the report and external sources)
 
@@ -46,7 +46,7 @@ A key innovation: OpenAI developed infrastructure to predict GPT-4's final perfo
 - Prior to GPT-4, such predictions were often off by large margins
 - Implications: the ability to predict scaling behavior is itself a competitive advantage
 
-![GPT-4 predictable scaling — small-scale proxy models accurately forecast final GPT-4 capability across diverse benchmarks](../../raw/assets/gpt4_capability_pred.png)
+![GPT-4 predictable scaling — small-scale proxy models accurately forecast final GPT-4 capability across diverse benchmarks](../raw/assets/gpt4_capability_pred.png)
 
 ## System Messages & Steerability
 

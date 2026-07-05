@@ -40,7 +40,7 @@ V4-Flash-Base surpasses V3.2-Base on most benchmarks despite having 42% of V3.2'
 
 ## Architecture Innovations
 
-![DeepSeek-V4 basic architecture — hybrid CSA+HCA attention, MoE FFN, mHC residual connections](../../raw/assets/dsv4_basic_arch.png)
+![DeepSeek-V4 basic architecture — hybrid CSA+HCA attention, MoE FFN, mHC residual connections](../raw/assets/dsv4_basic_arch.png)
 
 ### Hybrid Attention: CSA + HCA
 
@@ -102,7 +102,7 @@ See: [DeepSeek-V4 Infrastructure]#infrastructure
 
 ## Benchmarks: V4-Pro-Max vs Frontier
 
-![DeepSeek-V4 performance — V4-Pro-Max achieves SOTA on LiveCodeBench, Codeforces, Apex, and Putnam vs frontier closed models](../../raw/assets/dsv4_dsv4_performance.png)
+![DeepSeek-V4 performance — V4-Pro-Max achieves SOTA on LiveCodeBench, Codeforces, Apex, and Putnam vs frontier closed models](../raw/assets/dsv4_dsv4_performance.png)
 
 | Benchmark | V4-Pro-Max | Best Frontier | Leader |
 |-----------|-----------|---------------|--------|
@@ -149,7 +149,7 @@ The core efficiency breakthrough. Two attention types are **interleaved across l
 
 ### Compressed Sparse Attention (CSA)
 
-![CSA — two-stage compression + sparse selection via Lightning Indexer with sliding window](../../raw/assets/dsv4_CSA.png)
+![CSA — two-stage compression + sparse selection via Lightning Indexer with sliding window](../raw/assets/dsv4_CSA.png)
 
 **Compression + sparsity in two stages**:
 
@@ -172,7 +172,7 @@ Selection:       CSprsComp_t = {CComp_s | I_{t,s} in Top-k}
 
 ### Heavily Compressed Attention (HCA)
 
-![HCA — extreme compression (m\' >> m), dense attention over compressed KV for global long-range view](../../raw/assets/dsv4_HCA.png)
+![HCA — extreme compression (m\' >> m), dense attention over compressed KV for global long-range view](../raw/assets/dsv4_HCA.png)
 
 **Extreme compression, dense attention**:
 
@@ -193,7 +193,7 @@ At 1M-token context, the hybrid attention delivers dramatic savings vs V3.2:
 | Single-token FLOPs (vs V3.2) | 27% | 10% |
 | KV cache size (vs V3.2) | 10% | 7% |
 
-![KV cache efficiency — V4 achieves 10× compression vs V3.2 through CSA+HCA hybrid attention](../../raw/assets/dsv4_kv_cache.png)
+![KV cache efficiency — V4 achieves 10× compression vs V3.2 through CSA+HCA hybrid attention](../raw/assets/dsv4_kv_cache.png)
 
 The savings come from: (1) compressed KV entries reducing both storage and attention computation, (2) sparse top-k selection in CSA further reducing attention FLOPs, (3) FP4 precision for expert weights reducing memory.
 

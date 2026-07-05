@@ -21,7 +21,7 @@ status: stable
 - **~40% GPU reduction** in production on knowledge distillation and MLLM training workloads
 - Deployed for **millions of GPU hours** in Qwen's production training infrastructure
 
-![Maestro workflow — section graph decomposition with wavefront scheduling across heterogeneous components](../../raw/assets/maestro_maestro_workflow.png)
+![Maestro workflow — section graph decomposition with wavefront scheduling across heterogeneous components](../raw/assets/maestro_maestro_workflow.png)
 
 ## The Problem: One-Size-Fits-All Training
 
@@ -29,7 +29,7 @@ Conventional training frameworks assume a **monolithic model** — all parameter
 
 ### Example: Knowledge Distillation
 
-![Knowledge distillation workload — teacher (forward-only) + student (forward-backward) with different parallelism needs](../../raw/assets/maestro_kd_workload.png)
+![Knowledge distillation workload — teacher (forward-only) + student (forward-backward) with different parallelism needs](../raw/assets/maestro_kd_workload.png)
 
 ```
 Teacher model (large, forward-only) + Student model (small, forward-backward)

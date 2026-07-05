@@ -17,11 +17,11 @@ status: stable
 - Three KL estimators: $k_1 = -\log\frac{p}{q}$, $k_2 = \frac{1}{2}(\log\frac{p}{q})^2$, $k_3 = \frac{p}{q} - 1 - \log\frac{p}{q}$
 - **Value unbiasedness ≠ gradient correctness**: an estimator that accurately estimates KL values may optimize the wrong objective when backpropagated
 
-![DeepSeek-V3.2 technical report — using $\rho k_3 = \frac{q_\theta}{\mu} k_3$ for unbiased KL estimation with correct reverse-KL gradient](../../raw/assets/kl_est_deepseek.png)
+![DeepSeek-V3.2 technical report — using $\rho k_3 = \frac{q_\theta}{\mu} k_3$ for unbiased KL estimation with correct reverse-KL gradient](../raw/assets/kl_est_deepseek.png)
 
-![Reverse KL (mode-seeking) — the policy concentrates on high-probability regions of the reference, sacrificing diversity](../../raw/assets/kl_est_reverse.png)
+![Reverse KL (mode-seeking) — the policy concentrates on high-probability regions of the reference, sacrificing diversity](../raw/assets/kl_est_reverse.png)
 
-![Forward KL (mass-covering) — the policy tries to cover the entire support of the reference distribution](../../raw/assets/kl_est_forward.png)
+![Forward KL (mass-covering) — the policy tries to cover the entire support of the reference distribution](../raw/assets/kl_est_forward.png)
 
 - **On-policy naive implementation**: only $k_2$ gives correct reverse-KL gradients; $k_1$ has zero gradient, $k_3$ optimizes forward KL
 - **With explicit $\rho$ construction**: $\rho k_3$ and $\text{sg}(\rho) k_2$ are equivalent, both lower variance than $\rho k_1$

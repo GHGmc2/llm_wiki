@@ -38,7 +38,7 @@ The paper argues: **the unit of optimization objective should match the unit of 
 
 ## GSPO: Sequence-Level Optimization
 
-![GSPO benchmark results — outperforms GRPO and DAPO on training efficiency and stability](../../raw/assets/gspo_results.png)
+![GSPO benchmark results — outperforms GRPO and DAPO on training efficiency and stability](../raw/assets/gspo_results.png)
 
 *Figure: GSPO vs GRPO and DAPO — superior training efficiency and more stable convergence, especially for MoE models. [src](raw/gspo.pdf)*
 
@@ -68,7 +68,7 @@ The sequence likelihood ratio $\pi_\theta(y|x) / \pi_{\theta_{\text{old}}}(y|x)$
 
 The clipping in GSPO operates at the **sequence level**: it clips $s_i(\theta)$ directly, rather than $w_{i,t}(\theta)$ at each token. This means:
 
-![GSPO sequence-level clipping vs GRPO token-level clipping](../../raw/assets/gspo_clipping.png)
+![GSPO sequence-level clipping vs GRPO token-level clipping](../raw/assets/gspo_clipping.png)
 
 *Figure: Comparison of clipping mechanisms — GSPO clips at the sequence level (one decision per response), GRPO clips at the token level (accumulating errors). [src](raw/gspo.pdf)*
 

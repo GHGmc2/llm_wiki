@@ -1,7 +1,10 @@
 # Log
 
 
-## [2026-05-04] ingest | Paper: MAI-Thinking-1 — Building a Hill-Climbing Machine (Microsoft AI, 2026)
+## [2026-05-04] ingest | Article: RL Systems Mind the Gap (SemiAnalysis, Jun 2026)
+- Created: rl-systems-mind-the-gap.md
+- Throughput-matching framework for RL training: trainer-generator queue dynamics, 4 case studies
+- 1 page touched
 - Created: wiki/mai-thinking-1.md
 - Source: raw/mai-thinking-1.pdf (109 pages)
 - System-level optimization philosophy for AI model development

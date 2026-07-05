@@ -20,7 +20,7 @@ status: stable
 - Performance improves smoothly with model size — few-shot GPT-3 approaches or beats fine-tuned SOTA on many tasks
 - **96 layers**, d_model=12288, 96 heads, context=2048
 
-![GPT-3 training curves — loss decreases predictably with compute across 8 model sizes from 125M to 175B](../../raw/assets/gpt3_training_curves.png)
+![GPT-3 training curves — loss decreases predictably with compute across 8 model sizes from 125M to 175B](../raw/assets/gpt3_training_curves.png)
 - Strong on: translation, QA, cloze tasks, common sense reasoning, reading comprehension
 - Weak on: natural language inference (comparing two sentences), some reading comprehension datasets
 - Demonstrates that scaling model size is a viable path to general-purpose AI

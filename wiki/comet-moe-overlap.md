@@ -32,7 +32,7 @@ Comet addresses this with **fine-grained overlap**: decomposing communication an
 
 ## Key Techniques
 
-![Comet system overview — data dependency analysis + adaptive workload assignment](../../raw/assets/comet_overview.png)
+![Comet system overview — data dependency analysis + adaptive workload assignment](../raw/assets/comet_overview.png)
 
 *Figure: Comet overview — decomposes shared tensors for fine-grained overlap, then uses thread block specialization for adaptive workload balance. [src](raw/comet-moe-overlap.pdf)*
 
@@ -40,7 +40,7 @@ Comet addresses this with **fine-grained overlap**: decomposing communication an
 
 Comet analyzes **shared tensors** — buffers accessed by both communication and computation operations:
 
-![Shared tensor decomposition — eliminate granularity mismatch between comm and compute](../../raw/assets/comet_shared_tensor.png)
+![Shared tensor decomposition — eliminate granularity mismatch between comm and compute](../raw/assets/comet_shared_tensor.png)
 
 *Figure: By decomposing shared tensors along specific dimensions, Comet eliminates the granularity mismatch between communication and computation. [src](raw/comet-moe-overlap.pdf)*
 
@@ -50,7 +50,7 @@ Comet analyzes **shared tensors** — buffers accessed by both communication and
 
 This transforms "communicate all tokens → compute all experts" into "communicate a chunk of tokens → compute those tokens' experts → communicate next chunk → ..."
 
-![Coarse vs fine-grained overlap comparison](../../raw/assets/comet_overlap.png)
+![Coarse vs fine-grained overlap comparison](../raw/assets/comet_overlap.png)
 
 *Figure: Coarse-grained (left) vs fine-grained (right) overlap. Comet decomposes operations into smaller pieces that can be interleaved more tightly. [src](raw/comet-moe-overlap.pdf)*
 
@@ -58,7 +58,7 @@ This transforms "communicate all tokens → compute all experts" into "communica
 
 Communication and computation are fused into a **single GPU kernel**:
 
-![Thread block specialization — dedicated CTA groups for communication vs computation](../../raw/assets/comet_cta_division.png)
+![Thread block specialization — dedicated CTA groups for communication vs computation](../raw/assets/comet_cta_division.png)
 
 *Figure: Thread block (CTA) division — dedicated groups for communication and computation within a fused kernel, with adaptive workload balancing. [src](raw/comet-moe-overlap.pdf)*
 

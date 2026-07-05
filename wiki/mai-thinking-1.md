@@ -21,6 +21,8 @@ status: stable
 - **Rocket** framework: async RL with persistent rollout store, SGL inference pool, agentic orchestration
 - 54.6% code training data, 97-98% prefix caching hit rate, 20+ MFU optimizations
 
+![MAI-Base-1 architecture — interleaved dense+MoE layers with periodic local+global attention](../raw/assets/mai_architecture.jpeg)
+
 ## Architecture
 
 ### MoE Design
@@ -95,6 +97,8 @@ Three data sources: harmful prompts (red-teaming, automated attacks), borderline
 
 ## Rocket RL Framework
 
+![Rocket — async RL framework with Problem Workers, Rollout Workers, SGL inference pool, and Learner pool](../raw/assets/mai_rocket.png)
+
 ```
 Async Controller → Problem Workers → Rollout Workers (SGL inference)
                  → Learner Pool (weight transfer via checkpointing)
@@ -141,6 +145,8 @@ vs Sonnet 4.6: overall +0.07 (statistically tied); conciseness +0.11, style +0.0
 Knowledge cutoffs: Web (Sep 2025), PDFs (Dec 2025), Code (Jun 2025), Books (Mar 2026).
 
 ### Pipeline
+
+![MAI data processing pipeline — HTML extraction → filtering → dedup → embedding generation](../raw/assets/mai_data_mixture.png)
 
 HTML → extraction → heuristic filtering → exact+fuzzy dedup → cross-source semantic dedup → embedding. 183 small models trained across 61 data mixtures to find Pareto-optimal composition. Rankings from small scale don't always transfer (code-heavy mixes underperform at 5B but emerge optimal at 23B+).
 

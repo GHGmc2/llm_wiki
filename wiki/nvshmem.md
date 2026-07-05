@@ -70,7 +70,7 @@ This eliminates CPU-GPU synchronization (no `cudaDeviceSynchronize`), kernel lau
 
 Used when both PEs are within the same NVLink/NVSwitch domain: GPU kernel issues `nvshmem_put/get` → NVSHMEM translates virtual address to physical P2P mapping → NVLink directly transfers data between GPU memories. No CPU, NIC, or host memory involved. Near-peak NVLink bandwidth with minimal latency.
 
-![NVSHMEM fast-path — device-initiated operations flow directly from GPU kernels without CPU involvement, achieving near-peak bandwidth](../../raw/assets/nvshmem_fast-path.png)
+![NVSHMEM fast-path — device-initiated operations flow directly from GPU kernels without CPU involvement, achieving near-peak bandwidth](../raw/assets/nvshmem_fast-path.png)
 
 ### Slow Path (Cross-Node)
 
@@ -80,7 +80,7 @@ When PEs are on different nodes: if GDA-KI/IBGDA is available, GPU kernel initia
 
 NVSHMEM's symmetric heap uses `nvshmem_malloc`: every PE allocates the same amount at the same virtual address, with a global heap state and per-PE base addresses. P2P mappings are pre-registered at initialization. Memory uses **segmented slab allocation**: each PE's heap is divided into segments with fixed-size blocks; allocation searches the free list for best-fit; deallocation returns to the free list. `nvshmem_barrier_all()` synchronizes allocation across all PEs.
 
-![NVSHMEM symmetric memory management — heap allocation across processing elements enables direct remote access](../../raw/assets/nvshmem_memory-management.png)
+![NVSHMEM symmetric memory management — heap allocation across processing elements enables direct remote access](../raw/assets/nvshmem_memory-management.png)
 
 ## NVSHMEM vs NCCL
 

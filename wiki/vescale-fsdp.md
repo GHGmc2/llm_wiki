@@ -22,7 +22,7 @@ status: stable
 - **5-66% higher throughput** and **16-30% lower memory** vs existing FSDP systems
 - Scales efficiently to tens of thousands of GPUs
 
-![veScale-FSDP system overview — flexible RaggedShard format with structure-aware planning and zero-copy communication](../../raw/assets/vescale_overview.png)
+![veScale-FSDP system overview — flexible RaggedShard format with structure-aware planning and zero-copy communication](../raw/assets/vescale_overview.png)
 
 ## The Problem: Fixed Sharding vs Block Structure
 
@@ -39,7 +39,7 @@ This works for element-wise optimizers (Adam) but breaks when:
 
 ### RaggedShard
 
-![RaggedShard concept — block-aligned shards preserve tensor block structure across devices vs fixed row-wise shards](../../raw/assets/vescale_concept_raggedshard.png)
+![RaggedShard concept — block-aligned shards preserve tensor block structure across devices vs fixed row-wise shards](../raw/assets/vescale_concept_raggedshard.png)
 
 veScale-FSDP introduces RaggedShard: instead of sharding parameters uniformly, each shard preserves the **block structure** of the original tensor:
 
@@ -61,7 +61,7 @@ The planning algorithm analyzes the model's parameter layout and training config
 
 ## Zero-Copy Communication
 
-![RaggedShard zero-copy communication — shards map directly to NCCL buffers, eliminating intermediate copies](../../raw/assets/vescale_comm_raggedshard.png)
+![RaggedShard zero-copy communication — shards map directly to NCCL buffers, eliminating intermediate copies](../raw/assets/vescale_comm_raggedshard.png)
 
 Standard FSDP requires intermediate copies during collective operations because shards don't align with communication buffers. veScale-FSDP's RaggedShard format aligns directly with NCCL buffer requirements, enabling:
 

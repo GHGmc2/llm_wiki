@@ -50,7 +50,7 @@ The "SER" framework:
 
 ### Chip-to-Chip Interconnect Topologies
 
-![Five chip-to-chip topologies: from NVLink mesh to TPU torus](../../raw/assets/survey_chip_topologies.png)
+![Five chip-to-chip topologies: from NVLink mesh to TPU torus](../raw/assets/survey_chip_topologies.png)
 
 *Figure: Chip-to-chip topologies — cube-mesh, switch-based fully-connected, P2P fully-connected, and 2D-torus. [src](raw/efficient-llm-training-survey.pdf)*
 
@@ -95,7 +95,7 @@ LLM training traffic is characterized by **few elephant flows** with periodic bu
 
 ## Section 4: Parallelism Strategies
 
-![3D parallelism: data, tensor, and pipeline parallelism strategies](../../raw/assets/survey_3d_parallelism.png)
+![3D parallelism: data, tensor, and pipeline parallelism strategies](../raw/assets/survey_3d_parallelism.png)
 
 *Figure: Progression from data parallelism through tensor and pipeline to full 3D hybrid parallelism. [src](raw/efficient-llm-training-survey.pdf)*
 

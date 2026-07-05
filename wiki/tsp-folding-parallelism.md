@@ -21,7 +21,7 @@ status: stable
 - Trades **additional communication volume** for reduced memory overhead — a hardware-aware alternative for long-context and memory-constrained training
 - Composes with pipeline and expert parallelism for dense and MoE models
 
-![TSP concept — folding TP and SP onto a single device axis vs. conventional separate mesh axes](../../raw/assets/tsp_tsp_background.png)
+![TSP concept — folding TP and SP onto a single device axis vs. conventional separate mesh axes](../raw/assets/tsp_tsp_background.png)
 
 ## The Problem: Multi-Dimensional Parallelism Layouts
 
@@ -46,7 +46,7 @@ Each device holds: `1/N` of the model weights AND `1/N` of the tokens.
 
 ### Attention Block
 
-![TSP attention — ranks iterate over broadcast parameter shards and exchange K/V for full context reconstruction](../../raw/assets/tsp_tsp_attention.png)
+![TSP attention — ranks iterate over broadcast parameter shards and exchange K/V for full context reconstruction](../raw/assets/tsp_tsp_attention.png)
 
 1. Each rank holds its weight shard (Q, K, V projections for a subset of heads)
 2. Ranks **iterate** over all weight shards via broadcast from the current holder
@@ -55,7 +55,7 @@ Each device holds: `1/N` of the model weights AND `1/N` of the tokens.
 
 ### Gated MLP Block
 
-![TSP MLP — weight shards circulate in a ring while each rank accumulates partial output locally](../../raw/assets/tsp_tsp_mlp.png)
+![TSP MLP — weight shards circulate in a ring while each rank accumulates partial output locally](../raw/assets/tsp_tsp_mlp.png)
 
 1. Each rank holds shards of $W_{\text{in1}}$, $W_{\text{in2}}$, $W_{\text{out}}$
 2. Weight shards circulate in a **ring** around the device axis

@@ -22,7 +22,7 @@ status: stable
 - **"Alignment tax"**: minimal degradation on public NLP benchmarks despite strong alignment improvements
 - Cost: only ~20,000 human preference comparisons needed for effective reward model
 
-![InstructGPT RLHF pipeline — SFT → Reward Model training → PPO optimization loop](../../raw/assets/instructgpt_InstructGPT_Diagram3.1.png)
+![InstructGPT RLHF pipeline — SFT → Reward Model training → PPO optimization loop](../raw/assets/instructgpt_InstructGPT_Diagram3.1.png)
 
 ## The RLHF Pipeline
 
