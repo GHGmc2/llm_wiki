@@ -1,4 +1,5 @@
 /.DS_Store
+/raw/.DS_Store
 /.idea
 /.venv
 /raw/*.pdf

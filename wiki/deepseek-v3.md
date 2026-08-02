@@ -3,7 +3,7 @@ title: "DeepSeek-V3 Technical Report"
 type: source-note
 tags: [llm, deepseek, deepseek-v3, mla, moe, fp8, multi-token-prediction, dualpipe]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [raw/DeepSeek-V3.pdf]
 status: stable
 ---
@@ -257,3 +257,4 @@ The RL phase uses GRPO with:
 - [Megatron-Core MoE](megatron-core-moe.md) — NVIDIA's training stack (trains V3 on GB300 at 1,233 TFLOPS/GPU)
 - [Ultra-Scale Playbook](usp-ultra-scale-playbook.md) — educational foundation for DualPipe, EP, FP8
 - [LLM Architecture Comparison](llm-architecture-comparison.md) — where V3 fits among 23 open-weight LLM architectures
+- [Efficient LLM Training Survey](efficient-llm-training-survey.md) — V3's FP8 training and DualPipe in the context of 380+ training systems

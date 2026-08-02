@@ -3,7 +3,7 @@ title: "RL Systems Mind the Gap: Matching Trainer and Generator Throughput"
 type: source-note
 tags: [reinforcement-learning, rl-systems, grpo, async-training, throughput, pipeline-rl, policy-staleness, sandbox, infrastructure, semianalysis]
 created: 2026-05-04
-updated: 2026-05-04
+updated: 2026-07-09
 sources: [https://newsletter.semianalysis.com/p/rl-systems-mind-the-gap-matching]
 status: stable
 ---
@@ -122,3 +122,4 @@ DeepSeek R1 sparked the open-source RL framework ecosystem. OpenRLHF → slime, 
 - [PPO](ppo.md) — PPO's clipped objective; GRPO drops the value network
 - [Inside vLLM](vllm-anatomy.md) — paged attention and prefix caching enable generator throughput
 - [TSP: Folding TP + SP](tsp-folding-parallelism.md) — parallelism strategies affect both trainer and generator efficiency
+- [Predicting Staleness in Async RL](staleness-in-async-rl.md) — Closed-form staleness formulas complementing the throughput-matching framework

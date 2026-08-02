@@ -3,7 +3,7 @@ title: "CUDA Kernel Optimization: Occupancy, Warp Efficiency, and Arithmetic Int
 type: concept
 tags: [cuda, gpu, kernel-optimization, occupancy, warp-divergence, ilp, kernel-fusion, tensor-cores]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
@@ -127,3 +127,4 @@ The roofline model guides optimization strategy:
 - [PyTorch Profiling & Tuning](aspe-pytorch-profiling-tuning.md) — torch.compile, profiling tools, Triton
 - [Compute Efficiency Wall](megatron-core-moe.md) — MoE-specific kernel challenges
 - [AI Systems Performance Engineering](aspe-overview.md) — Full book reference
+- [PyTorch Compilation](pytorch-compilation.md) — torch.compile generates the kernels that CUDA optimization applies to

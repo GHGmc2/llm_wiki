@@ -3,7 +3,7 @@ title: "GPU-Initiated Networking for NCCL: Device API and GIN"
 type: source-note
 tags: [nccl, gpu, networking, rdma, device-api, gin, deep-ep, moe, nvidia]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [raw/gpu-initiated-networking-nccl.pdf]
 status: stable
 ---
@@ -106,3 +106,4 @@ GIN is the foundation for [NCCL EP](nccl-ep.md), which builds MoE-specific dispa
 - [NCCL EP](nccl-ep.md) — MoE communication library built on GIN
 - [Communication Wall](megatron-core-moe.md) — DeepEP/HybridEP in Megatron-Core context
 - [DeepSeek-V4 Infrastructure](deepseek-v4.md) — DeepEP used in V4 inference
+- [Every Microsecond Matters](every-microsecond-matters.md) — Low-latency collectives API (`ncclLLBuffer`) built on NCCL device-side APIs; 7% from SoL bound

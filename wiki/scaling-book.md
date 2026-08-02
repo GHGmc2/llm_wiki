@@ -3,7 +3,7 @@ title: "How To Scale Your Model"
 type: source-note
 tags: [scaling, tpu, jax, roofline, training, inference, sharding, parallelism, google-deepmind, book, transformers, fsdp, tensor-parallelism, pipeline-parallelism, collective-communication]
 created: 2026-05-04
-updated: 2026-05-04
+updated: 2026-07-09
 sources: [https://jax-ml.github.io/scaling-book/]
 status: stable
 ---
@@ -237,3 +237,4 @@ From the applied training chapter:
 - [NCCL Demystifying](nccl-demystifying.md) — GPU collective communication primitives mirroring TPU's ICI collectives
 - [LLM Scaling Laws](llm-scaling-laws.md) — why scaling efficiency matters; this book shows how to achieve it
 - [Muon Optimizer](muon-optimizer.md) — alternative optimizer that changes the memory/compute tradeoff
+- [veScale-FSDP](vescale-fsdp.md) — Production FSDP implementation: RaggedShard, zero-copy, supports Muon/Shampoo

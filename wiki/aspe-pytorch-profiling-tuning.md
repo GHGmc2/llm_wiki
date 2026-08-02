@@ -3,7 +3,7 @@ title: "PyTorch Profiling, Compilation, and Performance Tuning"
 type: concept
 tags: [pytorch, profiling, torch-compile, nsight, triton, cutlass, performance]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
@@ -143,3 +143,4 @@ Identifies: Python GIL contention, data preprocessing hotspots, I/O wait, thread
 - [CUDA Graphs & Orchestration](aspe-cuda-graphs-and-orchestration.md) — CUDA Graphs that torch.compile captures
 - [GPU Storage I/O](aspe-gpu-storage-io.md) — Data pipeline profiling
 - [AI Systems Performance Engineering](aspe-overview.md) — Full book reference
+- [PyTorch Compilation](pytorch-compilation.md) — torch.compile deep-dive: TorchDynamo, Inductor, bytecode-level analysis

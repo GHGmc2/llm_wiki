@@ -3,7 +3,7 @@ title: "The Landscape of GPU-Centric Communication"
 type: source-note
 tags: [gpu, communication, nccl, nvshmem, gpudirect, collective, survey]
 created: 2026-05-03
-updated: 2026-05-03
+updated: 2026-07-09
 sources: [raw/gpu-communication-landscape.pdf]
 status: stable
 ---
@@ -82,3 +82,4 @@ status: stable
 - **[NCCL EP](nccl-ep.md)** — MoE communication built on NCCL
 - **[Distributed Networking Tuning](aspe-distributed-networking-tuning.md)** — Magnum IO, NVSHMEM, GPUDirect
 - **[Scaling Techniques Overview](usp-scaling-techniques-overview.md)** — Where collectives are used (ZeRO/FSDP)
+- **[Every Microsecond Matters](every-microsecond-matters.md)** — Barrier-free low-latency GPU collectives; LL/sentinel/LL128 atomic algorithms; within 7% of hardware SoL

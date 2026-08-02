@@ -3,7 +3,7 @@ title: "Demystifying NCCL: GPU Communication Protocols and Algorithms"
 type: source-note
 tags: [nccl, gpu, communication, collectives, hpc, nvidia, distributed-training]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [raw/demystifying-nccl.pdf]
 status: stable
 ---
@@ -224,3 +224,5 @@ PAT is automatically selected by NCCL based on message size and scale. Particula
 - [NCCL EP](nccl-ep.md) — Expert Parallelism communication library using NCCL Device API
 - [Communication Wall](megatron-core-moe.md) — DeepEP/HybridEP depend on NCCL protocols
 - [Scaling Techniques Overview](usp-scaling-techniques-overview.md) — all-reduce, all-gather, reduce-scatter explained
+- [Every Microsecond Matters](every-microsecond-matters.md) — Barrier-free low-latency collectives on NCLL device API; LL/sentinel/LL128 atomic algorithms approaching SoL bound
+- [Efficient LLM Training Survey](efficient-llm-training-survey.md) — NCCL as the communication backend across 380+ training systems surveyed

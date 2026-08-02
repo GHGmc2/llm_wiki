@@ -3,7 +3,7 @@ title: "DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence
 type: source-note
 tags: [llm, mixture-of-experts, deepseek, long-context, hybrid-attention, csa, hca, mhc, muon, post-training, infrastructure]
 created: 2026-05-02
-updated: 2026-05-03
+updated: 2026-07-09
 sources: [https://arxiv.org/abs/2606.19348, raw/deepseek-v4.pdf]
 status: stable
 ---
@@ -492,3 +492,7 @@ For agentic AI training (code execution, tool use), V4 introduces DSec:
 - **Trajectory logging**: Globally ordered, persistent command/result logs enabling fast-forward resumption and deterministic replay
 
 DSec supports both container-based and microVM-based sandboxes with a unified interface. Switching between them requires only a parameter change.
+
+## Connections
+
+- [Cross-Domain Scaling Laws](cross-domain-scaling-laws.md) — V4's scaling decisions informed by Henighan-style cross-domain predictions

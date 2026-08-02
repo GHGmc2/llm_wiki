@@ -3,7 +3,7 @@ title: "Inside vLLM: Anatomy of a High-Throughput LLM Inference System"
 type: source-note
 tags: [inference, vllm, paged-attention, continuous-batching, kv-cache, speculative-decoding, prefix-caching, guided-decoding, cuda-graphs, tp, pp, distributed]
 created: 2026-05-04
-updated: 2026-05-04
+updated: 2026-07-09
 sources: [https://www.aleksagordic.com/blog/vllm]
 status: stable
 ---
@@ -135,3 +135,4 @@ MultiProcExecutor coordination:
 - [GPU Memory Hierarchy](aspe-gpu-memory-hierarchy.md) — KV cache management depends on HBM capacity and bandwidth
 - [Inference Optimization](aspe-inference-optimization-techniques.md) — disaggregated P/D, autotuning, precision switching
 - [NCCL EP](nccl-ep.md) — MoE dispatch/combine communication patterns vs vLLM's TP/PP coordination
+- [Every Microsecond Matters](every-microsecond-matters.md) — Low-latency AllReduce kernels deployed in vLLM; 7-13% ITL reduction on GB200 for Llama/DeepSeek/Qwen

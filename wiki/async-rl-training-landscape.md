@@ -3,7 +3,7 @@ title: "Keep the Tokens Flowing: Lessons from 16 Open-Source RL Libraries"
 type: source-note
 tags: [reinforcement-learning, async-training, rl, grpo, ppo, distributed-training, survey, huggingface, trl, verl, open-source]
 created: 2026-05-04
-updated: 2026-05-04
+updated: 2026-07-09
 sources: [https://huggingface.co/blog/async-rl-training-landscape]
 status: stable
 ---
@@ -166,3 +166,5 @@ TRL's announced async GRPO trainer will use:
 - [Megatron-Core MoE](megatron-core-moe.md) — training backend used by 5 of 16 surveyed libraries
 - [Maestro](maestro.md) — Qwen's section-centric compound workload training; structurally similar to async RL's heterogeneous component problem
 - [NCCL Demystifying](nccl-demystifying.md) — NCCL broadcast and bucketing as the primary weight sync transport
+- [TITO: Agentic RL](tito-agentic-rl.md) — Token-In, Token-Out invariant for multi-turn tool-use rollouts (same authors); TRL's async trainer incorporates these principles
+- [Predicting Staleness in Async RL](staleness-in-async-rl.md) — Closed-form staleness formulas; the mathematical framework for Axis 4 (staleness management)

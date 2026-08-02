@@ -3,7 +3,7 @@ title: "LLM Scaling Techniques Overview"
 type: concept
 tags: [llm-training, distributed-training, scaling, data-parallelism, zero, tensor-parallelism, pipeline-parallelism, context-parallelism, expert-parallelism]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [raw/The_Ultra-Scale_Playbook.pdf]
 status: stable
 ---
@@ -176,3 +176,4 @@ The playbook includes a heatmap visualization showing optimal training configura
 - [Communication Wall](megatron-core-moe.md) — EP communication patterns
 - [Compute Efficiency Wall](megatron-core-moe.md) — kernel fusion, CUDA Graphs
 - [Megatron-Core MoE](megatron-core-moe.md) — production implementation of these techniques
+- [Efficient LLM Training Survey](efficient-llm-training-survey.md) — Taxonomy survey providing the broader context for these scaling techniques

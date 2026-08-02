@@ -1,6 +1,6 @@
 # Index
 
-*69 pages · Last updated: 2026-05-04*
+*71 pages · Last updated: 2026-07-09*
 
 ## Tech Reports
 
@@ -63,6 +63,7 @@
 - **Async RL Training Landscape** (HF, 2026) — Survey: 16 open-source libraries across 7 design axes · [page](async-rl-training-landscape.md)
 - **RL Systems: Mind the Gap** (SemiAnalysis, 2026) — Matching trainer-generator throughput, case studies at scale · [page](rl-systems-mind-the-gap.md)
 - **Predicting Staleness in Async RL** (Applied Compute, 2026) — Closed-form staleness formulas, queue theory, Pareto frontier · [page](staleness-in-async-rl.md)
+- **TITO: Token-In, Token-Out** (HF, 2026) — Multi-turn agentic RL invariant: never re-encode decoded tokens · [page](tito-agentic-rl.md)
 
 ## LLM Architecture & Attention
 
@@ -99,6 +100,7 @@
 - **GPU Communication Landscape** — Full stack survey: NCCL, NVSHMEM, UCX, MPI · [page](gpu-communication-landscape.md)
 - **Distributed Networking** — Magnum IO, SHARP, GPUDirect tuning · [page](aspe-distributed-networking-tuning.md)
 - **Rail-only Network** — Eliminate spine layer, 38-77% network cost reduction · [page](rail-only-network.md)
+- **Every Microsecond Matters** (ETH/NVIDIA, 2026) — Barrier-free low-latency GPU collectives, 7% from SoL bound · [page](every-microsecond-matters.md)
 
 ## Compiler & Auto-Parallelism
 

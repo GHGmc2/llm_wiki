@@ -3,7 +3,7 @@ title: "GSPMD: General and Scalable Parallelization for ML Computation Graphs"
 type: source-note
 tags: [compiler, parallelization, spmd, gspmd, google, tpu, device-mesh, sharding]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [raw/GSPMD.pdf]
 status: stable
 ---
@@ -123,3 +123,4 @@ All three share the same core abstraction: device mesh + sharding annotations on
 - [Parallel Folding](megatron-core-moe.md) — Megatron-Core's parallelism decoupling (manual version of what GSPMD automates)
 - [Scaling Techniques Overview](usp-scaling-techniques-overview.md) — The parallelism strategies GSPMD expresses
 - [Auto-Parallelism Survey](auto-parallelism-survey.md) — GSPMD in context: comprehensive survey of auto-parallelism systems
+- [Efficient LLM Training Survey](efficient-llm-training-survey.md) — GSPMD's annotation-based approach in the broader training systems taxonomy

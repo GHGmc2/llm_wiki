@@ -3,7 +3,7 @@ title: "PartIR: Composing SPMD Partitioning Strategies for Machine Learning"
 type: source-note
 tags: [compiler, spmd, partitioning, mlir, part IR, google, sharding, tactics]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [raw/PartIR.pdf]
 status: stable
 ---
@@ -200,3 +200,4 @@ PartIR is built on MLIR (Multi-Level Intermediate Representation):
 - [Parallel Folding](megatron-core-moe.md) — Megatron-Core's manual parallelism decoupling (PartIR automates this)
 - [Scaling Techniques Overview](usp-scaling-techniques-overview.md) — The parallelism strategies that tactics implement
 - [Auto-Parallelism Survey](auto-parallelism-survey.md) — PartIR in context: how tactics-based approaches fit in the auto-parallelism landscape
+- [Efficient LLM Training Survey](efficient-llm-training-survey.md) — Where composable SPMD tactics fit among 380+ training systems

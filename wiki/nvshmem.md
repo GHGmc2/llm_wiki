@@ -3,7 +3,7 @@ title: "Demystifying NVSHMEM: A System-Level Analysis on Symmetric Memory and De
 type: source-note
 tags: [nvshmem, gpu, communication, symmetric-memory, pgas, device-initiated, one-sided, deepep, nvidia, nccl, gdr, gdr-rdma, ibgda]
 created: 2026-05-04
-updated: 2026-05-04
+updated: 2026-07-09
 sources: [https://arxiv.org/abs/2606.05951, raw/nvshmem.pdf]
 status: stable
 ---
@@ -114,3 +114,4 @@ The MoE dispatch pattern is inherently **data-dependent** (router output determi
 - [CUDA Graphs & Orchestration](aspe-cuda-graphs-and-orchestration.md) — NVSHMEM and CUDA graphs compose for persistent communication patterns
 - [Megatron-Core MoE](megatron-core-moe.md) — DeepEP uses NVSHMEM for MoE expert dispatch
 - [FlashMoE](flashmoe.md) — uses device-initiated RDMA; NVSHMEM provides underlying primitives
+- [Every Microsecond Matters](every-microsecond-matters.md) — Thread-level low-latency API complementary to NVSHMEM; both use symmetric memory for device-initiated collectives

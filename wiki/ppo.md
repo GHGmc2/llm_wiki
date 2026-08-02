@@ -3,7 +3,7 @@ title: "PPO: Proximal Policy Optimization Algorithms"
 type: source-note
 tags: [reinforcement-learning, ppo, policy-gradient, grpo, llm, rl]
 created: 2026-05-04
-updated: 2026-05-04
+updated: 2026-07-09
 sources: [raw/ppo.pdf]
 status: stable
 ---
@@ -105,3 +105,5 @@ This eliminates the critic model entirely — removing a major source of complex
 - [The Bitter Lesson for RL](bitter-lesson-rl.md) — Why RL with verifiable rewards works
 - [DeepSeek-V4 Post-Training](deepseek-v4.md) — GRPO used in specialist training
 - [LLM Scaling Laws](llm-scaling-laws.md) — Why scaling compute matters for RL too
+- [KL Estimators](kl-estimators.md) — Gradient-correct KL divergence estimation for PPO's KL penalty
+- [RL Foundations](rl-foundations.md) — PPO is TRPO simplified (Ch 8-11): clipped surrogate replaces KL constraint

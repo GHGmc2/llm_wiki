@@ -3,7 +3,7 @@ title: "GPU Hardware Architecture: NVIDIA Roadmap and Rack-Scale Systems"
 type: concept
 tags: [gpu, hardware, nvidia, h100, b200, gb200, nvl72, nvlink, nvswitch, roadmap]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
@@ -94,3 +94,4 @@ NCCL_DEBUG=INFO              # check NET/IB paths
 - [AI Systems Performance Engineering](aspe-overview.md) — Full book reference
 - [Distributed Networking Tuning](aspe-distributed-networking-tuning.md) — NCCL, GPUDirect, SHARP
 - [Megatron-Core MoE](megatron-core-moe.md) — GB200/GB300 performance numbers
+- [Efficient LLM Training Survey](efficient-llm-training-survey.md) — Hardware references for 380+ training systems surveyed

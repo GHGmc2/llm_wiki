@@ -1,5 +1,31 @@
 # Log
 
+## [2026-07-09] lint | De-orphaned 8 pages: added 42 cross-references across 28 pages
+- cross-domain-scaling-laws ← llm-scaling-laws, scalerl, muon-optimizer, deepseek-v4
+- dont-teach-incentivize ← the-bitter-lesson, deepseek-r1, llm-scaling-laws, you-and-your-research, stabilizing-rl-llms
+- efficient-llm-training-survey ← usp-ultra-scale-playbook, usp-scaling-techniques-overview, megatron-core-moe, deepseek-v3, aspe-gpu-hardware-architecture, nccl-demystifying, gspmd, partir, toast, llm-scaling-laws
+- kl-estimators ← ppo, trpo, grpo, stabilizing-rl-llms
+- pytorch-compilation ← aspe-pytorch-profiling-tuning, aspe-cuda-kernel-optimization, aspe-cuda-graphs-and-orchestration, aspe-overview
+- rl-foundations ← trpo, ppo, grpo, gspo, scalerl, stabilizing-rl-llms
+- staleness-in-async-rl ← rl-systems-mind-the-gap, async-rl-training-landscape, deepseek-r1, scalerl, stabilizing-rl-llms
+- vescale-fsdp ← scaling-book, muon-optimizer, megatron-core-moe, usp-scaling-techniques-overview
+- 28 pages touched
+
+## [2026-07-09] ingest | Paper: Every Microsecond Matters (arXiv:2607.16100)
+- Created: every-microsecond-matters.md
+- Source: arxiv.org/abs/2607.16100 (ETH Zürich + NVIDIA)
+- Barrier-free low-latency GPU collectives: LL, sentinel, double buffering, LL128 atomic AllReduce
+- Within 7% of hardware SoL bound (~1.4 µs on GB200); 7-13% ITL reduction in vLLM inference
+- Updated: nccl-demystifying.md, nccl-device-api-gin.md, nvshmem.md, vllm-anatomy.md, gpu-communication-landscape.md
+- 6 pages touched
+
+## [2026-07-09] ingest | Blog: Agentic RL — TITO: Token-In, Token-Out Done Right (HF)
+- Created: tito-agentic-rl.md
+- Source: huggingface.co/blog/huggingface/tito (downloaded via hf-mirror.com)
+- TITO invariant for multi-turn agentic RL: never re-encode decoded tokens to prevent silent gradient drift
+- 18/19 model families already satisfy prefix-preservation; Qwen3 fix is one Jinja line
+- Updated: async-rl-training-landscape.md, stabilizing-rl-llms.md, grpo.md (cross-references)
+- 4 pages touched
 
 ## [2026-05-04] ingest | Article: RL Systems Mind the Gap (SemiAnalysis, Jun 2026)
 - Created: rl-systems-mind-the-gap.md

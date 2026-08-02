@@ -3,7 +3,7 @@ title: "ScaleRL: The Art of Scaling Reinforcement Learning Compute for LLMs"
 type: source-note
 tags: [reinforcement-learning, scaling-laws, grpo, llm, rl, scalerl, cispo, pipeline-rl]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [raw/art-of-scaling-rl-compute.pdf]
 status: stable
 ---
@@ -203,3 +203,6 @@ While the paper focuses on in-distribution validation for predictive scaling, do
 - [DeepSeek-V3.2](deepseek-v3.2.md) — V3.2's scalable RL framework (>10% pretraining budget) maps to ScaleRL's compute scaling analysis
 - [LLM Scaling Laws](llm-scaling-laws.md) — Pretraining scaling laws context — ScaleRL brings similar predictability to RL
 - [DeepSeek-V4 Post-Training](deepseek-v4.md) — V4's GRPO usage and OPD pipeline
+- [Cross-Domain Scaling Laws](cross-domain-scaling-laws.md) — Scaling methodology pioneered here applied to RL
+- [RL Foundations](rl-foundations.md) — SGD convergence theory (Ch 6) underlying RL scaling analysis
+- [Predicting Staleness in Async RL](staleness-in-async-rl.md) — Queue-theoretic staleness model; the "effective train period" matches ScaleRL's sigmoid framework

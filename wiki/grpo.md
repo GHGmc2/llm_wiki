@@ -3,7 +3,7 @@ title: "GRPO: Group Relative Policy Optimization"
 type: source-note
 tags: [reinforcement-learning, grpo, ppo, deepseek, policy-gradient, llm]
 created: 2026-05-04
-updated: 2026-05-04
+updated: 2026-07-09
 sources: [raw/deepseek-math-grpo.pdf]
 status: stable
 ---
@@ -96,3 +96,6 @@ Key properties:
 - [ScaleRL](scalerl.md) — Systematic study of GRPO variants and scaling
 - [Stabilizing RL with LLMs](stabilizing-rl-llms.md) — Token-level RL as first-order approximation (applies to GRPO)
 - [DeepSeek-V3](deepseek-v3.md) — Used GRPO for post-training
+- [TITO: Agentic RL](tito-agentic-rl.md) — Multi-turn rollouts require TITO to ensure GRPO/PPO importance ratio targets tokens the policy actually produced
+- [KL Estimators](kl-estimators.md) — DeepSeek-V3.2 uses $\frac{q_\theta}{\mu} k_3$ for unbiased KL estimation in GRPO
+- [RL Foundations](rl-foundations.md) — Policy gradient + group baseline: GRPO replaces value function with group-based advantage

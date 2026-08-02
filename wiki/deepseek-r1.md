@@ -3,7 +3,7 @@ title: "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcemen
 type: source-note
 tags: [llm, deepseek, reinforcement-learning, grpo, reasoning, r1, chain-of-thought, distillation]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [raw/DeepSeek-R1.pdf]
 status: stable
 ---
@@ -290,3 +290,6 @@ This directly challenges the SFT-first paradigm. The paper shows that pre-traine
 - [ScaleRL](scalerl.md) — Systematic RL scaling framework; CISPO loss improves on GRPO
 - [The Bitter Lesson for RL](bitter-lesson-rl.md) — Verification as the key to reasoning; why rule-based rewards win
 - [Megatron-Core MoE](megatron-core-moe.md) — Training infrastructure for the base model
+- [Don't Teach. Incentivize.](dont-teach-incentivize.md) — R1 is the canonical example: pure RL with verifier incentive, no teaching
+- [RL Foundations](rl-foundations.md) — The policy gradient theory underlying GRPO
+- [Predicting Staleness in Async RL](staleness-in-async-rl.md) — Closed-form staleness analysis using GRPO as the assumed algorithm

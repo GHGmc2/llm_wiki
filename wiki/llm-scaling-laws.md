@@ -3,7 +3,7 @@ title: "LLM Scaling Laws: From GPT-3 to the Plateau"
 type: source-note
 tags: [scaling-laws, llm, pretraining, kaplan, power-law]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [https://cameronrwolfe.substack.com/p/llm-scaling-laws, raw/scaling-laws-kaplan.pdf]
 status: stable
 ---
@@ -92,4 +92,10 @@ The batch size that optimally trades off speed and compute efficiency also follo
 $$B_{\text{crit}}(L) = \frac{B_*}{L^{1/\alpha_B}}, \quad B_* \approx 2 \times 10^8 \text{ tokens}, \quad \alpha_B \approx 0.21$$
 
 As loss decreases (model improves), the optimal batch size grows — larger models need larger batches.
+
+## Connections
+
+- [Cross-Domain Scaling Laws](cross-domain-scaling-laws.md) — Henighan et al. (2020) extends the same functional form to images, video, multimodal, math
+- [Efficient LLM Training Survey](efficient-llm-training-survey.md) — Taxonomy of training systems motivated by these scaling laws
+- [Don't Teach. Incentivize.](dont-teach-incentivize.md) — The operational philosophy implied by scaling laws
 

@@ -3,7 +3,7 @@ title: "You and Your Research"
 type: source-note
 tags: [research, philosophy, productivity, hamming, methodology]
 created: 2026-05-04
-updated: 2026-05-04
+updated: 2026-07-09
 sources: [raw/YouAndYourResearch.pdf]
 status: stable
 ---
@@ -60,3 +60,4 @@ This repeated self-interrogation was, in his view, the single biggest factor sep
 
 - [The Bitter Lesson](the-bitter-lesson.md) — Sutton on the same theme: follow the methods that scale, not the methods that feel clever
 - [LLM Scaling Laws](llm-scaling-laws.md) — The modern instantiation: identify what scales and invest compute there
+- [Don't Teach. Incentivize.](dont-teach-incentivize.md) — Chung's operationalization of Hamming's principle for LLM training

@@ -3,7 +3,7 @@ title: "Stabilizing Reinforcement Learning with LLMs: Formulation and Practices"
 type: source-note
 tags: [reinforcement-learning, llm, policy-gradient, stability, importance-sampling, routing-replay, moe, qwen]
 created: 2026-05-04
-updated: 2026-05-04
+updated: 2026-07-09
 sources: [raw/stabilizing-rl-llms.pdf]
 status: stable
 ---
@@ -92,3 +92,8 @@ Experiments with a 30B MoE model across hundreds of thousands of GPU hours:
 - [GRPO / DeepSeek-R1](deepseek-r1.md) — GRPO uses group-based advantage instead of token-level IS; this paper explains why token-level IS is already part of the objective
 - [ScaleRL](scalerl.md) — CISPO loss, PipelineRL, and the asymptotic performance framework — this paper provides theoretical grounding for why those design choices matter
 - [CISPO](scalerl.md) — Truncated importance sampling directly addresses policy staleness per this paper's framework
+- [TITO: Agentic RL](tito-agentic-rl.md) — Practical enforcement of training-inference consistency; prevents silent token drift in multi-turn tool-use rollouts
+- [Don't Teach. Incentivize.](dont-teach-incentivize.md) — The philosophy behind why RL works: incentivize behavior rather than teaching it
+- [KL Estimators](kl-estimators.md) — Gradient-correct KL estimation: which estimator for token-level vs sequence-level RL
+- [RL Foundations](rl-foundations.md) — Policy gradient and importance sampling theory this paper formalizes
+- [Predicting Staleness in Async RL](staleness-in-async-rl.md) — System-level staleness quantification complementing the theoretical framework

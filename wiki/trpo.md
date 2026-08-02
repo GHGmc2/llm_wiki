@@ -3,7 +3,7 @@ title: "TRPO: Trust Region Policy Optimization"
 type: source-note
 tags: [reinforcement-learning, trpo, policy-gradient, trust-region, ppo, foundation]
 created: 2026-05-04
-updated: 2026-05-04
+updated: 2026-07-09
 sources: [raw/trpo.pdf]
 status: stable
 ---
@@ -84,3 +84,5 @@ While TRPO itself is not used in LLM training (too computationally expensive at 
 - [PPO](ppo.md) — TRPO simplified: clipping replaces constrained optimization
 - [GRPO](grpo.md) — Further simplified: group advantage replaces value model
 - [GSPO](gspo.md) — Sequence-level: matching optimization unit to reward unit
+- [KL Estimators](kl-estimators.md) — Which KL estimator to use for trust-region regularization
+- [RL Foundations](rl-foundations.md) — Policy gradient theorem (Ch 8) + constrained optimization (Ch 11) that TRPO formalizes

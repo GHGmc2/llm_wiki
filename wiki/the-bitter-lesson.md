@@ -3,7 +3,7 @@ title: "The Bitter Lesson"
 type: source-note
 tags: [ai, scaling, search, learning, philosophy, rich-sutton, bitter-lesson]
 created: 2026-05-03
-updated: 2026-05-03
+updated: 2026-07-09
 sources: [raw/the-bitter-lesson.pdf]
 status: stable
 ---
@@ -81,3 +81,8 @@ These are the **only two methods** that continue to improve as computation incre
 - **[ScaleRL](scalerl.md)** — Systematic framework for scaling RL compute predictably
 
 The bitter lesson explains *why* the scaling approach in these papers works. Human knowledge plateaus. Computation doesn't.
+
+## Connections
+
+- [Don't Teach. Incentivize.](dont-teach-incentivize.md) — Chung's modern restatement: scaling as the ultimate incentive
+- [You and Your Research](you-and-your-research.md) — Hamming on the same meta-theme: work on important problems

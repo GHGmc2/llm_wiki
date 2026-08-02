@@ -3,7 +3,7 @@ title: "AI Systems Performance Engineering"
 type: source-note
 tags: [performance, cuda, gpu, pytorch, profiling, inference, training, systems, book]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
@@ -115,3 +115,7 @@ The book opens with DeepSeek-V3 as a case study in hardware-software co-design u
 | Vera Rubin Superchip | 2026 | Next-gen architecture |
 | Rubin Ultra / Vera Rubin Ultra | 2027 | Ultra-scale |
 | Feynman GPU | 2028 | "Doubling something every year" |
+
+## Connections
+
+- [PyTorch Compilation](pytorch-compilation.md) — torch.compile deep-dive; covered in the book's compilation chapter

@@ -3,7 +3,7 @@ title: "TOAST: Fast and Scalable Auto-Partitioning via Static Analysis and MCTS"
 type: source-note
 tags: [compiler, auto-partitioning, mcts, static-analysis, sharding, google, toast]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [raw/TOAST.pdf]
 status: stable
 ---
@@ -130,3 +130,4 @@ TOAST represents the fully automated extreme: zero user input, discovers optimal
 - [Scaling Techniques Overview](usp-scaling-techniques-overview.md) — The parallelism strategies TOAST searches over
 - [Parallel Folding](megatron-core-moe.md) — Megatron-Core's manual approach (TOAST could automate this)
 - [Auto-Parallelism Survey](auto-parallelism-survey.md) — TOAST in context: where MCTS-based auto-partitioning fits in the broader landscape
+- [Efficient LLM Training Survey](efficient-llm-training-survey.md) — TOAST's static analysis + MCTS approach in the training systems taxonomy

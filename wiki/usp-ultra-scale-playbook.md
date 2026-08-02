@@ -3,7 +3,7 @@ title: "The Ultra-Scale Playbook: Training LLMs on GPU Clusters"
 type: source-note
 tags: [llm-training, distributed-training, scaling, parallelism, gpu, hf, nanotron, educational]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [raw/The_Ultra-Scale_Playbook.pdf]
 status: stable
 ---
@@ -108,4 +108,4 @@ This playbook is the **educational foundation** for the techniques implemented i
 - **[Parallel Folding](megatron-core-moe.md)** — Decoupling TP/EP/CP, which the playbook explains why is necessary
 - **[DeepSeek-V4 Architecture](deepseek-v4.md)** — CSA/HCA attention is a specialized form of the attention compression context parallelism covers
 - **[FP8/FP4 Training](megatron-core-moe.md)** — The playbook's mixed precision section provides the fundamentals
-- **[Scaling Techniques Overview](usp-scaling-techniques-overview.md)** — Detailed breakdown of each technique
+- [Efficient LLM Training Survey](efficient-llm-training-survey.md) — Taxonomy of 380+ training systems; this playbook provides the educational foundation

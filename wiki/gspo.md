@@ -3,7 +3,7 @@ title: "GSPO: Group Sequence Policy Optimization"
 type: source-note
 tags: [reinforcement-learning, gspo, grpo, sequence-level, policy-gradient, llm, qwen]
 created: 2026-05-04
-updated: 2026-05-04
+updated: 2026-07-09
 sources: [raw/gspo.pdf]
 status: stable
 ---
@@ -100,3 +100,4 @@ This complements the [Stabilizing RL with LLMs](stabilizing-rl-llms.md) paper's 
 - [ScaleRL](scalerl.md) — Found GSPO achieves high asymptotic performance but was unstable on large models; GSPO addresses this
 - [Stabilizing RL with LLMs](stabilizing-rl-llms.md) — Token-level RL as first-order approximation; GSPO takes the logical next step to sequence-level
 - [DeepSeek-R1](deepseek-r1.md) — Uses GRPO (the algorithm GSPO improves)
+- [RL Foundations](rl-foundations.md) — Sequence-level importance sampling theory underlying GSPO's design

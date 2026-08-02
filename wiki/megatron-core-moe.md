@@ -3,7 +3,7 @@ title: "Megatron-Core MoE: Scalable Training of Mixture-of-Experts Models"
 type: source-note
 tags: [llm-training, mixture-of-experts, distributed-systems, nvidia, parallelism, megatron, memory, communication, compute, fp8]
 created: 2026-05-02
-updated: 2026-05-03
+updated: 2026-07-09
 sources: [raw/scalable-training-moe-megatron-core.pdf, raw/moe-parallel-folding.pdf]
 status: stable
 ---
@@ -833,3 +833,8 @@ On H100, FP8 savings are critical — they free budget for EP communication over
 3. **FP8 is the highest-leverage optimization**: It attacks all three walls simultaneously
 4. **Memory is always the first constraint**: You cannot optimize what you cannot fit
 5. **Profile, do not guess**: Nsight Systems reveals the true bottleneck; intuition is often wrong at this scale
+
+## Connections
+
+- [Efficient LLM Training Survey](efficient-llm-training-survey.md) — Megatron-Core is the backend for 5 of 16 surveyed libraries; this page covers the three walls in production
+- [veScale-FSDP](vescale-fsdp.md) — Complementary training stack: Megatron covers MoE/EP, veScale covers FSDP

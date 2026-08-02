@@ -3,7 +3,7 @@ title: "CUDA Graphs, Streams, and GPU Orchestration"
 type: concept
 tags: [cuda, gpu, cuda-graphs, streams, atomics, dynamic-scheduling, nvshmem, nccl]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-07-09
 sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
@@ -206,3 +206,4 @@ stream1: cudaMemcpyPeerAsync (send gradients to GPU 0)
 - [NCCL Demystifying](nccl-demystifying.md) — NCCL internals
 - [NCCL Device API / GIN](nccl-device-api-gin.md) — GPU-initiated networking (device-side orchestration)
 - [AI Systems Performance Engineering](aspe-overview.md) — Full book reference
+- [PyTorch Compilation](pytorch-compilation.md) — torch.compile captures CUDA Graphs automatically; 2.27× inference speedup via compilation
