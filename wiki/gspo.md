@@ -3,7 +3,7 @@ title: "GSPO: Group Sequence Policy Optimization"
 type: source-note
 tags: [reinforcement-learning, gspo, grpo, sequence-level, policy-gradient, llm, qwen]
 created: 2026-05-04
-updated: 2026-07-09
+updated: 2026-08-15
 sources: [raw/gspo.pdf]
 status: stable
 ---
@@ -40,7 +40,7 @@ The paper argues: **the unit of optimization objective should match the unit of 
 
 ![GSPO benchmark results — outperforms GRPO and DAPO on training efficiency and stability](../raw/assets/gspo_results.png)
 
-*Figure: GSPO vs GRPO and DAPO — superior training efficiency and more stable convergence, especially for MoE models. [src](raw/gspo.pdf)*
+*Figure: GSPO vs GRPO and DAPO — superior training efficiency and more stable convergence, especially for MoE models. [src](../raw/gspo.pdf)*
 
 GSPO uses **sequence-level importance ratios** with group-based advantage (same as GRPO):
 
@@ -70,7 +70,7 @@ The clipping in GSPO operates at the **sequence level**: it clips $s_i(\theta)$ 
 
 ![GSPO sequence-level clipping vs GRPO token-level clipping](../raw/assets/gspo_clipping.png)
 
-*Figure: Comparison of clipping mechanisms — GSPO clips at the sequence level (one decision per response), GRPO clips at the token level (accumulating errors). [src](raw/gspo.pdf)*
+*Figure: Comparison of clipping mechanisms — GSPO clips at the sequence level (one decision per response), GRPO clips at the token level (accumulating errors). [src](../raw/gspo.pdf)*
 
 - A single clip decision per response, not per token
 - Prevents the accumulation of per-token clipping errors

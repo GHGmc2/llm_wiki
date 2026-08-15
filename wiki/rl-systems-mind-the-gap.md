@@ -3,7 +3,7 @@ title: "RL Systems Mind the Gap: Matching Trainer and Generator Throughput"
 type: source-note
 tags: [reinforcement-learning, rl-systems, grpo, async-training, throughput, pipeline-rl, policy-staleness, sandbox, infrastructure, semianalysis]
 created: 2026-05-04
-updated: 2026-07-09
+updated: 2026-08-06
 sources: [https://newsletter.semianalysis.com/p/rl-systems-mind-the-gap-matching]
 status: stable
 ---

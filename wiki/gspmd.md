@@ -3,7 +3,7 @@ title: "GSPMD: General and Scalable Parallelization for ML Computation Graphs"
 type: source-note
 tags: [compiler, parallelization, spmd, gspmd, google, tpu, device-mesh, sharding]
 created: 2026-05-02
-updated: 2026-07-09
+updated: 2026-08-06
 sources: [raw/GSPMD.pdf]
 status: stable
 ---

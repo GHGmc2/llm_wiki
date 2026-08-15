@@ -3,14 +3,14 @@ title: "Multi-Head Latent Attention (MLA)"
 type: concept
 tags: [llm, attention, deepseek, kv-cache, memory-optimization, inference, mla]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-08-15
 sources: [raw/insights-into-deepseek-v3.pdf, raw/deepseek-v4.pdf]
 status: stable
 ---
 
 # Multi-Head Latent Attention (MLA)
 
-**Source**: DeepSeek-V3 Insights (ISCA 2025) [src](raw/insights-into-deepseek-v3.pdf), DeepSeek-V4 report [src](raw/deepseek-v4.pdf)
+**Source**: DeepSeek-V3 Insights (ISCA 2025) [src](../raw/insights-into-deepseek-v3.pdf), DeepSeek-V4 report [src](../raw/deepseek-v4.pdf)
 
 ## Key Points
 
@@ -41,7 +41,7 @@ MLA takes a fundamentally different approach: **compress the KV representation i
 
 ![MLA within the DeepSeek-V3 architecture — KV cache compressed to latent c_KV](../raw/assets/v3_architecture.png)
 
-*Figure: MLA compresses Keys and Values into a shared latent vector `c_KV` via low-rank projection. Only the compressed latent is cached; full KV is up-projected on-the-fly during attention. [src](raw/DeepSeek-V3.pdf)*
+*Figure: MLA compresses Keys and Values into a shared latent vector `c_KV` via low-rank projection. Only the compressed latent is cached; full KV is up-projected on-the-fly during attention. [src](../raw/DeepSeek-V3.pdf)*
 
 ### Core Mechanism
 
@@ -113,3 +113,4 @@ MLA reduces activation memory during training by storing smaller intermediate re
 - [Megatron-Core Memory Wall](megatron-core-moe.md) — activation memory optimization from NVIDIA's perspective
 - [Ultra-Scale Playbook](usp-ultra-scale-playbook.md) — context on KV cache and attention memory
 - [LLM Architecture Comparison](llm-architecture-comparison.md) — comprehensive comparison of attention variants (MHA, GQA, MLA, SWA, DSA) across 23 models
+- [Kimi K3](kimi-k3.md) — KDA recurrent attention: fixed-size state extends MLA's latent-space lineage

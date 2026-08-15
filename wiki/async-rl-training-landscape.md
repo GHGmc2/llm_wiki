@@ -3,7 +3,7 @@ title: "Keep the Tokens Flowing: Lessons from 16 Open-Source RL Libraries"
 type: source-note
 tags: [reinforcement-learning, async-training, rl, grpo, ppo, distributed-training, survey, huggingface, trl, verl, open-source]
 created: 2026-05-04
-updated: 2026-07-09
+updated: 2026-08-06
 sources: [https://huggingface.co/blog/async-rl-training-landscape]
 status: stable
 ---
@@ -13,6 +13,8 @@ status: stable
 **Source**: Dirhoussi, Gallouédec, Rasul, Tunstall, Beeching, et al. (Hugging Face), March 2026. A comprehensive survey of 16 open-source RL libraries for LLM post-training, analyzing their architectures across 7 design axes.
 
 ## Key Points
+
+> [!note] SLIME vs slime: the SLIME in this survey is **Mozilla's** open-source RL library — a different project from Zhipu's in-house `slime` framework described in [GLM-4.5](glm-4.5.md) / [GLM-5](glm-5.md). Name collision only.
 
 - 16 libraries surveyed: TRL, verl, SkyRL, SLIME, PipelineRL, NeMo-RL, PRIME-RL, AReaL, ART, MILES, ROLL, OAT, open-instruct, TorchForge, Tunix, Atropos
 - **7 architectural axes**: Orchestration, Rollout Buffer, Weight Sync, Staleness Management, Partial Rollout, LoRA Support, Training Backend
@@ -150,6 +152,18 @@ On-policy distillation (student generates, teacher scores) is structurally ident
 
 ## TRL's Async Trainer Design
 
+TRL's synchronous baseline interleaves training steps and generation with idle periods — the async trainer eliminates this idle time:
+
+![Synchronous TRL training timeline](../raw/assets/async-rl-trl-sync-timeline.png)
+
+*Figure: TRL's synchronous training timeline — training steps and generation alternate, with no overlap. [src](https://huggingface.co/blog/async-rl-training-landscape)*
+
+In colocate mode, TRL runs vLLM in-process, reducing the weight sync path to a shared-memory exchange:
+
+![TRL with vLLM in colocate mode](../raw/assets/async-rl-trl-vllm-colocate.png)
+
+*Figure: TRL with vLLM in colocate mode — weight sync via CUDA IPC / shared memory instead of NCCL broadcast. [src](https://huggingface.co/blog/async-rl-training-landscape)*
+
 TRL's announced async GRPO trainer will use:
 1. **Bounded queue with per-token model_version** — token-level provenance from the start
 2. **NCCL bucketed weight sync** — vLLM's packed=True broadcast, exploring Awex and Mooncake for cross-engine transfer
@@ -168,3 +182,4 @@ TRL's announced async GRPO trainer will use:
 - [NCCL Demystifying](nccl-demystifying.md) — NCCL broadcast and bucketing as the primary weight sync transport
 - [TITO: Agentic RL](tito-agentic-rl.md) — Token-In, Token-Out invariant for multi-turn tool-use rollouts (same authors); TRL's async trainer incorporates these principles
 - [Predicting Staleness in Async RL](staleness-in-async-rl.md) — Closed-form staleness formulas; the mathematical framework for Axis 4 (staleness management)
+- [Single-Rollout Async Optimization](single-rollout-async-agentic-rl.md) — SAO: effectiveness-focused async RL design (vs throughput-focused libraries surveyed)

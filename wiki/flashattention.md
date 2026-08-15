@@ -3,7 +3,7 @@ title: "FlashAttention: Memory-Efficient Exact Attention"
 type: concept
 tags: [attention, flash-attention, gpu, kernel-fusion, tiling, hbm, online-softmax]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-08-15
 sources: [raw/The_Ultra-Scale_Playbook.pdf, raw/ai-systems-performance-engineering.pdf, raw/from-online-softmax-to-flashattention.pdf]
 status: stable
 ---
@@ -106,7 +106,7 @@ FlashAttention and Ring Attention (Context Parallelism) share the same core tech
 
 ## Mathematical Derivation
 
-**Source**: Zihao Ye (UW), "From Online Softmax to FlashAttention", 2023 [src](raw/from-online-softmax-to-flashattention.pdf)
+**Source**: Zihao Ye (UW), "From Online Softmax to FlashAttention", 2023 [src](../raw/from-online-softmax-to-flashattention.pdf)
 
 This note explains the key mathematical insight that makes FlashAttention possible.
 

@@ -3,14 +3,14 @@ title: "LLM Scaling Techniques Overview"
 type: concept
 tags: [llm-training, distributed-training, scaling, data-parallelism, zero, tensor-parallelism, pipeline-parallelism, context-parallelism, expert-parallelism]
 created: 2026-05-02
-updated: 2026-07-09
+updated: 2026-08-15
 sources: [raw/The_Ultra-Scale_Playbook.pdf]
 status: stable
 ---
 
 # LLM Scaling Techniques Overview
 
-**Source**: The Ultra-Scale Playbook [src](raw/The_Ultra-Scale_Playbook.pdf)
+**Source**: The Ultra-Scale Playbook [src](../raw/The_Ultra-Scale_Playbook.pdf)
 
 A progressive guide through all major distributed training techniques, following the narrative arc: start on one GPU, hit a limit, add the next technique.
 

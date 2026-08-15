@@ -3,7 +3,7 @@ title: "Demystifying NCCL: GPU Communication Protocols and Algorithms"
 type: source-note
 tags: [nccl, gpu, communication, collectives, hpc, nvidia, distributed-training]
 created: 2026-05-02
-updated: 2026-07-09
+updated: 2026-08-15
 sources: [raw/demystifying-nccl.pdf]
 status: stable
 ---
@@ -81,47 +81,37 @@ NCCL uses three protocols with different bandwidth/latency trade-offs:
 
 ### Intra-Node (NVLink)
 
+![NCCL intra-node communication architecture](../raw/assets/nccl_intra_node.png)
+
+*Figure: Intra-node data movement — direct GPU-to-GPU memory access via NVLink with load/store and copy engines. [src](../raw/demystifying-nccl.pdf)*
+
 Direct GPU-to-GPU memory access via NVLink. NCCL uses:
 - **Load/Store**: Direct memory operations over NVLink fabric
 - **Copy engines**: DMA-based transfers for larger payloads
 - Minimized CPU involvement
 
-### Intra-Node (NVLink)
-
-![NCCL intra-node communication architecture](../raw/assets/nccl_intra_node.png)
-
-*Figure: Intra-node data movement — direct GPU-to-GPU memory access via NVLink with load/store and copy engines. [src](raw/demystifying-nccl.pdf)*
-
 ### Inter-Node (InfiniBand / RoCE)
 
 ![NCCL inter-node communication architecture](../raw/assets/nccl_inter_node.png)
 
-*Figure: Inter-node data movement — GPUDirect RDMA enables NIC DMA directly to GPU memory across nodes. [src](raw/demystifying-nccl.pdf)*
+*Figure: Inter-node data movement — GPUDirect RDMA enables NIC DMA directly to GPU memory across nodes. [src](../raw/demystifying-nccl.pdf)*
 
 GPU-to-GPU across nodes requires network traversal:
 - **GPUDirect RDMA**: NIC DMA engine reads/writes GPU memory directly via PCIe BAR mappings
 - **GDR Copy**: Intermediate copy through CPU memory when GPUDirect is unavailable
 - Network operations are significantly slower than NVLink (5-10x bandwidth, higher latency)
 
-### Protocol Selection Logic
-
-NCCL dynamically selects protocols based on:
-- Message size (thresholds for Simple/LL/LL128)
-- Interconnect type (NVLink vs IB)
-- Operation type (reduce vs broadcast vs all-to-all)
-- Topology (ring vs tree)
-
 ## Ring vs Tree Algorithms
 
 ![NCCL ring-based all-reduce topology](../raw/assets/nccl_ring.png)
 
-*Figure: Ring algorithm for all-reduce — data flows unidirectionally around a ring, each GPU receives, reduces, and forwards. Bandwidth-optimal for large messages. [src](raw/demystifying-nccl.pdf)*
+*Figure: Ring algorithm for all-reduce — data flows unidirectionally around a ring, each GPU receives, reduces, and forwards. Bandwidth-optimal for large messages. [src](../raw/demystifying-nccl.pdf)*
 
 ![NCCL double binary tree topology](../raw/assets/nccl_tree.png)
 
-*Figure: Double binary tree algorithm — two complementary trees for latency-optimal reduction. Good for small messages. [src](raw/demystifying-nccl.pdf)*
+*Figure: Double binary tree algorithm — two complementary trees for latency-optimal reduction. Good for small messages. [src](../raw/demystifying-nccl.pdf)*
 
-*Figure: NCCL organizes communication into channels with ring (unidirectional) or double binary tree topologies. Each channel uses one NVLink + one IB connection. [src](raw/demystifying-nccl.pdf)*
+*Figure: NCCL organizes communication into channels with ring (unidirectional) or double binary tree topologies. Each channel uses one NVLink + one IB connection. [src](../raw/demystifying-nccl.pdf)*
 
 ### Ring Algorithm
 - Data flows around a unidirectional ring
@@ -178,7 +168,7 @@ The insights from this analysis feed into ATLAHS — an application-trace-driven
 
 ## PAT: Parallel Aggregated Trees (New Algorithm)
 
-**Source**: Sylvain Jeaugey (NCCL core developer, NVIDIA), June 2025 [src](raw/pat-algorithm.pdf)
+**Source**: Sylvain Jeaugey (NCCL core developer, NVIDIA), June 2025 [src](../raw/pat-algorithm.pdf)
 
 PAT is a new algorithm for AllGather and ReduceScatter in NCCL, designed to fill the gap between ring (O(P) latency, bandwidth-optimal) and simple trees (O(log P) latency, poor bandwidth).
 
@@ -192,15 +182,15 @@ PAT is a new algorithm for AllGather and ReduceScatter in NCCL, designed to fill
 
 ![PAT algorithm structure — tree-based aggregation with logarithmic depth](../raw/assets/pat_algorithm.png)
 
-*Figure: PAT algorithm structure — tree-based aggregation with logarithmic depth. [src](raw/pat-algorithm.pdf)*
+*Figure: PAT algorithm structure — tree-based aggregation with logarithmic depth. [src](../raw/pat-algorithm.pdf)*
 
 ![PAT tree with aggregation factor 8 on 16 ranks](../raw/assets/pat_tree.png)
 
-*Figure: PAT tree with aggregation=8 on 16 ranks. Each rank participates in O(log P) exchanges. [src](raw/pat-algorithm.pdf)*
+*Figure: PAT tree with aggregation=8 on 16 ranks. Each rank participates in O(log P) exchanges. [src](../raw/pat-algorithm.pdf)*
 
 ![Brucks construction for PAT global connectivity](../raw/assets/pat_brucks.png)
 
-*Figure: Brucks construction defining global connectivity for PAT tree building. [src](raw/pat-algorithm.pdf)*
+*Figure: Brucks construction defining global connectivity for PAT tree building. [src](../raw/pat-algorithm.pdf)*
 
 - Uses **Brucks' algorithm** to construct uniform-degree tree topology
 - Aggregation factor `k`: each node communicates with `k` peers per step — tunes bandwidth/latency trade-off

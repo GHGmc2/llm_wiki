@@ -3,7 +3,7 @@ title: "GPU-Initiated Networking for NCCL: Device API and GIN"
 type: source-note
 tags: [nccl, gpu, networking, rdma, device-api, gin, deep-ep, moe, nvidia]
 created: 2026-05-02
-updated: 2026-07-09
+updated: 2026-08-06
 sources: [raw/gpu-initiated-networking-nccl.pdf]
 status: stable
 ---

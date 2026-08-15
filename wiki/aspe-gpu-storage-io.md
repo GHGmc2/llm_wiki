@@ -3,14 +3,14 @@ title: "GPU Storage I/O and Data Pipeline Optimization"
 type: concept
 tags: [storage, gpu, gpudirect-storage, nvme, data-pipeline, deepseek-3fs, nemo-curator, dali]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-08-15
 sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # GPU Storage I/O and Data Pipeline Optimization
 
-**Source**: AI Systems Performance Engineering, Chapter 5 [src](raw/ai-systems-performance-engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapter 5 [src](../raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 

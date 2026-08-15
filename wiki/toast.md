@@ -3,7 +3,7 @@ title: "TOAST: Fast and Scalable Auto-Partitioning via Static Analysis and MCTS"
 type: source-note
 tags: [compiler, auto-partitioning, mcts, static-analysis, sharding, google, toast]
 created: 2026-05-02
-updated: 2026-07-09
+updated: 2026-08-06
 sources: [raw/TOAST.pdf]
 status: stable
 ---
@@ -101,17 +101,9 @@ TOAST consistently outperforms:
 - **Expert-crafted strategies**: Human-engineered sharding for known architectures — TOAST finds solutions with **better throughput AND lower memory**
 - **GSPMD-style propagation**: Annotation-based systems limited by manual placement
 - **Alpa-style heuristics**: Cost-model-guided but limited search space
-
-**Key finding**: TOAST discovers **previously unknown superior solutions** — partitioning strategies that expert engineers hadn't considered. On a Transformer model, TOAST found a hybrid sharding where some layers use Megatron-style TP while others use a different pattern — a strategy no human had proposed for that architecture.
-
-## Results
-
-TOAST consistently outperforms:
-- **Expert-crafted strategies**: Human-engineered sharding for known architectures
-- **Previous auto-partitioners**: GSPMD-style propagation, Alpa-style heuristics
 - Across diverse models (Transformers, CNNs, MoE) and hardware platforms (TPU, GPU)
 
-**Key finding**: TOAST discovers **previously unknown superior solutions** — partitioning strategies that expert engineers hadn't considered, with better throughput and lower memory.
+**Key finding**: TOAST discovers **previously unknown superior solutions** — partitioning strategies that expert engineers hadn't considered. On a Transformer model, TOAST found a hybrid sharding where some layers use Megatron-style TP while others use a different pattern — a strategy no human had proposed for that architecture.
 
 ## How It Compares
 

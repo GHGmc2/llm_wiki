@@ -3,7 +3,7 @@ title: "AI Systems Performance Engineering"
 type: source-note
 tags: [performance, cuda, gpu, pytorch, profiling, inference, training, systems, book]
 created: 2026-05-02
-updated: 2026-07-09
+updated: 2026-08-06
 sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
@@ -105,7 +105,7 @@ This book is the **practical implementation manual** for the concepts in the wik
 
 ## DeepSeek Coverage
 
-The book opens with DeepSeek-V3 as a case study in hardware-software co-design under constraints — training a ~680B MoE model on 2,048 H800 GPUs despite US export restrictions. This mirrors the [V3 Insights](deepseek-v3-insights.md) paper.
+The book opens with DeepSeek-V3 as a case study in hardware-software co-design under constraints — training a ~685B MoE model (V3.2-era checkpoint, cf. original V3's 671B) on 2,048 H800 GPUs despite US export restrictions. This mirrors the [V3 Insights](deepseek-v3-insights.md) paper.
 
 ## NVIDIA Roadmap (from the book)
 

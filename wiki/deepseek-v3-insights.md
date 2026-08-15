@@ -3,7 +3,7 @@ title: "Insights into DeepSeek-V3: Scaling Challenges and Hardware Reflections"
 type: source-note
 tags: [llm, deepseek, deepseek-v3, mla, fp8, moe, hardware-codesign, network, isca]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-08-15
 sources: [raw/insights-into-deepseek-v3.pdf]
 status: stable
 ---
@@ -32,7 +32,7 @@ DeepSeek-V3 builds on DeepSeek-V2's MLA and DeepSeekMoE, adding:
 
 ![DeepSeek-V3 basic architecture with FP8 precision annotations](../raw/assets/v3_architecture.png)
 
-*Figure 1: Basic architecture of DeepSeek-V3 — MLA, DeepSeekMoE, MTP, and FP8 mixed precision. Colored annotations show precision used in each component. [src](raw/insights-into-deepseek-v3.pdf)*
+*Figure 1: Basic architecture of DeepSeek-V3 — MLA, DeepSeekMoE, MTP, and FP8 mixed precision. Colored annotations show precision used in each component. [src](../raw/insights-into-deepseek-v3.pdf)*
 
 **Hardware context**: H800 GPUs with reduced NVLink (400 GB/s, down from 900 GB/s on H100) and reduced FP64 performance. This shaped key architectural decisions.
 

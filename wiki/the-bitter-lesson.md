@@ -3,14 +3,14 @@ title: "The Bitter Lesson"
 type: source-note
 tags: [ai, scaling, search, learning, philosophy, rich-sutton, bitter-lesson]
 created: 2026-05-03
-updated: 2026-07-09
+updated: 2026-08-15
 sources: [raw/the-bitter-lesson.pdf]
 status: stable
 ---
 
 # The Bitter Lesson
 
-**Source**: Rich Sutton, March 13, 2019. [Original](http://www.incompleteideas.net/IncIdeas/BitterLesson.html) [pdf](raw/the-bitter-lesson.pdf)
+**Source**: Rich Sutton, March 13, 2019. [Original](http://www.incompleteideas.net/IncIdeas/BitterLesson.html) [pdf](../raw/the-bitter-lesson.pdf)
 
 ## Key Points
 

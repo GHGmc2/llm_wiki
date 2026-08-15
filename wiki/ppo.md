@@ -3,7 +3,7 @@ title: "PPO: Proximal Policy Optimization Algorithms"
 type: source-note
 tags: [reinforcement-learning, ppo, policy-gradient, grpo, llm, rl]
 created: 2026-05-04
-updated: 2026-07-09
+updated: 2026-08-06
 sources: [raw/ppo.pdf]
 status: stable
 ---
@@ -107,3 +107,5 @@ This eliminates the critic model entirely — removing a major source of complex
 - [LLM Scaling Laws](llm-scaling-laws.md) — Why scaling compute matters for RL too
 - [KL Estimators](kl-estimators.md) — Gradient-correct KL divergence estimation for PPO's KL penalty
 - [RL Foundations](rl-foundations.md) — PPO is TRPO simplified (Ch 8-11): clipped surrogate replaces KL constraint
+- [Batch Size-Invariance](batch-size-invariance.md) — PPO-EWMA: decoupling proximal/behavior policy makes PPO batch size-invariant
+- [Kimi k1.5](kimi-k1.5.md) — online mirror descent variant as an alternative to clipped surrogate optimization

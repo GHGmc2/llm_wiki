@@ -3,7 +3,7 @@ title: "Mathematical Foundations of Reinforcement Learning"
 type: source-note
 tags: [reinforcement-learning, textbook, bellman, mdp, policy-gradient, td-learning, sgd]
 created: 2026-05-04
-updated: 2026-05-04
+updated: 2026-08-15
 sources: [raw/rl-foundations.pdf]
 status: stable
 ---
@@ -190,7 +190,7 @@ $$
 
 The foundation of REINFORCE, actor-critic, TRPO, PPO, GRPO, and GSPO — all modern policy gradient methods derive from this theorem.
 
-#### The Role of the Baseline
+### The Role of the Baseline
 
 A critical property: the policy gradient is **invariant to any state-dependent baseline** $b(s)$:
 
@@ -208,7 +208,7 @@ $$
 
 This is why actor-critic methods learn a value function alongside the policy — not because it's mathematically required, but because it reduces variance by orders of magnitude.
 
-#### Where LLM RL Deviates
+### Where LLM RL Deviates
 
 Modern LLM RL (GRPO, GSPO) takes this further:
 

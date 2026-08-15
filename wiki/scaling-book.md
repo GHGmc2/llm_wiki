@@ -3,7 +3,7 @@ title: "How To Scale Your Model"
 type: source-note
 tags: [scaling, tpu, jax, roofline, training, inference, sharding, parallelism, google-deepmind, book, transformers, fsdp, tensor-parallelism, pipeline-parallelism, collective-communication]
 created: 2026-05-04
-updated: 2026-07-09
+updated: 2026-08-06
 sources: [https://jax-ml.github.io/scaling-book/]
 status: stable
 ---

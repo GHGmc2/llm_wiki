@@ -3,7 +3,7 @@ title: "DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence
 type: source-note
 tags: [llm, mixture-of-experts, deepseek, long-context, hybrid-attention, csa, hca, mhc, muon, post-training, infrastructure]
 created: 2026-05-02
-updated: 2026-07-09
+updated: 2026-08-15
 sources: [https://arxiv.org/abs/2606.19348, raw/deepseek-v4.pdf]
 status: stable
 ---
@@ -51,7 +51,7 @@ The central efficiency breakthrough. Two attention types interleaved across laye
 
 CSA gives precise look-up; HCA gives global summary. Interleaving is what makes 1M context economical — neither alone achieves the full efficiency gain.
 
-See: [DeepSeek-V4 Architecture]#architecture
+See: [DeepSeek-V4 Architecture](#deepseek-v4-architecture)
 
 ### mHC (Manifold-Constrained Hyper-Connections)
 
@@ -78,7 +78,7 @@ Replaces V3.2's mixed RL stage. Two-phase pipeline:
 1. **Specialist Training**: Train separate domain experts (math, code, agent, instruction) via SFT + GRPO
 2. **On-Policy Distillation**: Unify specialists into one model via multi-teacher reverse-KL distillation on student-generated trajectories
 
-See: [DeepSeek-V4 Post-Training]#post-training
+See: [DeepSeek-V4 Post-Training](#deepseek-v4-post-training)
 
 ### Three Reasoning Modes
 
@@ -98,7 +98,7 @@ Think Max prepends a special system prompt and uses larger context window (384K)
 - **KV cache management**: On-disk storage for compressed KV entries, three SWA caching strategies (full, periodic checkpointing, zero)
 - **Quick Instruction**: Special tokens for auxiliary tasks (search queries, intent) using existing KV cache — reduces time-to-first-token
 
-See: [DeepSeek-V4 Infrastructure]#infrastructure
+See: [DeepSeek-V4 Infrastructure](#deepseek-v4-infrastructure)
 
 ## Benchmarks: V4-Pro-Max vs Frontier
 
@@ -117,20 +117,13 @@ See: [DeepSeek-V4 Infrastructure]#infrastructure
 | MRCR 1M (MMR) | 83.5 | **92.9** (Opus) | Opus |
 | HLE (Pass@1) | 37.7 | **44.4** (Gemini) | Gemini |
 
+> [!note] HLE 37.7 also appears for V3.2-Speciale — verified coincidental from both raw reports, not a copy-paste error.
+
 **DeepSeek's own framing**: Trails absolute frontier by 3-6 months on general knowledge and hardest retrieval. Sets new open-model highs on competitive programming and formal reasoning.
 
-## Connections
+## DeepSeek-V4 Architecture
 
-- [Parallel Folding](megatron-core-moe.md) — how EP decoupling works in Megatron-Core
-- [Multi-Head Latent Attention](multi-head-latent-attention.md) — MLA, the KV cache compression foundation
-- [DeepSeek-V3](deepseek-v3.md) — base architecture that V4 extends
-- [DeepSeek-V3.2](deepseek-v3.2.md) — DSA sparse attention (predecessor to CSA)
-- [DeepSeek-R1](deepseek-r1.md) — GRPO algorithm and reasoning paradigm
-- [FlashAttention](flashattention.md) — attention kernel optimization
-
-# DeepSeek-V4 Architecture
-
-**Source**: DeepSeek-V4 Technical Report, Section 2 [src](raw/deepseek-v4.pdf)
+**Source**: DeepSeek-V4 Technical Report, Section 2 [src](../raw/deepseek-v4.pdf)
 
 ## Inherited from DeepSeek-V3
 
@@ -257,9 +250,9 @@ Replaces AdamW for the **majority of parameters**. Embedding module, prediction 
 | mHC n_hc | 4 | 4 |
 | Sinkhorn-Knopp iterations | 20 | 20 |
 
-# DeepSeek-V4 Post-Training
+## DeepSeek-V4 Post-Training
 
-**Source**: DeepSeek-V4 Technical Report, Section 5 [src](raw/deepseek-v4.pdf)
+**Source**: DeepSeek-V4 Technical Report, Section 5 [src](../raw/deepseek-v4.pdf)
 
 ## Pipeline Overview
 
@@ -377,9 +370,9 @@ A latency optimization for chatbot scenarios. Auxiliary tasks (web search trigge
 - **Preemptible Rollout Service**: Fault-tolerant, globally ordered trajectory logging with fast-forward resumption
 - **DSec Sandbox**: Layered container/VM storage, density optimizations for massive concurrency, trajectory logging for agent training
 
-# DeepSeek-V4 Infrastructure
+## DeepSeek-V4 Infrastructure
 
-**Source**: DeepSeek-V4 Technical Report, Section 3 [src](raw/deepseek-v4.pdf)
+**Source**: DeepSeek-V4 Technical Report, Section 3 [src](../raw/deepseek-v4.pdf)
 
 ## 1. Fine-Grained EP Communication-Computation Overlap
 
@@ -495,4 +488,10 @@ DSec supports both container-based and microVM-based sandboxes with a unified in
 
 ## Connections
 
+- [Parallel Folding](megatron-core-moe.md) — how EP decoupling works in Megatron-Core
+- [Multi-Head Latent Attention](multi-head-latent-attention.md) — MLA, the KV cache compression foundation
+- [DeepSeek-V3](deepseek-v3.md) — base architecture that V4 extends
+- [DeepSeek-V3.2](deepseek-v3.2.md) — DSA sparse attention (predecessor to CSA)
+- [DeepSeek-R1](deepseek-r1.md) — GRPO algorithm and reasoning paradigm
+- [FlashAttention](flashattention.md) — attention kernel optimization
 - [Cross-Domain Scaling Laws](cross-domain-scaling-laws.md) — V4's scaling decisions informed by Henighan-style cross-domain predictions

@@ -3,14 +3,14 @@ title: "Inference Optimization: Disaggregation, Autotuning, and Precision Switch
 type: concept
 tags: [inference, llm, disaggregation, autotuning, precision, kv-cache, speculative-decoding, performance]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-08-15
 sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # Inference Optimization Techniques
 
-**Source**: AI Systems Performance Engineering, Chapters 17-19 [src](raw/ai-systems-performance-engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapters 17-19 [src](../raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 

@@ -16,7 +16,7 @@ status: stable
 
 - **Hill-climbing philosophy**: every component of the training pipeline improves iteratively across generations
 - **Three design principles**: (1) robustness for enduring climbs, (2) simplicity favoring scalable recipes, (3) scientific rigor — every decision testable through ladders and ablations
-- **MAI-Base-1**: 35B-active / 1T-total sparse MoE, 78 layers, d_model=6656, 30T tokens on 8K GB200 GPUs
+- **MAI-Base-1**: 34.7B-active / 962B-total sparse MoE (often rounded to "35B"), 78 layers, d_model=6656, 30T tokens on 8K GB200 GPUs
 - **Three RL specialist climbs** (STEM, SWE/Agentic, Safety) → consolidated into MAI-Thinking-1 via SFT + final RL
 - **Rocket** framework: async RL with persistent rollout store, SGL inference pool, agentic orchestration
 - 54.6% code training data, 97-98% prefix caching hit rate, 20+ MFU optimizations

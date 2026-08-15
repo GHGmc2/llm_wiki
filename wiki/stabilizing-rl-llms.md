@@ -3,7 +3,7 @@ title: "Stabilizing Reinforcement Learning with LLMs: Formulation and Practices"
 type: source-note
 tags: [reinforcement-learning, llm, policy-gradient, stability, importance-sampling, routing-replay, moe, qwen]
 created: 2026-05-04
-updated: 2026-07-09
+updated: 2026-08-06
 sources: [raw/stabilizing-rl-llms.pdf]
 status: stable
 ---

@@ -3,7 +3,7 @@ title: "The Ultra-Scale Playbook: Training LLMs on GPU Clusters"
 type: source-note
 tags: [llm-training, distributed-training, scaling, parallelism, gpu, hf, nanotron, educational]
 created: 2026-05-02
-updated: 2026-07-09
+updated: 2026-08-06
 sources: [raw/The_Ultra-Scale_Playbook.pdf]
 status: stable
 ---

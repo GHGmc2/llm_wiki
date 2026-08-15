@@ -1,6 +1,6 @@
 # Index
 
-*71 pages · Last updated: 2026-07-09*
+*79 pages · Last updated: 2026-08-15*
 
 ## Tech Reports
 
@@ -19,6 +19,18 @@
 - **DeepSeek-R1** (Jan 2025) — Pure RL (GRPO), emergent reasoning, distillation · [page](deepseek-r1.md)
 - **DeepSeek-V3.2** (Dec 2025) — DSA sparse attention, scalable RL, IMO/IOI gold · [page](deepseek-v3.2.md)
 - **DeepSeek-V4** (Apr 2026) — CSA+HCA hybrid attention, 1M context, OPD, Muon · [page](deepseek-v4.md)
+
+### GLM (Zhipu)
+
+- **GLM-4.5** (Aug 2025) — 355B MoE, expert model iteration, hybrid reasoning modes · [page](glm-4.5.md)
+- **GLM-5** (Feb 2026) — 744B MoE, DSA, async RL infra, agentic engineering · [page](glm-5.md)
+
+### Kimi (Moonshot)
+
+- **Kimi k1.5** (Jan 2025) — Long-context RL, partial rollouts, long2short · [page](kimi-k1.5.md)
+- **Kimi K2** (Jul 2025) — 1T MoE, MuonClip, agentic data synthesis, joint RL · [page](kimi-k2.md)
+- **Kimi K2.5** (Feb 2026) — Visual agentic: joint text-vision, Agent Swarm · [page](kimi-k2.5.md)
+- **Kimi K3** (Jul 2026) — 2.8T, KDA recurrent attention, 1M context, Stable LatentMoE · [page](kimi-k3.md)
 
 ### Microsoft
 
@@ -57,6 +69,8 @@
 - **Stabilizing RL with LLMs** (Qwen) — Token-level first-order approx, Routing Replay · [page](stabilizing-rl-llms.md)
 - **Bitter Lesson for RL** — Verification as the key to reasoning LLMs · [page](bitter-lesson-rl.md)
 - **KL Estimators in RL** (Wang) — Gradient-correct $k_1, k_2, k_3$: which estimator for which setting · [page](kl-estimators.md)
+- **Batch Size-Invariance** (OpenAI, 2021) — Proximal/behavior policy decoupling, EWMA, PPO-EWMA · [page](batch-size-invariance.md)
+- **Single-Rollout Async Optimization** (Tsinghua/Z.AI, 2026) — SAO: one rollout per prompt, skip-obs GAE, used in GLM-5.2 · [page](single-rollout-async-agentic-rl.md)
 
 ### Infrastructure
 

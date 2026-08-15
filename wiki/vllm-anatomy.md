@@ -3,7 +3,7 @@ title: "Inside vLLM: Anatomy of a High-Throughput LLM Inference System"
 type: source-note
 tags: [inference, vllm, paged-attention, continuous-batching, kv-cache, speculative-decoding, prefix-caching, guided-decoding, cuda-graphs, tp, pp, distributed]
 created: 2026-05-04
-updated: 2026-07-09
+updated: 2026-08-06
 sources: [https://www.aleksagordic.com/blog/vllm]
 status: stable
 ---

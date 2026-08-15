@@ -3,9 +3,9 @@ title: "DeepSeek-V3 Technical Report"
 type: source-note
 tags: [llm, deepseek, deepseek-v3, mla, moe, fp8, multi-token-prediction, dualpipe]
 created: 2026-05-02
-updated: 2026-07-09
+updated: 2026-08-15
 sources: [raw/DeepSeek-V3.pdf]
-status: stable
+status: needs-review
 ---
 
 # DeepSeek-V3
@@ -28,7 +28,7 @@ DeepSeek-V3 retains the architecture validated in DeepSeek-V2:
 
 ![DeepSeek-V3 basic architecture with MLA, DeepSeekMoE, MTP, and FP8](../raw/assets/v3_architecture.png)
 
-*Figure 1: Basic architecture — MLA, DeepSeekMoE with auxiliary-loss-free load balancing, Multi-Token Prediction, FP8 mixed precision. [src](raw/DeepSeek-V3.pdf)*
+*Figure 1: Basic architecture — MLA, DeepSeekMoE with auxiliary-loss-free load balancing, Multi-Token Prediction, FP8 mixed precision. [src](../raw/DeepSeek-V3.pdf)*
 
 | Component | Description |
 |-----------|-------------|
@@ -58,43 +58,6 @@ MTP modules predict the next 1-3 tokens at each position using a shared transfor
 - MTP loss weight = 0.3 (reduced to 0.1 near end of training)
 - Provides denser supervision signal → faster convergence, better downstream performance
 
-## FP8 Mixed Precision Training
-
-V3 is the **first open-source large model** to validate FP8 training at scale. Key design:
-
-- **Fine-grained quantization**: Tile-wise 1$\times$ 128 for activations, block-wise 128$\times$ 128 for weights
-- **High-precision accumulation**: FP32 for all reduce operations and master weights
-- **Selective precision**: Embeddings, output head, RMSNorm in BF16; bulk GEMMs in FP8
-- **Low-precision storage**: FP8 for optimizer states during communication (FP32 for local computation)
-- Accuracy loss vs BF16: <0.25% in controlled ablation studies
-
-See [FP8/FP4 Training](megatron-core-moe.md) and [V3 Insights](deepseek-v3-insights.md) for more detail.
-
-## Training Infrastructure
-
-### DualPipe: Zero-Bubble Pipeline Parallelism
-
-DualPipe enables bidirectional pipeline scheduling with zero bubbles:
-
-- Forward and backward passes for different micro-batches flow in opposite directions
-- Backward pass is split into B (compute gradients) and W (update weights) stages
-- W can be flexibly scheduled to fill any remaining bubbles
-- Achieves near-theoretical peak pipeline efficiency
-
-### Cross-Node All-to-All Communication
-
-For EP (Expert Parallelism), V3 uses:
-- **Node-limited routing**: Keep tokens within a node when possible to minimize cross-node traffic
-- **FP8 dispatch**: Tokens dispatched in FP8 (1 byte) instead of BF16 (2 bytes) — halves communication volume
-- **IBGDA** (InfiniBand GPUDirect Async): Overlap communication with computation
-- Custom kernels for efficient all-to-all on IB fabrics
-
-### Memory Optimization
-
-- **Recomputation**: Selective — recompute attention, keep FFN activations
-- **CPU offloading**: Adam optimizer states offloaded to CPU during FP8 training
-- **Shared embedding**: Input and output embeddings tied (except for MTP heads)
-- Training achieved on 2,048 H800 GPUs with these optimizations
 
 ## Training Details
 
@@ -109,26 +72,6 @@ For EP (Expert Parallelism), V3 uses:
 | Training stability | Zero irrecoverable loss spikes, zero rollbacks |
 | Total cost | 2.788M H800 GPU hours (~$5.6M at $2/GPU-hr) |
 
-## Post-Training
-
-Two-stage pipeline identical to V3's predecessors:
-
-1. **SFT**: 1.5M instruction-following examples across math, code, writing, QA
-2. **RL**: GRPO with rule-based rewards (reasoning) + reward model (helpfulness)
-   - Also experiments with **distillation from R1** and **self-rewarding** (model evaluates its own outputs)
-
-## Results
-
-| Benchmark | V3 | GPT-4o-0513 | Claude 3.5 Sonnet | Llama 3.1 405B |
-|-----------|-----|-------------|-------------------|----------------|
-| MMLU (EM) | 88.5 | 87.2 | 88.3 | 88.6 |
-| MMLU-Pro (EM) | 75.9 | 72.6 | 78.0 | 73.3 |
-| MATH-500 (EM) | 90.2 | 74.6 | 78.3 | 73.8 |
-| Codeforces (Percentile) | 51.6 | 23.6 | 20.3 | — |
-| SWE Verified (Resolved) | 42.0 | 38.8 | 50.8 | 24.8 |
-| GPQA Diamond | 59.1 | 49.9 | 65.0 | 51.1 |
-
-V3 is the **strongest open-source model** at release, competitive with GPT-4o, and remarkably cost-effective.
 
 ## Training Infrastructure
 
@@ -138,11 +81,11 @@ DeepSeek-V3 is trained on the **HAI-LLM** framework, a lightweight training syst
 
 ### DualPipe: Zero-Bubble Pipeline Parallelism
 
-DualPipe enables bidirectional pipeline scheduling with computation-communication overlap:
+DualPipe enables bidirectional pipeline scheduling with computation-communication overlap (bubble formula table below):
 
 ![DualPipe scheduling for 8 PP ranks and 20 micro-batches](../raw/assets/v3_dualpipe.png)
 
-*Figure 5: DualPipe scheduling — forward and backward passes in opposite directions, overlapping with EP all-to-all and PP communication. [src](raw/DeepSeek-V3.pdf)*
+*Figure 5: DualPipe scheduling — forward and backward passes in opposite directions, overlapping with EP all-to-all and PP communication. [src](../raw/DeepSeek-V3.pdf)*
 
 | Method | Bubble Formula | Activation Memory |
 |--------|---------------|-------------------|
@@ -153,6 +96,8 @@ DualPipe enables bidirectional pipeline scheduling with computation-communicatio
 Where F = forward chunk, B = full backward chunk, W = "backward for weights" chunk, F&B = two mutually overlapped forward+backward chunks.
 
 **Key advantage**: DualPipe significantly reduces pipeline bubbles compared to 1F1B and ZB1P while only increasing peak activation memory by 1/PP×. It requires pipeline stages and micro-batches to be divisible by 2 (not micro-batches divisible by stages like Chimera).
+
+> ⚠️ Contradiction: The report's Table 2 lists DualPipe peak activation memory as 2×PP+1 (vs 1×PP for 1F1B/ZB1P), but the prose says DualPipe only increases peak activation memory by 1/PP×. The table value is the internally consistent figure; treat the 1/PP× prose claim as suspect.
 
 **Why DualPipe matters**: DeepSeek-V3's computation-to-communication ratio is approximately 1:1 for cross-node EP. DualPipe overlaps forward/backward computation with EP all-to-all and PP communication, hiding nearly all communication overhead (both all-to-all and PP communication fully hidden in Figure 4).
 
@@ -182,7 +127,7 @@ These optimizations enable training without Tensor Parallelism (TP) — saving t
 
 ![FP8 mixed precision framework](../raw/assets/v3_fp8_framework.png)
 
-*Figure 6: Mixed precision framework — most compute-dense operations in FP8, sensitive components in BF16/FP32. [src](raw/DeepSeek-V3.pdf)*
+*Figure 6: Mixed precision framework — most compute-dense operations in FP8, sensitive components in BF16/FP32. [src](../raw/DeepSeek-V3.pdf)*
 
 | Component | Precision | Reason |
 |-----------|----------|--------|
@@ -247,6 +192,19 @@ The RL phase uses GRPO with:
 - **Model-based RM**: For open-ended tasks (writing, QA) — trained on human preference data
 - **R1 distillation**: During RL, the model is trained on `<system prompt, problem, R1 response>` tuples with a system prompt that guides toward reflection and verification patterns. After hundreds of RL steps, the model spontaneously incorporates R1 patterns even without explicit prompts
 - **Rejection sampling**: Expert models generate candidates → filter by quality → SFT on the best
+
+## Results
+
+| Benchmark | V3 | GPT-4o-0513 | Claude 3.5 Sonnet | Llama 3.1 405B |
+|-----------|-----|-------------|-------------------|----------------|
+| MMLU (EM) | 88.5 | 87.2 | 88.3 | 88.6 |
+| MMLU-Pro (EM) | 75.9 | 72.6 | 78.0 | 73.3 |
+| MATH-500 (EM) | 90.2 | 74.6 | 78.3 | 73.8 |
+| Codeforces (Percentile) | 51.6 | 23.6 | 20.3 | — |
+| SWE Verified (Resolved) | 42.0 | 38.8 | 50.8 | 24.8 |
+| GPQA Diamond | 59.1 | 49.9 | 65.0 | 51.1 |
+
+V3 is the **strongest open-source model** at release, competitive with GPT-4o, and remarkably cost-effective.
 
 ## Connections
 

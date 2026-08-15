@@ -3,7 +3,7 @@ title: "Comet: Fine-grained Computation-Communication Overlapping for MoE"
 type: source-note
 tags: [moe, communication, overlapping, fine-grained, comet, megatron, gpu]
 created: 2026-05-03
-updated: 2026-05-03
+updated: 2026-08-15
 sources: [raw/comet-moe-overlap.pdf]
 status: stable
 ---
@@ -34,7 +34,7 @@ Comet addresses this with **fine-grained overlap**: decomposing communication an
 
 ![Comet system overview — data dependency analysis + adaptive workload assignment](../raw/assets/comet_overview.png)
 
-*Figure: Comet overview — decomposes shared tensors for fine-grained overlap, then uses thread block specialization for adaptive workload balance. [src](raw/comet-moe-overlap.pdf)*
+*Figure: Comet overview — decomposes shared tensors for fine-grained overlap, then uses thread block specialization for adaptive workload balance. [src](../raw/comet-moe-overlap.pdf)*
 
 ### 1. Data Dependency Analysis
 
@@ -42,7 +42,7 @@ Comet analyzes **shared tensors** — buffers accessed by both communication and
 
 ![Shared tensor decomposition — eliminate granularity mismatch between comm and compute](../raw/assets/comet_shared_tensor.png)
 
-*Figure: By decomposing shared tensors along specific dimensions, Comet eliminates the granularity mismatch between communication and computation. [src](raw/comet-moe-overlap.pdf)*
+*Figure: By decomposing shared tensors along specific dimensions, Comet eliminates the granularity mismatch between communication and computation. [src](../raw/comet-moe-overlap.pdf)*
 
 - Decompose shared tensors along specific dimensions (e.g., token axis, hidden dimension)
 - Reorganize tensor data layout to eliminate granularity mismatches
@@ -52,7 +52,7 @@ This transforms "communicate all tokens → compute all experts" into "communica
 
 ![Coarse vs fine-grained overlap comparison](../raw/assets/comet_overlap.png)
 
-*Figure: Coarse-grained (left) vs fine-grained (right) overlap. Comet decomposes operations into smaller pieces that can be interleaved more tightly. [src](raw/comet-moe-overlap.pdf)*
+*Figure: Coarse-grained (left) vs fine-grained (right) overlap. Comet decomposes operations into smaller pieces that can be interleaved more tightly. [src](../raw/comet-moe-overlap.pdf)*
 
 ### 2. Adaptive Workload Assignment
 
@@ -60,7 +60,7 @@ Communication and computation are fused into a **single GPU kernel**:
 
 ![Thread block specialization — dedicated CTA groups for communication vs computation](../raw/assets/comet_cta_division.png)
 
-*Figure: Thread block (CTA) division — dedicated groups for communication and computation within a fused kernel, with adaptive workload balancing. [src](raw/comet-moe-overlap.pdf)*
+*Figure: Thread block (CTA) division — dedicated groups for communication and computation within a fused kernel, with adaptive workload balancing. [src](../raw/comet-moe-overlap.pdf)*
 
 - **Thread block specialization**: Dedicate some thread blocks to communication (NCCL collectives, RDMA) and others to computation (GEMM, routing)
 - **Dynamic allocation**: Adjust the number of thread blocks assigned to each workload based on real-time load

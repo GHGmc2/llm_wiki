@@ -2,8 +2,8 @@
 title: "TITO: Token-In, Token-Out for Agentic RL"
 type: source-note
 tags: [reinforcement-learning, agentic-rl, tito, multi-turn, tokenization, chat-template, grpo, ppo, tool-use, huggingface]
-created: 2026-07-09
-updated: 2026-07-09
+created: 2026-08-06
+updated: 2026-08-06
 sources: [https://huggingface.co/blog/huggingface/tito]
 status: stable
 ---
@@ -143,6 +143,6 @@ Under renderers: the bridge anchors on the close token to extend byte-for-byte. 
 
 The fundamental problem: round-tripping through decode-then-encode can land on different tokens:
 
-![Non-injective tokenization round-trip](raw/assets/tito-round-trip.png)
+![Non-injective tokenization round-trip](../raw/assets/tito-round-trip.png)
 
-![Qwen3 prefix break](raw/assets/tito-qwen3-prefix-break.png)
+![Qwen3 prefix break](../raw/assets/tito-qwen3-prefix-break.png)

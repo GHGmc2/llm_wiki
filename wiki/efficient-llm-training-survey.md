@@ -3,7 +3,7 @@ title: "Efficient Training of Large Language Models on Distributed Infrastructur
 type: source-note
 tags: [llm-training, survey, distributed-systems, parallelism, infrastructure, fault-tolerance]
 created: 2026-05-03
-updated: 2026-05-03
+updated: 2026-08-15
 sources: [raw/efficient-llm-training-survey.pdf]
 status: stable
 ---
@@ -52,7 +52,7 @@ The "SER" framework:
 
 ![Five chip-to-chip topologies: from NVLink mesh to TPU torus](../raw/assets/survey_chip_topologies.png)
 
-*Figure: Chip-to-chip topologies — cube-mesh, switch-based fully-connected, P2P fully-connected, and 2D-torus. [src](raw/efficient-llm-training-survey.pdf)*
+*Figure: Chip-to-chip topologies — cube-mesh, switch-based fully-connected, P2P fully-connected, and 2D-torus. [src](../raw/efficient-llm-training-survey.pdf)*
 
 | Topology | Examples | Bandwidth | Notes |
 |----------|---------|-----------|-------|
@@ -97,7 +97,7 @@ LLM training traffic is characterized by **few elephant flows** with periodic bu
 
 ![3D parallelism: data, tensor, and pipeline parallelism strategies](../raw/assets/survey_3d_parallelism.png)
 
-*Figure: Progression from data parallelism through tensor and pipeline to full 3D hybrid parallelism. [src](raw/efficient-llm-training-survey.pdf)*
+*Figure: Progression from data parallelism through tensor and pipeline to full 3D hybrid parallelism. [src](../raw/efficient-llm-training-survey.pdf)*
 
 ### Data Parallelism
 - **Sharding factor F**: Controls how many devices share parameters. F=1 (no sharding, full replication), F=W (ZeRO-3/FSDP, full sharding)

@@ -3,7 +3,7 @@ title: "GRPO: Group Relative Policy Optimization"
 type: source-note
 tags: [reinforcement-learning, grpo, ppo, deepseek, policy-gradient, llm]
 created: 2026-05-04
-updated: 2026-07-09
+updated: 2026-08-15
 sources: [raw/deepseek-math-grpo.pdf]
 status: stable
 ---
@@ -68,7 +68,7 @@ $$
 
 ![GRPO vs PPO: GRPO foregoes the value model, estimating baseline from group scores](../raw/assets/grpo_vs_ppo.png)
 
-*Figure 4 from the paper: PPO (left) requires a value model trained alongside the policy. GRPO (right) eliminates the value model entirely by using group-based advantage estimation. [src](raw/deepseek-math-grpo.pdf)*
+*Figure 4 from the paper: PPO (left) requires a value model trained alongside the policy. GRPO (right) eliminates the value model entirely by using group-based advantage estimation. [src](../raw/deepseek-math-grpo.pdf)*
 
 ### Why Group-Based Baseline Works
 
@@ -96,6 +96,8 @@ Key properties:
 - [ScaleRL](scalerl.md) — Systematic study of GRPO variants and scaling
 - [Stabilizing RL with LLMs](stabilizing-rl-llms.md) — Token-level RL as first-order approximation (applies to GRPO)
 - [DeepSeek-V3](deepseek-v3.md) — Used GRPO for post-training
+- DAPO — Decoupled clip + dynamic sampling variant of GRPO
 - [TITO: Agentic RL](tito-agentic-rl.md) — Multi-turn rollouts require TITO to ensure GRPO/PPO importance ratio targets tokens the policy actually produced
+- [Single-Rollout Async Optimization](single-rollout-async-agentic-rl.md) — SAO replaces GRPO's group-wise sampling in async agentic training
 - [KL Estimators](kl-estimators.md) — DeepSeek-V3.2 uses $\frac{q_\theta}{\mu} k_3$ for unbiased KL estimation in GRPO
 - [RL Foundations](rl-foundations.md) — Policy gradient + group baseline: GRPO replaces value function with group-based advantage

@@ -3,7 +3,7 @@ title: "TRPO: Trust Region Policy Optimization"
 type: source-note
 tags: [reinforcement-learning, trpo, policy-gradient, trust-region, ppo, foundation]
 created: 2026-05-04
-updated: 2026-07-09
+updated: 2026-08-06
 sources: [raw/trpo.pdf]
 status: stable
 ---

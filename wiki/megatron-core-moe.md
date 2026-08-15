@@ -3,7 +3,7 @@ title: "Megatron-Core MoE: Scalable Training of Mixture-of-Experts Models"
 type: source-note
 tags: [llm-training, mixture-of-experts, distributed-systems, nvidia, parallelism, megatron, memory, communication, compute, fp8]
 created: 2026-05-02
-updated: 2026-07-09
+updated: 2026-08-15
 sources: [raw/scalable-training-moe-megatron-core.pdf, raw/moe-parallel-folding.pdf]
 status: stable
 ---
@@ -19,7 +19,7 @@ status: stable
 - MoE sparsity (only _K_ of _E_ experts activate per token) creates a **parameter-compute mismatch** that breaks traditional parallelism assumptions
 - This mismatch manifests as three coupled constraints: the **Memory Wall**, **Communication Wall**, and **Compute Efficiency Wall**
 - **Parallel Folding** decouples attention (dense) and MoE (sparse) layer parallelism, allowing each to use its optimal topology
-- Achieves 1,233 TFLOPS/GPU for DeepSeek-V3-685B on GB300, 368 TFLOPS/GPU on H100 at 1,024 GPU scale
+- Achieves 1,233 TFLOPS/GPU for DeepSeek-V3.2 (685B) on GB300, 368 TFLOPS/GPU on H100 at 1,024 GPU scale
 - Full open-source stack: Megatron-Core + Transformer Engine, used from billions to trillions of parameters
 
 ## Summary
@@ -30,11 +30,11 @@ This report presents Megatron-Core MoE, NVIDIA's open-source stack for training 
 
 The paper organizes its optimization strategies around three "walls" that emerge from MoE's sparsity:
 
-1. **[Memory Wall](#memory-wall)**: Parameters, optimizer states, gradients, and activations must fit within GPU memory. DeepSeek-V3's full footprint is 199.5 GB/GPU — reduced to under 80 GB through fine-grained recomputation, activation offloading, FP8/FP4 precision, and FSDP.
+1. **[Memory Wall](#moe-memory-wall)**: Parameters, optimizer states, gradients, and activations must fit within GPU memory. DeepSeek-V3's full footprint is 199.5 GB/GPU — reduced to under 80 GB through fine-grained recomputation, activation offloading, FP8/FP4 precision, and FSDP.
 
-2. **[Communication Wall](#communication-wall)**: Expert Parallelism (EP) introduces all-to-all communication that can consume 30-50% of step time. Solved via optimized dispatchers (DeepEP for NVL8, HybridEP for NVL72) and communication-computation overlap.
+2. **[Communication Wall](#moe-communication-wall)**: Expert Parallelism (EP) introduces all-to-all communication that can consume 30-50% of step time. Solved via optimized dispatchers (DeepEP for NVL8, HybridEP for NVL72) and communication-computation overlap.
 
-3. **[Compute Efficiency Wall](#compute-efficiency-wall)**: Small per-expert GEMMs underutilize Tensor Cores; dynamic token counts create host-device synchronization overhead. Solved via Grouped GEMM, kernel fusions, CUDA Graphs, and Sync-Free MoE with ECHO (Elastic Cloning for Hot Experts).
+3. **[Compute Efficiency Wall](#moe-compute-efficiency-wall)**: Small per-expert GEMMs underutilize Tensor Cores; dynamic token counts create host-device synchronization overhead. Solved via Grouped GEMM, kernel fusions, CUDA Graphs, and Sync-Free MoE with ECHO (Elastic Cloning for Hot Experts).
 
 ### Parallel Folding (Section 3)
 
@@ -48,9 +48,9 @@ Full FP8 and NVFP4 support across multiple recipes: per-tensor FP8, blockwise FP
 
 | Model | Hardware | GPUs | SeqLen | TFLOPS/GPU | Tokens/s/GPU |
 |-------|----------|------|--------|------------|-------------|
-| DeepSeek-V3-685B | GB300 | 256 | 4,096 | 1,233 | 4,730 |
-| DeepSeek-V3-685B | GB200 | 256 | 4,096 | 1,048 | 4,020 |
-| DeepSeek-V3-685B | H100 | 1,024 | 4,096 | 368 | 1,412 |
+| DeepSeek-V3.2 (685B) | GB300 | 256 | 4,096 | 1,233 | 4,730 |
+| DeepSeek-V3.2 (685B) | GB200 | 256 | 4,096 | 1,048 | 4,020 |
+| DeepSeek-V3.2 (685B) | H100 | 1,024 | 4,096 | 368 | 1,412 |
 | Qwen3-235B | GB300 | 256 | 4,096 | 974 | 6,583 |
 | Qwen3-235B (long ctx) | GB300 | 128 | 131,072 | 1,150 | 1,556 |
 
@@ -69,24 +69,9 @@ A systematic three-phase optimization workflow:
 
 Same model can require completely different strategies on different hardware (see DeepSeek-V3 case study on GB200 vs H100).
 
-## Connections
+## MoE Parallel Folding
 
-- [Parallel Folding](#parallel-folding) — decoupling attention and MoE parallelism
-- [Memory Wall](#memory-wall) — detailed breakdown of memory optimization techniques
-- [Communication Wall](#communication-wall) — EP dispatchers and communication overlap
-- [Compute Efficiency Wall](#compute-efficiency-wall) — Grouped GEMM, CUDA Graphs, kernel fusions
-- [FP8/FP4 Training](#fp8fp4-reduced-precision-training) — reduced-precision recipes for MoE
-- [Performance Best Practices](#performance-best-practices) — three-phase optimization workflow
-- [DeepSeek-V3](deepseek-v3.md) — trains on Megatron-Core infrastructure
-- [DeepSeek-V4](deepseek-v4.md) — successor architecture
-- [TSP: Folding TP + Sequence Parallelism](tsp-folding-parallelism.md) — different "folding": TSP coalesces TP+SP on single axis, Megatron decouples parallelism per-layer
-- [NCCL Demystifying](nccl-demystifying.md) — communication protocols used by dispatchers
-- [GPU Hardware Architecture](aspe-gpu-hardware-architecture.md) — NVL72, NVLink 5
-- [Comet: MoE Overlap](comet-moe-overlap.md) — finer-grained EP overlap approach
-
-# MoE Parallel Folding
-
-**Source**: Megatron-Core MoE Technical Report, Section 3 [src](raw/scalable-training-moe-megatron-core.pdf)
+**Source**: Megatron-Core MoE Technical Report, Section 3 [src](../raw/scalable-training-moe-megatron-core.pdf)
 
 ## The Problem: Dense-Sparse Mismatch
 
@@ -94,12 +79,12 @@ Same model can require completely different strategies on different hardware (se
 
 Dense models follow a virtuous cycle: more parameters → more GPUs needed for memory → but also more computation per token → communication takes a smaller share → MFU stays stable.
 
-MoE breaks this cycle [src](raw/scalable-training-moe-megatron-core.pdf):
+MoE breaks this cycle [src](../raw/scalable-training-moe-megatron-core.pdf):
 
 | Model | Total Params | Active Params | Ratio |
 |-------|-------------|---------------|-------|
 | Llama-70B (Dense) | 70B | 70B | 1:1 |
-| DeepSeek-V3 (MoE) | 685B | 37B | 18:1 |
+| DeepSeek-V3.2 (MoE) | 685B | 37B | 18:1 |
 
 DeepSeek-V3 has 18× more parameters than its active computation suggests. This creates a compounding effect:
 1. **Memory grows fast** → forces distribution across many GPUs
@@ -133,7 +118,7 @@ This creates three critical challenges:
 
 ## The Solution: Parallel Folding
 
-Parallel Folding **decouples** parallelism mappings for attention and MoE layers [src](raw/scalable-training-moe-megatron-core.pdf):
+Parallel Folding **decouples** parallelism mappings for attention and MoE layers [src](../raw/scalable-training-moe-megatron-core.pdf):
 
 ```
 Attention layers: groups over TP × CP × DP × PP
@@ -153,7 +138,7 @@ Traditional:  World = TP × CP × (DP) × PP
 Parallel Folding: World = TP × CP × DP × PP
                    EP can span TP × CP × DP
 
-*Figure: Parallel Folding decouples attention (TP/CP/DP/PP) and MoE (ETP/EP/EDP/PP) configurations. The mapping switch enables each layer type to use its optimal topology independently. [src](raw/moe-parallel-folding.pdf)*
+*Figure: Parallel Folding decouples attention (TP/CP/DP/PP) and MoE (ETP/EP/EDP/PP) configurations. The mapping switch enables each layer type to use its optimal topology independently. [src](../raw/moe-parallel-folding.pdf)*
 ```
 
 ![Parallel Folding — decoupled attention and MoE parallelism mappings](../raw/assets/parallel_folding_mapping.png)
@@ -199,13 +184,13 @@ Parallel Folding integrates with Distributed Optimizer and FSDP to further reduc
 - **Distributed Optimizer + EP**: Only weights and gradients for local experts reside on each rank; optimizer states are sharded among replicas of the same expert (via EDP)
 - **FSDP + EP**: Dual DeviceMesh architecture fully shards parameters, gradients, and optimizer states across data/expert groups, compatible with TP/EP/CP and mixed precision
 
-# MoE Memory Wall
+## MoE Memory Wall
 
-**Source**: Megatron-Core MoE Technical Report, Section 4.1 [src](raw/scalable-training-moe-megatron-core.pdf)
+**Source**: Megatron-Core MoE Technical Report, Section 4.1 [src](../raw/scalable-training-moe-megatron-core.pdf)
 
 ## Memory Anatomy
 
-Training a large MoE model requires storing four categories of data per GPU [src](raw/scalable-training-moe-megatron-core.pdf):
+Training a large MoE model requires storing four categories of data per GPU [src](../raw/scalable-training-moe-megatron-core.pdf):
 
 | Component | DeepSeek-V3 (GB/GPU) | Share |
 |-----------|---------------------|-------|
@@ -242,7 +227,7 @@ The fused version directly computes on permuted indices without materializing fu
 
 **Trade-off**: Quantization introduces numerical noise. The paper addresses this with selective precision — numerically sensitive components (router, embeddings, optimizer states) stay in BF16 while bulk activations use reduced precision.
 
-See also: [Megatron-Core MoE](#) Section 5 for FP8/FP4 training recipes.
+See also: [Megatron-Core MoE](#megatron-core-moe-scalable-training-of-mixture-of-experts-models) Section 5 for FP8/FP4 training recipes.
 
 ## 3. Selective Recomputation (Activation Checkpointing)
 
@@ -264,7 +249,7 @@ For DeepSeek-V3 on H100, the optimal recompute set is: `mlp`, `mla_up_proj`, `la
 
 **Problem**: Even with selective recomputation, activation memory may still exceed GPU capacity. Traditional offloading moves entire activation tensors to CPU, but the transfer latency is high.
 
-**Solution**: Fine-grained, overlapped offloading with prefetch [src](raw/scalable-training-moe-megatron-core.pdf):
+**Solution**: Fine-grained, overlapped offloading with prefetch [src](../raw/scalable-training-moe-megatron-core.pdf):
 
 1. **Forward pass**: As each layer completes, its activations are asynchronously copied to CPU using dedicated CUDA streams. The GPU continues computing the next layer without waiting.
 2. **Backward pass**: Activations are prefetched from CPU to GPU before the corresponding backward layer begins, overlapping the transfer with computation of other layers.
@@ -276,7 +261,7 @@ For DeepSeek-V3 on H100, the optimal recompute set is: `mlp`, `mla_up_proj`, `la
 
 ## 5. Precision-Aware Optimizer
 
-**Problem**: Standard Adam optimizer stores FP32 master weights + FP32 momentum + FP32 variance = 12 bytes per parameter. For a 685B model, this is ~8.2 TB.
+**Problem**: Standard Adam optimizer stores FP32 master weights + FP32 momentum + FP32 variance = 12 bytes per parameter. For a 685B model (V3.2-class), this is ~8.2 TB.
 
 **Solution**: Store optimizer moments (momentum, variance) in BF16 instead of FP32, while keeping master weights in FP32 for numerical stability. This cuts optimizer state from 12 bytes/param to 8 bytes/param (33% reduction).
 
@@ -298,7 +283,7 @@ Integrates with ZeRO-style sharding: optimizer states are already sharded across
 
 **Problem**: Standard FSDP (Fully Sharded Data Parallelism) shards parameters across the DP group. But MoE has two distinct parameter types (dense and expert) with different communication patterns.
 
-**Solution**: A dual DeviceMesh architecture [src](raw/scalable-training-moe-megatron-core.pdf):
+**Solution**: A dual DeviceMesh architecture [src](../raw/scalable-training-moe-megatron-core.pdf):
 
 - **Dense parameters**: Sharded across the DP group (standard FSDP)
 - **Expert parameters**: Sharded across the EP + EDP group (Expert FSDP)
@@ -334,15 +319,15 @@ The exact stack depends on hardware. On GB200 (192 GB), fewer techniques are nee
 
 ![Selective recomputation — memory vs compute trade-off](../raw/assets/megatron_recomputation.png)
 
-*Figure: Selective recomputation strategies trading compute for memory. Full recomputation saves maximum memory at 30-40% compute cost; selective hits the sweet spot. [src](raw/scalable-training-moe-megatron-core.pdf)* — typically just FP8 + selective recomputation (mlp only) + memory-efficient permutation.
+*Figure: Selective recomputation strategies trading compute for memory. Full recomputation saves maximum memory at 30-40% compute cost; selective hits the sweet spot. [src](../raw/scalable-training-moe-megatron-core.pdf)* — typically just FP8 + selective recomputation (mlp only) + memory-efficient permutation.
 
-# MoE Communication Wall
+## MoE Communication Wall
 
-**Source**: Megatron-Core MoE Technical Report, Section 4.2 [src](raw/scalable-training-moe-megatron-core.pdf)
+**Source**: Megatron-Core MoE Technical Report, Section 4.2 [src](../raw/scalable-training-moe-megatron-core.pdf)
 
 ![EP communication overlap — forward and backward dispatch/combine overlapped with compute](../raw/assets/megatron_ep_overlap.png)
 
-*Figure: EP communication overlap using 1F1B pipelining — Layer N+1 dispatch overlaps with Layer N expert compute. [src](raw/scalable-training-moe-megatron-core.pdf)*
+*Figure: EP communication overlap using 1F1B pipelining — Layer N+1 dispatch overlaps with Layer N expert compute. [src](../raw/scalable-training-moe-megatron-core.pdf)*
 
 ## Communication Anatomy
 
@@ -366,7 +351,7 @@ GPU 1: E2[T3], E3[T1]
 | Combine (backward) | Same as dispatch |
 | **Total** | **4 × (tokens/GPU × hidden_dim × top_K × dtype_bytes)** |
 
-For DeepSeek-V3 (hidden_dim=7168, top_K=8, BF16): ~18 MB per GPU per MoE layer per iteration. With 256 GPUs and 61 MoE layers, this adds up to tens of GB per iteration.
+For DeepSeek-V3 (hidden_dim=7168, top_K=8, BF16): ~18 MB per GPU per MoE layer per iteration. With 256 GPUs and 61 layers (58 MoE + 3 dense), this adds up to tens of GB per iteration.
 
 ## 1. DeepEP Dispatcher
 
@@ -394,7 +379,7 @@ For DeepSeek-V3 (hidden_dim=7168, top_K=8, BF16): ~18 MB per GPU per MoE layer p
 
 **Problem**: Even with optimized dispatchers, all-to-all latency can still be significant, especially across nodes.
 
-**Solution**: Overlap EP communication with expert computation using a 1F1B (one-forward-one-backward) pipelining scheme [src](raw/scalable-training-moe-megatron-core.pdf):
+**Solution**: Overlap EP communication with expert computation using a 1F1B (one-forward-one-backward) pipelining scheme [src](../raw/scalable-training-moe-megatron-core.pdf):
 
 **Forward pass overlap**:
 ```
@@ -426,11 +411,11 @@ The communication wall's severity depends entirely on hardware topology:
 | GB200 (NVL72) | 72 GPUs | 1 node | HybridEP alone |
 | GB300 (NVL72) | 72 GPUs | 1 node | HybridEP alone |
 
-> ⚠️ **Key insight**: The same model (DeepSeek-V3, EP=64) has a communication wall on H100 but not on GB200. Hardware topology dictates the optimization strategy. See [Megatron-Core MoE](#) Section 9.2 for the DeepSeek-V3 case study on both platforms.
+> ⚠️ **Key insight**: The same model (DeepSeek-V3, EP=64) has a communication wall on H100 but not on GB200. Hardware topology dictates the optimization strategy. See [Megatron-Core MoE](#megatron-core-moe-scalable-training-of-mixture-of-experts-models) Section 9.2 for the DeepSeek-V3 case study on both platforms.
 
-# MoE Compute Efficiency Wall
+## MoE Compute Efficiency Wall
 
-**Source**: Megatron-Core MoE Technical Report, Section 4.3 [src](raw/scalable-training-moe-megatron-core.pdf)
+**Source**: Megatron-Core MoE Technical Report, Section 4.3 [src](../raw/scalable-training-moe-megatron-core.pdf)
 
 ## Compute Anatomy: Two Sources of Inefficiency
 
@@ -487,11 +472,11 @@ These fusions reduce kernel launch count per MoE layer from ~15-20 to ~5-8.
 
 ![Partial CUDA Graphs for MoE — Nsight Systems timeline showing eliminated CPU gaps](../raw/assets/megatron_cuda_graphs.png)
 
-*Figure: Partial CUDA Graphs capture attention, router, and MoE preprocessing into static graphs. GPU idle gaps eliminated. [src](raw/scalable-training-moe-megatron-core.pdf)*
+*Figure: Partial CUDA Graphs capture attention, router, and MoE preprocessing into static graphs. GPU idle gaps eliminated. [src](../raw/scalable-training-moe-megatron-core.pdf)*
 
 **Problem**: Even with fusions, the CPU must still launch each kernel and manage dependencies. For MoE with hundreds of experts, this CPU overhead can dominate step time.
 
-**Solution**: CUDA Graphs capture the entire execution graph (kernels + dependencies) and replay it with a single CPU launch [src](raw/scalable-training-moe-megatron-core.pdf):
+**Solution**: CUDA Graphs capture the entire execution graph (kernels + dependencies) and replay it with a single CPU launch [src](../raw/scalable-training-moe-megatron-core.pdf):
 
 ```
 Without CUDA Graphs:
@@ -522,7 +507,7 @@ For dropless MoE (where all tokens are always processed, no capacity limits), th
 
 **Problem**: In dropless MoE, some experts receive more tokens than others ("hot experts"). Worst-case buffer sizing for CUDA Graphs (required for static allocation) would reserve memory for the maximum possible tokens per expert, wasting large amounts of GPU memory.
 
-**Solution**: ECHO dynamically clones hot experts across EP ranks [src](raw/scalable-training-moe-megatron-core.pdf):
+**Solution**: ECHO dynamically clones hot experts across EP ranks [src](../raw/scalable-training-moe-megatron-core.pdf):
 
 1. After routing, identify experts with above-average token counts
 2. Clone (replicate) those experts' weights to idle capacity on other EP ranks
@@ -553,7 +538,7 @@ FP8 and FP4 training accelerate GEMMs through Tensor Cores with native low-preci
 - MXFP8 on Blackwell (GB200/GB300) with native Tensor Core acceleration
 - NVFP4 on Blackwell for maximum throughput
 
-See [Megatron-Core MoE](#) Section 5 for full low-precision recipes.
+See [Megatron-Core MoE](#megatron-core-moe-scalable-training-of-mixture-of-experts-models) Section 5 for full low-precision recipes.
 
 ## The Bottleneck Shift
 
@@ -568,13 +553,13 @@ Fix CPU overhead:  [Kernel Eff ████]               ← small GEMMs remai
 
 On H100, the chain typically stops at the communication wall. On GB200 (NVL72), the communication wall is resolved by hardware, exposing CPU overhead as the new bottleneck — hence the emphasis on CUDA Graphs and kernel fusions in the GB200 case study.
 
-# MoE FP8/FP4 Reduced-Precision Training
+## MoE FP8/FP4 Reduced-Precision Training
 
-**Source**: Megatron-Core MoE Technical Report, Section 5 [src](raw/scalable-training-moe-megatron-core.pdf)
+**Source**: Megatron-Core MoE Technical Report, Section 5 [src](../raw/scalable-training-moe-megatron-core.pdf)
 
 ## Why It Matters for MoE
 
-Reduced-precision training is uniquely valuable for MoE because it attacks all three walls simultaneously [src](raw/scalable-training-moe-megatron-core.pdf):
+Reduced-precision training is uniquely valuable for MoE because it attacks all three walls simultaneously [src](../raw/scalable-training-moe-megatron-core.pdf):
 
 | Wall | FP8 Benefit | FP4 Benefit |
 |------|------------|------------|
@@ -648,13 +633,13 @@ NVIDIA's 4-bit floating point format with native Tensor Core acceleration. Each 
 
 **Solution**: Store weights directly in FP8 or FP4 as the primary format. The optimizer maintains FP32 master weights only for the update step; forward and backward use the FP8/FP4 copy directly.
 
-| Storage Scheme | Bytes per Param | Memory (685B model) |
+| Storage Scheme | Bytes per Param | Memory (685B / V3.2-class) |
 |---------------|----------------|---------------------|
 | FP32 master + BF16 copy | 6 | 4.1 TB |
 | FP32 master + FP8 primary | 5 | 3.4 TB |
 | FP32 master + FP4 primary | 4.5 | 3.1 TB |
 
-Combined with optimizer state optimizations (see [Memory Wall](#memory-wall)), this provides substantial memory savings.
+Combined with optimizer state optimizations (see [Memory Wall](#moe-memory-wall)), this provides substantial memory savings.
 
 ## MoE-Specific Challenges
 
@@ -703,7 +688,7 @@ Not all operations benefit equally from reduced precision. Megatron-Core uses se
 | Embeddings | BF16 | Sparse updates, wide dynamic range |
 | LayerNorm/RMSNorm | BF16 | Small tensors, precision-critical |
 | Loss computation | FP32 | Accumulation precision matters |
-| Optimizer states | BF16/FP32 | See [Memory Wall](#memory-wall) |
+| Optimizer states | BF16/FP32 | See [Memory Wall](#moe-memory-wall) |
 
 This selective approach preserves accuracy while maximizing the throughput and memory benefits of reduced precision where they matter most.
 
@@ -716,9 +701,9 @@ The paper reports successful FP8 training at scale (DeepSeek-V3 at 1,024 GPUs, Q
 - Embedding gradient accumulation in FP32
 - Periodic (every N steps) BF16 validation to detect drift
 
-# MoE Performance Best Practices
+## MoE Performance Best Practices
 
-**Source**: Megatron-Core MoE Technical Report, Section 9 [src](raw/scalable-training-moe-megatron-core.pdf)
+**Source**: Megatron-Core MoE Technical Report, Section 9 [src](../raw/scalable-training-moe-megatron-core.pdf)
 
 ## The Three-Phase Workflow
 
@@ -755,7 +740,7 @@ Five guidelines for minimizing communication overhead:
 - NVLink bandwidth (900 GB/s H100, 1.8 TB/s GB200) far exceeds cross-node
 - When scaling beyond NVLink, prefer PP over expanding TP/EP across nodes
 
-> For very large models, EP volume may exceed NVLink capacity even within a node. Enable overlap (see [Communication Wall](#communication-wall)).
+> For very large models, EP volume may exceed NVLink capacity even within a node. Enable overlap (see [Communication Wall](#moe-communication-wall)).
 
 **Guideline 3: Use PP for Multi-Node Scaling**
 - Distribute layers across nodes while keeping EPxTP within NVLink
@@ -788,7 +773,7 @@ Profile to identify the dominant wall:
 
 ## Case Study: DeepSeek-V3 on GB200 vs H100
 
-DeepSeek-V3 (685B, 256 experts, top-8, MTP + MLA) shows how the same model demands completely different strategies on different hardware.
+DeepSeek-V3.2 (685B, 256 experts, top-8, MTP + MLA) shows how the same model demands completely different strategies on different hardware.
 
 ### Final Configurations
 
@@ -836,5 +821,11 @@ On H100, FP8 savings are critical — they free budget for EP communication over
 
 ## Connections
 
+- [DeepSeek-V3](deepseek-v3.md) — trains on Megatron-Core infrastructure
+- [DeepSeek-V4](deepseek-v4.md) — successor architecture
+- [TSP: Folding TP + Sequence Parallelism](tsp-folding-parallelism.md) — different "folding": TSP coalesces TP+SP on single axis, Megatron decouples parallelism per-layer
+- [NCCL Demystifying](nccl-demystifying.md) — communication protocols used by dispatchers
+- [GPU Hardware Architecture](aspe-gpu-hardware-architecture.md) — NVL72, NVLink 5
+- [Comet: MoE Overlap](comet-moe-overlap.md) — finer-grained EP overlap approach
 - [Efficient LLM Training Survey](efficient-llm-training-survey.md) — Megatron-Core is the backend for 5 of 16 surveyed libraries; this page covers the three walls in production
 - [veScale-FSDP](vescale-fsdp.md) — Complementary training stack: Megatron covers MoE/EP, veScale covers FSDP

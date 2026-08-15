@@ -3,7 +3,7 @@ title: "DeepSeek-V3.2: Pushing the Frontier of Open Large Language Models"
 type: source-note
 tags: [llm, deepseek, deepseek-v3.2, sparse-attention, dsa, rl, agent, imo]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-08-15
 sources: [raw/DeepSeek-V3.2.pdf]
 status: stable
 ---
@@ -34,7 +34,7 @@ The only architectural change from V3.1-Terminus. DSA selects a sparse subset of
 
 ![DSA instantiated under MLA — Lightning Indexer + Fine-Grained Token Selection](../raw/assets/dsa_architecture.png)
 
-*Figure 2: DSA architecture under MLA. The green part shows how the Lightning Indexer selects top-k key-value entries for sparse attention. [src](raw/DeepSeek-V3.2.pdf)*
+*Figure 2: DSA architecture under MLA. The green part shows how the Lightning Indexer selects top-k key-value entries for sparse attention. [src](../raw/DeepSeek-V3.2.pdf)*
 
 ### Lightning Indexer
 
@@ -139,3 +139,5 @@ V4 took DSA's sparse attention concept and added **KV compression** before spars
 - [DeepSeek-R1](deepseek-r1.md) — R1's GRPO framework is the foundation for V3.2's scalable RL
 - [DeepSeek-V4 Post-Training](deepseek-v4.md) — V4's OPD is the next evolution of post-training
 - [LLM Architecture Comparison](llm-architecture-comparison.md) — how DSA fits in the broader attention variant landscape (MHA, GQA, MLA, SWA)
+- [GLM-5](glm-5.md) — adopts DSA from V3.2 for long-context fidelity at lower cost
+- [Kimi K3](kimi-k3.md) — KDA recurrent attention; alternative to DSA-style sparse attention for long context

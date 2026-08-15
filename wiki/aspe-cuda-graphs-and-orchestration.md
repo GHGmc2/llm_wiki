@@ -3,14 +3,14 @@ title: "CUDA Graphs, Streams, and GPU Orchestration"
 type: concept
 tags: [cuda, gpu, cuda-graphs, streams, atomics, dynamic-scheduling, nvshmem, nccl]
 created: 2026-05-02
-updated: 2026-07-09
+updated: 2026-08-15
 sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # CUDA Graphs, Streams, and GPU Orchestration
 
-**Source**: AI Systems Performance Engineering, Chapters 11-12 [src](raw/ai-systems-performance-engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapters 11-12 [src](../raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 

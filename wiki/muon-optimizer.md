@@ -3,7 +3,7 @@ title: "Muon is Scalable for LLM Training"
 type: source-note
 tags: [optimizer, muon, adamw, training, scaling-laws, moe, moonlight, deepseek, orthogonalization]
 created: 2026-05-04
-updated: 2026-07-09
+updated: 2026-08-06
 sources: [https://arxiv.org/abs/2502.16982, raw/muon-optimizer.pdf]
 status: stable
 ---
@@ -85,3 +85,4 @@ The open-source Muon implementation features:
 - [Ultra-Scale Playbook](usp-ultra-scale-playbook.md) — optimizer choice as a training efficiency lever
 - [Cross-Domain Scaling Laws](cross-domain-scaling-laws.md) — The scaling law methodology used to validate Muon's ~2× efficiency claim
 - [veScale-FSDP](vescale-fsdp.md) — Production FSDP implementation natively supporting Muon
+- [Kimi K2](kimi-k2.md) — MuonClip: Muon + QK-clip for stable 15.5T-token pre-training

@@ -1,6 +1,75 @@
 # Log
 
-## [2026-07-09] lint | De-orphaned 8 pages: added 42 cross-references across 28 pages
+## [2026-08-15] update | Removed 37 unused figures from raw/assets
+
+- Deleted by source: emm (5), glm-4.5 (2), glm-5 (1), kimi-k1.5 (8), kimi-k2 (11), SAO/sora (10)
+- 103/103 remaining assets are referenced by wiki pages; 0 broken image links
+
+## [2026-08-15] update | Removed 3 draft stubs at user request
+
+- Deleted: dapo.md, deepep.md, dualpipe.md
+- Unlinked references in deepseek-v3.md, grpo.md, nvshmem.md
+- Removed index entries; page count 82 → 79
+- 4 pages touched
+
+## [2026-08-15] lint | Links, heading structure, source citations, contradiction flag
+
+- Fixed 74 broken raw-source links across wiki pages: `](raw/` → `](../raw/` so pages resolve to the sibling `raw/` directory
+- Fixed 6 broken section anchors in megatron-core-moe.md (`#memory-wall` → `#moe-memory-wall`, etc.) and 3 empty `#` links
+- Fixed 3 malformed fragment links in deepseek-v4.md (`[text]#anchor` → `[text](#anchor)`)
+- Fixed malformed `part IR` tag → `part-ir` in partir.md
+- Normalized headings: demoted extra H1 section dividers to H2 in deepseek-v4.md and megatron-core-moe.md; promoted H3→H2 in gpu-communication-landscape.md; fixed H4→H3 under H2 in rl-foundations.md
+- Flagged source contradiction in deepseek-v3.md: DualPipe prose claims 1/PP× peak-activation increase vs Table 2's 2×PP+1; status → needs-review
+- Added local raw PDF citations for 9 pages that cited only arXiv (batch-size-invariance, every-microsecond-matters, glm-4.5, glm-5, kimi-k1.5, kimi-k2, kimi-k2.5, kimi-k3, single-rollout-async-agentic-rl)
+- Verified: 82/82 pages indexed, 0 orphans (excluding index), 0 broken local links after fixes
+- Open: 3 draft stubs (dapo.md, deepep.md, dualpipe.md); intentional duplicate per-part headings in pytorch-compilation.md, nvidia-gpu-architecture-microbenchmarks.md
+- 39 pages touched
+
+## [2026-08-06] lint | Fixed findings: contradictions, duplicates, dates, stubs
+- DeepSeek-V3 671B vs 685B: relabeled megatron-core-moe.md → "DeepSeek-V3.2 (685B)", noted V3.2-era in aspe-overview.md
+- HLE 37.7 duplicate: verified genuine in both raw reports (V3.2-Speciale + V4-Pro-Max) — added note, no fix needed
+- slime/SLIME attribution: added disambiguation note (Mozilla SLIME ≠ Zhipu slime) in async-rl-training-landscape.md + glm-4.5.md
+- GLM-5 token count: 27T corpus → 28.5T total incl. mid-training
+- Terminology: GLM-5 "IS clipping" → "DIS token masking" (matches SAO page); K3 Per-Head Muon ↔ GLM-5 Muon Split cross-linked, "without clipping" caveat added
+- Minor: kimi-k2 32.6B, mai-thinking-1 34.7B/962B, megatron 58 MoE layers + 3 dense
+- Removed duplicate sections: partir.md (merged duplicate block), toast.md (dup Results), deepseek-v3.md (merged summary+detailed), nccl-demystifying.md (dup Intra-Node + brief Protocol Selection), deepseek-v4.md (merged 2× Connections), megatron-core-moe.md (removed mid-file TOC Connections)
+- Created stubs: deepep.md, dualpipe.md, dapo.md (draft) + index entries + cross-links
+- Bumped all updated/created dates 2026-07-09 → 2026-08-06 (mtime match); index count 79 → 82
+- 12+ pages touched
+
+## [2026-08-06] update | Deepened 8 source-note pages with full paper details
+- glm-4.5.md: +RL recipes (single-stage 64K, difficulty curriculum, dynamic temperature, token-weighted loss), agentic SFT 4-step pipeline, slime infra, XML tool template
+- glm-5.md: +Muon Split vs MLA experiment table, MLA-256, DSA training budget (20B vs 943.7B), SWA pattern search, async stability techniques
+- batch-size-invariance.md: +decoupled objective math, 4-adjustment recipe, Procgen results, ablations
+- single-rollout-async-agentic-rl.md: +DIS math, token masking function, TTUR/frozen-attention value training, skip-obs GAE, hyperparams, ablations, online learning sim
+- kimi-k1.5.md: +OMD surrogate loss + gradient, length penalty formula, prompt curation, test-case generation, CoT RM (98.5%), long2short methods, SFT/pretraining details, partial rollout system
+- kimi-k2.md: +QK-Clip math + MuonClip algorithm, rephrasing data results, architecture vs V3, parallelism/activation details, checkpoint engine, agentic data synthesis pipeline, RLVR gym, self-critique rubric
+- kimi-k2.5.md: +zero-vision SFT, cross-modal transfer table, PARL reward + critical steps, MoonViT-3D, Toggle, DEP, RL objective with log-ratio clipping
+- kimi-k3.md: +KDA recurrence math + bounded decay, AttnRes, Stable LatentMoE (SiTU-GLU, QB with histograms), Per-Head Muon, MOPD reward, MXFP4 QAT, EAGLE-3 draft, white-box env, knowledge-graph synthesis, evaluation suite
+- 8 pages deepened (686 → 1191 lines), 10+ cross-references updated
+
+## [2026-08-06] ingest | Skipped: cameronrwolfe.substack.com/p/agentic-rl (unreachable from network — direct, r.jina.ai, archive.org, archive.ph, DDG all blocked; user chose to skip)
+
+## [2026-08-06] ingest | 8 sources batch: GLM-4.5, GLM-5, Batch size-invariance, SAO, Kimi k1.5/K2/K2.5/K3
+- Created: glm-4.5.md, glm-5.md, batch-size-invariance.md, single-rollout-async-agentic-rl.md, kimi-k1.5.md, kimi-k2.md, kimi-k2.5.md, kimi-k3.md
+- GLM-4.5 (arXiv:2508.06471): 355B MoE, expert model iteration + self-distillation, XML function-call template
+- GLM-5 (arXiv:2602.15763): 744B MoE, DSA, async RL (slime), Token-in-Token-out, on-policy cross-stage distillation
+- Batch size-invariance (arXiv:2110.00641): proximal vs behavior policy, EWMA, PPO-EWMA/PPG-EWMA
+- SAO (arXiv:2607.07508): single-rollout async optimization, skip-obs token GAE, deployed in GLM-5.2
+- Kimi k1.5 (arXiv:2501.12599): long-context RL (128K), partial rollouts, online mirror descent, long2short
+- Kimi K2 (arXiv:2507.20534): 1T MoE, MuonClip (QK-clip), agentic data synthesis, joint RL
+- Kimi K2.5 (arXiv:2602.02276): visual agentic, joint text-vision, zero-vision SFT, Agent Swarm
+- Kimi K3 (arXiv:2607.24653): 2.8T, KDA recurrent attention, Stable LatentMoE, 1M context agentic RL
+- 47 figures extracted to raw/assets
+- Updated: index.md (79 pages)
+- 8 pages created
+
+## [2026-08-06] ingest | Blog: Async RL Training Landscape (HF) — figure extraction
+- Updated: async-rl-training-landscape.md (already ingested 2026-05-04, missing figures)
+- Extracted 2 figures: synchronous TRL timeline, TRL+vLLM colocate mode
+- 1 page touched
+
+## [2026-08-06] lint | De-orphaned 8 pages: added 42 cross-references across 28 pages
 - cross-domain-scaling-laws ← llm-scaling-laws, scalerl, muon-optimizer, deepseek-v4
 - dont-teach-incentivize ← the-bitter-lesson, deepseek-r1, llm-scaling-laws, you-and-your-research, stabilizing-rl-llms
 - efficient-llm-training-survey ← usp-ultra-scale-playbook, usp-scaling-techniques-overview, megatron-core-moe, deepseek-v3, aspe-gpu-hardware-architecture, nccl-demystifying, gspmd, partir, toast, llm-scaling-laws
@@ -11,7 +80,7 @@
 - vescale-fsdp ← scaling-book, muon-optimizer, megatron-core-moe, usp-scaling-techniques-overview
 - 28 pages touched
 
-## [2026-07-09] ingest | Paper: Every Microsecond Matters (arXiv:2607.16100)
+## [2026-08-06] ingest | Paper: Every Microsecond Matters (arXiv:2607.16100)
 - Created: every-microsecond-matters.md
 - Source: arxiv.org/abs/2607.16100 (ETH Zürich + NVIDIA)
 - Barrier-free low-latency GPU collectives: LL, sentinel, double buffering, LL128 atomic AllReduce
@@ -19,7 +88,7 @@
 - Updated: nccl-demystifying.md, nccl-device-api-gin.md, nvshmem.md, vllm-anatomy.md, gpu-communication-landscape.md
 - 6 pages touched
 
-## [2026-07-09] ingest | Blog: Agentic RL — TITO: Token-In, Token-Out Done Right (HF)
+## [2026-08-06] ingest | Blog: Agentic RL — TITO: Token-In, Token-Out Done Right (HF)
 - Created: tito-agentic-rl.md
 - Source: huggingface.co/blog/huggingface/tito (downloaded via hf-mirror.com)
 - TITO invariant for multi-turn agentic RL: never re-encode decoded tokens to prevent silent gradient drift

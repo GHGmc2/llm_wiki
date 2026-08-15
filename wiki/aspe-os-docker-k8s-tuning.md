@@ -3,14 +3,14 @@ title: "OS, Docker, and Kubernetes Tuning for GPU Workloads"
 type: concept
 tags: [linux, docker, kubernetes, gpu, numa, hugepages, mig, cgroups, performance]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-08-15
 sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # OS, Docker, and Kubernetes Tuning for GPU Workloads
 
-**Source**: AI Systems Performance Engineering, Chapter 3 [src](raw/ai-systems-performance-engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapter 3 [src](../raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 

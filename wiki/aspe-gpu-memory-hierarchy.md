@@ -3,14 +3,14 @@ title: "GPU Memory Hierarchy and CUDA Programming Model"
 type: concept
 tags: [cuda, gpu, memory-hierarchy, shared-memory, registers, tiling, hbm, tensor-cores]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-08-15
 sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # GPU Memory Hierarchy and CUDA Programming
 
-**Source**: AI Systems Performance Engineering, Chapters 6-7 [src](raw/ai-systems-performance-engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapters 6-7 [src](../raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 

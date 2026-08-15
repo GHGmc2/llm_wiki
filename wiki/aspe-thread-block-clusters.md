@@ -3,14 +3,14 @@ title: "Thread Block Clusters, DSMEM, and Warp Specialization"
 type: concept
 tags: [cuda, gpu, thread-block-clusters, warp-specialization, dsmem, persistent-kernels, cutlass]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-08-15
 sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # Thread Block Clusters, DSMEM, and Warp Specialization
 
-**Source**: AI Systems Performance Engineering, Chapter 10 [src](raw/ai-systems-performance-engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapter 10 [src](../raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 

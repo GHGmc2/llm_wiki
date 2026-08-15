@@ -3,7 +3,7 @@ title: "You and Your Research"
 type: source-note
 tags: [research, philosophy, productivity, hamming, methodology]
 created: 2026-05-04
-updated: 2026-07-09
+updated: 2026-08-06
 sources: [raw/YouAndYourResearch.pdf]
 status: stable
 ---

@@ -3,14 +3,14 @@ title: "GPU Hardware Architecture: NVIDIA Roadmap and Rack-Scale Systems"
 type: concept
 tags: [gpu, hardware, nvidia, h100, b200, gb200, nvl72, nvlink, nvswitch, roadmap]
 created: 2026-05-02
-updated: 2026-07-09
+updated: 2026-08-15
 sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # GPU Hardware Architecture
 
-**Source**: AI Systems Performance Engineering, Chapter 2 [src](raw/ai-systems-performance-engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapter 2 [src](../raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 

@@ -3,7 +3,7 @@ title: "ScaleRL: The Art of Scaling Reinforcement Learning Compute for LLMs"
 type: source-note
 tags: [reinforcement-learning, scaling-laws, grpo, llm, rl, scalerl, cispo, pipeline-rl]
 created: 2026-05-02
-updated: 2026-07-09
+updated: 2026-08-06
 sources: [raw/art-of-scaling-rl-compute.pdf]
 status: stable
 ---

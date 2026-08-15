@@ -3,14 +3,14 @@ title: "Distributed Networking: NCCL Tuning, GPUDirect, and SHARP"
 type: concept
 tags: [networking, nccl, gpudirect, rdma, sharp, magnum-io, nixl, nvshmem]
 created: 2026-05-02
-updated: 2026-05-02
+updated: 2026-08-15
 sources: [raw/ai-systems-performance-engineering.pdf]
 status: stable
 ---
 
 # Distributed Networking: NCCL Tuning, GPUDirect, SHARP
 
-**Source**: AI Systems Performance Engineering, Chapter 4 [src](raw/ai-systems-performance-engineering.pdf)
+**Source**: AI Systems Performance Engineering, Chapter 4 [src](../raw/ai-systems-performance-engineering.pdf)
 
 ## Key Points
 

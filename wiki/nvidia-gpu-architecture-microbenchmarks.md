@@ -3,7 +3,7 @@ title: "NVIDIA GPU Architecture: Ampere, Hopper, and Blackwell Microbenchmark An
 type: source-note
 tags: [gpu, nvidia, ampere, hopper, blackwell, microbenchmarking, architecture, tensor-cores]
 created: 2026-05-03
-updated: 2026-05-03
+updated: 2026-08-15
 sources: [raw/demystifying-ampere-architecture.pdf, raw/dissecting-hopper-gpu-architecture.pdf, raw/dissecting-blackwell-architecture.pdf, raw/analyzing-modern-nvidia-gpu-cores.pdf]
 status: stable
 ---
@@ -47,7 +47,7 @@ Four papers tracing GPU architecture evolution through microbenchmarking and ins
 
 ![Hopper SM architecture — 4th-gen tensor cores, TMA, DSMEM](../raw/assets/hopper_architecture.png)
 
-*Figure: Hopper SM with 4th-gen tensor cores, Tensor Memory Accelerator (TMA), and distributed shared memory. [src](raw/dissecting-hopper-gpu-architecture.pdf)*
+*Figure: Hopper SM with 4th-gen tensor cores, Tensor Memory Accelerator (TMA), and distributed shared memory. [src](../raw/dissecting-hopper-gpu-architecture.pdf)*
 
 ### New Features Analyzed
 
@@ -90,15 +90,15 @@ Four papers tracing GPU architecture evolution through microbenchmarking and ins
 
 ![Blackwell vs Hopper throughput comparison](../raw/assets/blackwell_vs_hopper.png)
 
-*Figure: Blackwell (RTX 5080) vs Hopper (H100) — relative throughput across memory bandwidth, latency, and compute workloads. [src](raw/dissecting-blackwell-architecture.pdf)*
+*Figure: Blackwell (RTX 5080) vs Hopper (H100) — relative throughput across memory bandwidth, latency, and compute workloads. [src](../raw/dissecting-blackwell-architecture.pdf)*
 
 ![Memory latency across hierarchy levels](../raw/assets/blackwell_memory_latency.png)
 
-*Figure: Combined L1 and shared memory latency — Blackwell shows generational improvement in cache hierarchy. [src](raw/dissecting-blackwell-architecture.pdf)*
+*Figure: Combined L1 and shared memory latency — Blackwell shows generational improvement in cache hierarchy. [src](../raw/dissecting-blackwell-architecture.pdf)*
 
 ![Power efficiency under GEMM workloads](../raw/assets/blackwell_power.png)
 
-*Figure: GEMM power usage vs matrix size — Blackwell demonstrates improved power efficiency for AI workloads. [src](raw/dissecting-blackwell-architecture.pdf)*
+*Figure: GEMM power usage vs matrix size — Blackwell demonstrates improved power efficiency for AI workloads. [src](../raw/dissecting-blackwell-architecture.pdf)*
 
 ### Key Findings
 - **L1 cache latency**: Blackwell shows 10-15% reduction vs Hopper
@@ -123,7 +123,7 @@ Four papers tracing GPU architecture evolution through microbenchmarking and ins
 
 ![Reverse-engineered modern NVIDIA GPU core pipeline](../raw/assets/gpu_core_architecture.png)
 
-*Figure: Modern GPU core pipeline — sub-cores with independent issue schedulers, register file cache, L1 instruction cache. [src](raw/analyzing-modern-nvidia-gpu-cores.pdf)*
+*Figure: Modern GPU core pipeline — sub-cores with independent issue schedulers, register file cache, L1 instruction cache. [src](../raw/analyzing-modern-nvidia-gpu-cores.pdf)*
 
 ### Reverse-Engineered Core Details
 

@@ -3,7 +3,7 @@ title: "LLM Scaling Laws: From GPT-3 to the Plateau"
 type: source-note
 tags: [scaling-laws, llm, pretraining, kaplan, power-law]
 created: 2026-05-02
-updated: 2026-07-09
+updated: 2026-08-15
 sources: [https://cameronrwolfe.substack.com/p/llm-scaling-laws, raw/scaling-laws-kaplan.pdf]
 status: stable
 ---
@@ -35,7 +35,7 @@ Where $a$ and $b$ are fitted constants, and $L_\infty$ is the irreducible loss.
 
 ### Kaplan et al. (2020) — The Original Scaling Laws
 
-**Source**: OpenAI, 2020. 30 pages. arXiv:2001.08361 [src](raw/scaling-laws-kaplan.pdf). Studied Transformer LMs across 7+ orders of magnitude in scale.
+**Source**: OpenAI, 2020. 30 pages. arXiv:2001.08361 [src](../raw/scaling-laws-kaplan.pdf). Studied Transformer LMs across 7+ orders of magnitude in scale.
 
 ![The original power law plot — test loss decreases predictably with compute, model size, and data](../raw/assets/kaplan_SimplePowerLaws.png)
 

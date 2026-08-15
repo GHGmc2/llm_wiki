@@ -2,15 +2,15 @@
 title: "Every Microsecond Matters: Near Speed-of-Light Latency in GPU Collectives"
 type: source-note
 tags: [gpu, communication, nccl, collective, allreduce, latency, nvlink, inference, llm, hpc, nvidia, gb200, symmetric-memory, barrier-free]
-created: 2026-07-09
-updated: 2026-07-09
-sources: [https://arxiv.org/abs/2607.16100]
+created: 2026-08-06
+updated: 2026-08-15
+sources: [raw/every-microsecond-matters.pdf, https://arxiv.org/abs/2607.16100]
 status: stable
 ---
 
 # Every Microsecond Matters: Near Speed-of-Light Latency in GPU Collectives
 
-**Source**: Siyuan Shen, Anton Korzh, John Bachan, Tiancheng Chen, Arnav Goel, Ludwig Schneider, Pouya Kousha, Zhenhao He, Sylvain Jeaugey, Kamil Iskra, Nishank Chandawala, Jeff R. Hammond, Torsten Hoefler (ETH Zürich, NVIDIA, Singapore-ETH Centre), Jul 2026. arXiv:2607.16100. 14 pages. [src](https://arxiv.org/abs/2607.16100)
+**Source**: Siyuan Shen, Anton Korzh, John Bachan, Tiancheng Chen, Arnav Goel, Ludwig Schneider, Pouya Kousha, Zhenhao He, Sylvain Jeaugey, Kamil Iskra, Nishank Chandawala, Jeff R. Hammond, Torsten Hoefler (ETH Zürich, NVIDIA, Singapore-ETH Centre), Jul 2026. arXiv:2607.16100. 14 pages. [src](../raw/every-microsecond-matters.pdf) · [arXiv](https://arxiv.org/abs/2607.16100)
 
 ## Key Points
 
@@ -93,7 +93,7 @@ Built on NCCL's device-side APIs, the experimental API provides thread-level pri
 
 **Design choice**: Thread-level only (no warp/block APIs) — maximizes user control for lowest possible latency. APIs favor bidirectional patterns to avoid barriers.
 
-![NCCL Low-Latency APIs Overview](raw/assets/emm-low-latency-apis.png)
+![NCCL Low-Latency APIs Overview](../raw/assets/emm-low-latency-apis.png)
 
 ## Microbenchmark Results
 
@@ -114,9 +114,9 @@ Key observations:
 3. **Multicast** (NVLS `multimem.ld_reduce`) is critical for scalability — offloads reduction to the fabric, especially beneficial at 64 GPUs
 4. LL vs sentinel crossover: LL better at very small sizes; sentinel wins as message size and rank count increase
 
-![Microbenchmark latency comparison](raw/assets/emm-poster_child.png)
+![Microbenchmark latency comparison](../raw/assets/emm-poster_child.png)
 
-![One-shot AllReduce API example](raw/assets/emm-one-shot-ar-api-example.png)
+![One-shot AllReduce API example](../raw/assets/emm-one-shot-ar-api-example.png)
 
 ## Case Studies
 
@@ -150,7 +150,7 @@ Single-node distributed eigensolver on 4×GH200:
 | Two-shot Sentinel | O(1) | 0% | $D$ | Good | Yes |
 | **LL128 Atomic** | **O(1)** | **~3%** | **$D/N$** | **Best** | **No** |
 
-![Two-shot LL128 atomic algorithm overview](raw/assets/emm-new-algo.png)
+![Two-shot LL128 atomic algorithm overview](../raw/assets/emm-new-algo.png)
 
 ## Connections
 
